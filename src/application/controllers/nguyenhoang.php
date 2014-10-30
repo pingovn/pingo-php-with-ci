@@ -6,21 +6,23 @@
 -->
 <html>
 	<head>
-		<title>Tips Of The Day</title>
+		<title>ZeroFour by HTML5 UP</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="/css/ie/html5shiv.js"></script><![endif]-->
-		<script src="/js/jquery.min.js"></script>
-		<script src="/js/jquery.dropotron.min.js"></script>
-		<script src="/js/skel.min.js"></script>
-		<script src="/js/skel-layers.min.js"></script>
-		<script src="/js/init.js"></script>
-		<link rel="stylesheet" type="text/css" href="/css/skel.css" />
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="/css/style-desktop.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="/css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
 	</head>
 	<body class="homepage">
 
@@ -99,7 +101,7 @@
 								<div class="row">
 									<div class="4u">
 										<section>
-											<a href="#" class="image featured"><img src="/images/pic01.jpg" alt="" /></a>
+											<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
 											<header class="second icon fa-user">
 												<h3>Here's a Heading</h3>
 												<p>And a subtitle</p>
@@ -108,7 +110,7 @@
 									</div>
 									<div class="4u">
 										<section>
-											<a href="#" class="image featured"><img src="/images/pic02.jpg" alt="" /></a>
+											<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
 											<header class="second icon fa-cog">
 												<h3>Also a Heading</h3>
 												<p>And another subtitle</p>
@@ -117,7 +119,7 @@
 									</div>
 									<div class="4u">
 										<section>
-											<a href="#" class="image featured"><img src="/images/pic03.jpg" alt="" /></a>
+											<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
 											<header class="second icon fa-bar-chart-o">
 												<h3>Another Heading</h3>
 												<p>And yes, a subtitle</p>
@@ -190,7 +192,7 @@
 											
 											<!-- Excerpt -->
 												<article class="box excerpt">
-													<a href="#" class="image left"><img src="/images/pic04.jpg" alt="" /></a>
+													<a href="#" class="image left"><img src="images/pic04.jpg" alt="" /></a>
 													<div>
 														<header>
 															<span class="date">July 24</span>
@@ -204,7 +206,7 @@
 
 											<!-- Excerpt -->
 												<article class="box excerpt">
-													<a href="#" class="image left"><img src="/images/pic05.jpg" alt="" /></a>
+													<a href="#" class="image left"><img src="images/pic05.jpg" alt="" /></a>
 													<div>
 														<header>
 															<span class="date">July 18</span>
@@ -218,7 +220,7 @@
 
 											<!-- Excerpt -->
 												<article class="box excerpt">
-													<a href="#" class="image left"><img src="/images/pic06.jpg" alt="" /></a>
+													<a href="#" class="image left"><img src="images/pic06.jpg" alt="" /></a>
 													<div>
 														<header>
 															<span class="date">July 14</span>
@@ -238,7 +240,7 @@
 										<section class="box spotlight">
 											<h2 class="icon fa-file-text-o">Spotlight</h2>
 											<article>
-												<a href="#" class="image featured"><img src="/images/pic07.jpg" alt=""></a>
+												<a href="#" class="image featured"><img src="images/pic07.jpg" alt=""></a>
 												<header>
 													<h3><a href="#">Neural Implants</a></h3>
 													<p>The pros and cons. Mostly cons.</p>
