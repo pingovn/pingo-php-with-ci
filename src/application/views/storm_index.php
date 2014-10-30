@@ -32,13 +32,13 @@
             <div class="menu">
                 <ul>
                     <li><span class="left"></span><span class="hlavny"><a href="#">Home</a></span><span class="right"></span></li>
-                    <li><img src="/themes/storm/template/divider2.png" alt="" /></li>
+                    <li><img src="/themes/storm/template/img/img/divider2.png" alt="" /></li>
                     <li><span class="hlavny_"><a href="index1.html">2 Columns (1)</a></span></li>
-                    <li><img src="/themes/storm/template/divider2.png" alt="" /></li>
+                    <li><img src="/themes/storm/template/img/img/divider2.png" alt="" /></li>
                     <li><span class="hlavny_"><a href="index2.html">2 Columns (2)</a></span></li>
-                    <li><img src="/themes/storm/template/divider2.png" alt="" /></li>
+                    <li><img src="/themes/storm/template/img/divider2.png" alt="" /></li>
                     <li><span class="hlavny_"><a href="#" >Links</a></span></li>
-                    <li><img src="/themes/storm/template/divider2.png" alt="" /></li>
+                    <li><img src="/themes/storm/template/img/divider2.png" alt="" /></li>
                     <li><span class="hlavny_"><a href="#">Contact</a></span></li>
                 </ul>
             </div>
@@ -70,24 +70,24 @@
             <div class="mainpanel">
                 <div class="text_">
                     <h1><a href="#">Welcome on our website!</a></h1>
-                    <div class="text"><img src="/themes/storm/template/img1.jpg" alt="" />This is a free, fully standards-compliant CSS template designed by P&amp;B Creations and supported by Tachlovice. You're pretty much free to do whatever you want with it (even use it commercially) provided you keep the links in the footer intact. The photo used is from Wallpaperstock.net. Have fun with it :)<br />
+                    <div class="text"><img src="/themes/storm/template/img/img1.jpg" alt="" />This is a free, fully standards-compliant CSS template designed by P&amp;B Creations and supported by Tachlovice. You're pretty much free to do whatever you want with it (even use it commercially) provided you keep the links in the footer intact. The photo used is from Wallpaperstock.net. Have fun with it :)<br />
                         <br />
                         Ad has utinam senserit maiestatis. Sonet causae per no, ex vel choro eirmod alienum. Tota takimata imperdiet ea est, ut eligendi iudicabit mei. Sea probo laboramus in, paulo placerat at qui. Vix labore concludaturque ex.<br />
                         <br />
                         Cu alii movet diceret duo. Sonet causae per no, ex vel choro eirmod alienum. </div>
-                    <h2><a href="#"><img src="/themes/storm/template/more.gif" alt="" />Read more</a> <a href="#"><img src="/themes/storm/template/comment.gif" alt="" />Comments (8)</a></h2>
+                    <h2><a href="#"><img src="/themes/storm/template/img/more.gif" alt="" />Read more</a> <a href="#"><img src="/themes/storm/template/img/comment.gif" alt="" />Comments (8)</a></h2>
                 </div>
                 <div class="text_">
                     <h1><a href="#">Sed unum qualisque idi</a></h1>
-                    <div class="text"><img src="/themes/storm/template/img1.jpg" alt="" />Sed unum qualisque id, et est reque veniam disputando. Ad eum saperet consulatu laboramus, audire percipit eu cum. Nec eu wisi delicatissimi. Ut putent fabulas civibus eam, eu mucius nostrum philosophia pro, pri an reque iuvaret vulputate. Eum ei assum sensibus iudicabit. Ad has utinam senserit maiestatis. Sonet causae per no, ex vel choro eirmod alienum. Tota takimata <a href="#">imperdiet</a> ea est, ut eligendi iudicabit mei. Sea probo <a href="#">laboramus</a> in, paulo placerat at qui. Vix labore concludaturque ex. Cu alii movet diceret duo. </div>
-                    <h2><a href="#"><img src="/themes/storm/template/more.gif" alt="" />Read more</a> <a href="#"><img src="/themes/storm/template/comment.gif" alt="" />Comments (1)</a></h2>
+                    <div class="text"><img src="/themes/storm/template/img/img1.jpg" alt="" />Sed unum qualisque id, et est reque veniam disputando. Ad eum saperet consulatu laboramus, audire percipit eu cum. Nec eu wisi delicatissimi. Ut putent fabulas civibus eam, eu mucius nostrum philosophia pro, pri an reque iuvaret vulputate. Eum ei assum sensibus iudicabit. Ad has utinam senserit maiestatis. Sonet causae per no, ex vel choro eirmod alienum. Tota takimata <a href="#">imperdiet</a> ea est, ut eligendi iudicabit mei. Sea probo <a href="#">laboramus</a> in, paulo placerat at qui. Vix labore concludaturque ex. Cu alii movet diceret duo. </div>
+                    <h2><a href="#"><img src="/themes/storm/template/img/more.gif" alt="" />Read more</a> <a href="#"><img src="/themes/storm/template/img/comment.gif" alt="" />Comments (1)</a></h2>
                 </div>
                 <div class="text_">
                     <h1><a href="#">His aliquip inciderint ex</a></h1>
-                    <div class="text"><img src="/themes/storm/template/img1.jpg" alt="" />His aliquip inciderint ex, meliore mediocritatem in sed, an fabulas inimicus praesent cum. Ut legendos conclusionemque vix. Ea legere tincidunt constituto has. Ut his <a href="#">solum audire efficiendi</a>, pri postea quidam referrentur at. Ut solet mucius placerat usu, ut has dicat dolorum evertitur, at utamur partiendo has. Ex enim laudem persequeris vim.<br />
+                    <div class="text"><img src="/themes/storm/template/img/img1.jpg" alt="" />His aliquip inciderint ex, meliore mediocritatem in sed, an fabulas inimicus praesent cum. Ut legendos conclusionemque vix. Ea legere tincidunt constituto has. Ut his <a href="#">solum audire efficiendi</a>, pri postea quidam referrentur at. Ut solet mucius placerat usu, ut has dicat dolorum evertitur, at utamur partiendo has. Ex enim laudem persequeris vim.<br />
                         <br />
                         Sit an posse eruditi corrumpit. Eligendi pericula ne duo. Vix illud omnesque salutatus ne. Est in saepe civibus, oportere hendrerit scribentur eos ad. Alienum comprehensam eu mei. Te iusto integre nam, unum hendrerit eu ius. Sonet causae per no, ex vel choro eirmod alienum. Ut putent fabulas civibus eam, eu mucius nostrum philosophia pro, pri an reque iuvaret vulputate. </div>
-                    <h2><a href="#"><img src="/themes/storm/template/more.gif" alt="" />Read more</a> <a href="#"><img src="/themes/storm/template/comment.gif" alt="" />Comments (21)</a></h2>
+                    <h2><a href="#"><img src="/themes/storm/template/img/more.gif" alt="" />Read more</a> <a href="#"><img src="/themes/storm/template/img/comment.gif" alt="" />Comments (21)</a></h2>
                 </div>
             </div>
             <div class="rightpanel">
