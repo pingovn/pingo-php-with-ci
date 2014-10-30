@@ -32,9 +32,9 @@
             <div class="menu">
                 <ul>
                     <li><span class="left"></span><span class="hlavny"><a href="#">Home</a></span><span class="right"></span></li>
-                    <li><img src="/themes/storm/template/img/img/divider2.png" alt="" /></li>
+                    <li><img src="/themes/storm/template/img/divider2.png" alt="" /></li>
                     <li><span class="hlavny_"><a href="index1.html">2 Columns (1)</a></span></li>
-                    <li><img src="/themes/storm/template/img/img/divider2.png" alt="" /></li>
+                    <li><img src="/themes/storm/template/img/divider2.png" alt="" /></li>
                     <li><span class="hlavny_"><a href="index2.html">2 Columns (2)</a></span></li>
                     <li><img src="/themes/storm/template/img/divider2.png" alt="" /></li>
                     <li><span class="hlavny_"><a href="#" >Links</a></span></li>
