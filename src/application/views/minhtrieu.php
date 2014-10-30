@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 
 ?>
 
@@ -15,13 +16,36 @@
 [if !(IE 6) | !(IE 7) | !(IE 8)  ]><!
 <html dir="ltr" lang="en-US">
 <![endif]
+=======
+//header("Location:/themes/minhtrieu/index.html");
+//exit;
+?>
+
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" dir="ltr" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" dir="ltr" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" dir="ltr" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html dir="ltr" lang="en-US">
+<!--<![endif]-->
+>>>>>>> 08d6d4c9db57d694dd6ee78aed05c8d10b9e1283
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
     <title>Diverso | Just another YIW Themes Demo Sites site</title>
 
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" media="all" href="style.css" />
+=======
+    <link rel="stylesheet" type="text/css" media="all" href="/themes/minhtrieu/style.css" />
+>>>>>>> 08d6d4c9db57d694dd6ee78aed05c8d10b9e1283
     <link rel="stylesheet" type="text/css" media="screen and (max-width: 960px)" href="/themes/minhtrieu/css/lessthen800.css" />
     <link rel="stylesheet" type="text/css" media="screen and (max-width: 600px)" href="/themes/minhtrieu/css/lessthen600.css" />
     <link rel="stylesheet" type="text/css" media="screen and (max-width: 480px)" href="/themes/minhtrieu/css/lessthen480.css" />
@@ -45,6 +69,7 @@
     <link rel="stylesheet" id="prettyPhoto-css" href="/themes/minhtrieu/css/prettyPhoto.css" type="text/css" media="all" />
     <link rel="stylesheet" id="jquery-tipsy-css" href="/themes/minhtrieu/css/tipsy.css" type="text/css" media="all" />
 
+<<<<<<< HEAD
     <script type="text/javascript" src="/themes/minhtrieu/jsjquery.js"></script>
     <script type="text/javascript" src="/themes/minhtrieu/jsjquery.easing.1.3.js"></script>
     <script type="text/javascript" src="/themes/minhtrieu/jsjquery.prettyPhoto.js"></script>
@@ -80,6 +105,43 @@
 
     <!-- SLIDER FLASH -->
     <script type="text/javascript" src="/themes/minhtrieu/jsswfobject.js"></script>
+=======
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.js"></script>
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.tweetable.js"></script>
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.flexslider.min.js"></script>
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.cycle.min.js"></script>
+
+    <!-- for accordion slider in staff page -->
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.hrzAccordion.js"></script>
+
+    <!-- for filterable effect in gallery and portfolio filterable page -->
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.quicksand.js"></script>
+
+    <!-- for portfolio slider -->
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.jcarousel.min.js"></script>
+
+    <!-- for the contact page -->
+    <script type="text/javascript" src="/themes/minhtrieu/js/contact.js"></script>
+
+    <!-- SLIDER ELASTIC -->
+    <link rel="stylesheet" id="slider-elastic-css" href="/themes/minhtrieu/css/slider-elastic.css" type="text/css" media="all" />
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.eislideshow.js"></script>
+
+    <!-- SLIDER CYCLE -->
+    <link rel="stylesheet" id="slider-cycle-css" href="/themes/minhtrieu/css/slider-cycle.css" type="text/css" media="all" />
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.slides.min.js"></script>
+
+    <!-- SLIDER THUMBNAILS -->
+    <link rel="stylesheet" id="slider-thumbnails-css" href="/themes/minhtrieu/css/slider-thumbnails.css" type="text/css" media="all" />
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.aw-showcase.js"></script>
+
+    <!-- SLIDER FLASH -->
+    <script type="text/javascript" src="/themes/minhtrieu/js/swfobject.js"></script>
+>>>>>>> 08d6d4c9db57d694dd6ee78aed05c8d10b9e1283
 
     <!-- SLIDER ELEGANT -->
     <link rel="stylesheet" id="slider-elegant-css" href="/themes/minhtrieu/css/slider-elegant.css" type="text/css" media="all" />
@@ -88,7 +150,11 @@
     <link rel="stylesheet" id="slider-nivo-css" href="/themes/minhtrieu/css/slider-nivo.css" type="text/css" media="all" />
 
     <!-- CUSTOM JAVASCRIPT -->
+<<<<<<< HEAD
     <script type="text/javascript" src="/themes/minhtrieu/jsjquery.custom.js"></script>
+=======
+    <script type="text/javascript" src="/themes/minhtrieu/js/jquery.custom.js"></script>
+>>>>>>> 08d6d4c9db57d694dd6ee78aed05c8d10b9e1283
 </head>
 
 <body class="home image-sphere-style responsive">
@@ -611,4 +677,8 @@
 <!-- END SHADOW -->
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>-->
+>>>>>>> 08d6d4c9db57d694dd6ee78aed05c8d10b9e1283
