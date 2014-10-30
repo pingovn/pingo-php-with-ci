@@ -15,9 +15,9 @@
 		<script src="/themes/luuquang/js/skel.min.js"></script>
 		<script src="/themes/luuquang/js/skel-layers.min.js"></script>
 		<script src="/themes/luuquang/js/init.js"></script>
-			<link rel="stylesheet" href="/themes/luuquang/css/skel.css" />
-			<link rel="stylesheet" href="/themes/luuquang/css/style.css" />
-			<link rel="stylesheet" href="/themes/luuquang/css/style-desktop.css" />
+			<link rel="stylesheet" type="text/css" href="/themes/luuquang/css/skel.css" />
+			<link rel="stylesheet" type="text/css" href="/themes/luuquang/css/style.css" />
+			<link rel="stylesheet" type="text/css" href="/themes/luuquang/css/style-desktop.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="/themes/luuquang/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="/themes/luuquang/js/html5shiv.js"></script><![endif]-->
 	</head>
