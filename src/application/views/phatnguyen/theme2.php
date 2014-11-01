@@ -16,7 +16,7 @@
         <li><a href="#">Articles</a></li>
         <li><a href="#">Forums</a></li>
         <li><a href="#">Gallery</a></li>
-        <li><a href="#">Links</a></li>
+        <li><a href="/index.php/users/create">Links</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>

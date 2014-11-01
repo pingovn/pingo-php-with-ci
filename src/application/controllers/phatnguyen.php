@@ -4,8 +4,8 @@ class Phatnguyen extends CI_Controller {
 	public function index()
 	{ 
 // 			$this->load->view('phatnguyen/theme1');
-// 			$this->load->view('phatnguyen/theme2');
-			$this->load->view('phatnguyen/theme3');
+			$this->load->view('phatnguyen/theme2');
+// 			$this->load->view('phatnguyen/theme3');
 	}
 }
 
