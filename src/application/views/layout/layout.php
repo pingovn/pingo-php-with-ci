@@ -11,19 +11,12 @@
 <?php include("header.php"); ?>
 <?php include("menu.php"); ?>
     
-<?php include("left_content.php"); ?>
+<div class="left_content">    
+    <?php include("$mainContent"); ?>
+</div>
 <?php include("right_content.php"); ?>
 
 <?php include("footer.php"); ?>
-    
-    
-
-    
-
-
-     
-
-
 </div>
 </body>
 </html>
