@@ -1,12 +1,9 @@
 <div id="menu">
     <ul>                                                                                                                      
-        <li><a class="current" href="index.html" title="">home</a></li>
-        <li><a href="#" title="">listen live</a></li>
-        <li><a href="#" title="">latest events</a></li>
-        <li><a href="#" title="">shows</a></li>
-        <li><a href="#" title="">news</a></li>
-        <li><a href="#" title="">gallery</a></li>
-        <li><a href="#" title="">downloads</a></li>
-        <li><a href="#" title="">contact us</a></li>
+        <li><a class="current" href="/" title="">Tips of today</a></li>
+        <li><a href="#" title="">Overall</a></li>
+        <li><a href="#" title="">Your tips</a></li>
+        <li><a href="#" title="">Your followers' tips</a></li>
+        <li><a href="/index.php/user/register" title="">Register</a></li>
     </ul>
 </div>

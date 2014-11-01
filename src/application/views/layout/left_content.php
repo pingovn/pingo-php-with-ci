@@ -1,4 +1,3 @@
-<div class="left_content">
     <div class="title">Welcome to our radio station</div>
     <p>
     <img src="/themes/phatnguyen/theme3/images/earphones.gif" alt="" title="" class="left_img" />
@@ -45,5 +44,3 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
         <div class="right_nav"><a href="#"><img src="/themes/phatnguyen/theme3/images/right_arrow.gif" alt="" title="" border="0" /></a></div> 
     </div>
      
-    
-    </div>
