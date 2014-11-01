@@ -70,19 +70,23 @@ class My_model extends CI_Model
         $db_info = $this -> db -> query ($sql);
         $row = $db_info -> row_array();
         //update the information need to be changed
-        foreach ($update_info as $key => $value) {
-            $row[$key] = $value;
+        if ($db_info -> num_rows() > 0) {
+            foreach ($update_info as $key => $value) {
+                $row[$key] = $value;
+            }
+            //update the information to database
+            $sql = 'UPDATE ' . $table . ' SET ' .
+                'username  = \'' . $row['username'] . '\' , ' .
+                'password  = \'' . $row['password'] . '\' , ' .
+                'fullname  = \'' . $row['fullname'] . '\' , ' .
+                'birth     = \'' . $row['birth']    . '\' , ' .
+                'mail      = \'' . $row['mail']     . '\' , ' .
+                'gender    = \'' . $row['gender']   . '\'   ' .
+                ' WHERE id = ' . $row['id'];
+            $query = $this->db->query($sql);
+        } else {
+            echo "\$update_info['id'] = ${update_info['id']} doesn't exist in database";
         }
-        //update the information to database
-        $sql = 'UPDATE ' . $table . ' SET ' .
-            'username  = \'' . $row['username'] . '\' , ' .
-            'password  = \'' . $row['password'] . '\' , ' .
-            'fullname  = \'' . $row['fullname'] . '\' , ' .
-            'birth     = \'' . $row['birth']    . '\' , ' .
-            'mail      = \'' . $row['mail']     . '\' , ' .
-            'gender    = \'' . $row['gender']   . '\'   ' .
-            ' WHERE id = ' . $row['id'];
-        $query = $this->db->query($sql);
     }
     // --------------------------------------------------------------------
     /**

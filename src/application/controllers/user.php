@@ -18,13 +18,12 @@ class User extends CI_Controller {
    // --------------------------------------------------------------------
     /**
      * Controller  function:
-     * INPUT: void - NOTICE: input will be change to  target  ID  which want to query in database
+     * INPUT: target  ID  which want to query in database
      * OPERATION: query user  in database which match the input id  and display
      * OUTPUT: void
      */
-    public function get_one_user ()
+    public function get_one_user ($id)
     {
-        $id = 2;
         $this->load->model ('my_model');
         $data['query'] = $this->my_model->get_user($id);
         $this->load->view ('user_view',$data);
@@ -55,7 +54,7 @@ class User extends CI_Controller {
     public function update_user ()
     {
         $update_info = array(
-            'id' => 2, //matching condition
+            'id' => 7, //matching condition
             'username' => 'tui ne' //updated information
         );
         $this->load->model ('my_model');
