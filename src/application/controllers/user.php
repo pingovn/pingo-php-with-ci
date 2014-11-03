@@ -1,81 +1,124 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class User extends CI_Controller {
-
-  // --------------------------------------------------------------------
-   /**
-     * Controller  function:
-     * INPUT: void
-    * OPERATION: query all information in database and display
-     * OUTPUT: void
-     */
-    public function get_all_user ()
+    public function register()
     {
-        $this->load->model ('my_model');
-        $data['query'] = $this->my_model->get_all();
-        $this->load->view ('user_view',$data);
+        if (isset($_POST['btnRegister'])) {
+            // Processing registering new account
+            $email = $this->input->post('txtEmail');
+            $this->load->helper('email');
+            if (valid_email($email)) {
+                //check if email is in database
+                $this->load->database();
+                $this->load->model('my_model');
+                $sql = array(
+                    'email' => $email
+                );
+                $query = $this->my_model->get_user($sql);
+                if (empty($query)) {
+                    $email_valid = 1;
+                } else {
+                    $this->register_err("Email already existed",$email); //wrong email
+                }
+
+            } else {
+               $email_valid=  0;
+            }
+
+            $password = $this->input->post('txtPassword');
+            $confirmPassword =  $this->input->post('txtConfirmPassword');
+            if ($password === $confirmPassword) {
+                if ($email_valid == 1) {
+                    //put information to database
+                    $this->load->model ('my_model');
+                    $sql = array($email,$password);
+                    $this->my_model->add_user($sql);
+                    $this->login(); //success
+                } else {
+                    $this->register_err("Email format must be yourname@something.com",""); //wrong email
+                }
+            } else {
+                $this->register_err("Password is mismatch",$email);
+            }
+            return $this->login();
+        } elseif (isset($_POST['btnLogin'])) {
+            return $this->login();
+        }
+        $this->load->view("layout/layout", array(
+            'mainContent' => VIEW_PATH . '/user/register.php'
+        ));
+
+
+
     }
 
-   // --------------------------------------------------------------------
-    /**
-     * Controller  function:
-     * INPUT: target  ID  which want to query in database
-     * OPERATION: query user  in database which match the input id  and display
-     * OUTPUT: void
-     */
-    public function get_one_user ($id)
+    private function register_err ($err_msg, $email)
     {
-        $this->load->model ('my_model');
-        $data['query'] = $this->my_model->get_user($id);
-        $this->load->view ('user_view',$data);
+        $this->load->view("layout/layout", array(
+            'mainContent' => VIEW_PATH.'/user/register.php',
+            'err_msg' => $err_msg,
+            'email'   => $email
+        ));
     }
 
-    // --------------------------------------------------------------------
-    /**
-     * Controller  function:
-     * INPUT: void - NOTICE: this will be changed in future. The input should be user information which should be added to database
-     * OPERATION: insert information to database and query all information in database
-     * OUTPUT: void
-     */
-    public function insert_user ()
+    private function login_err ($err_msg, $email)
     {
-        $sql = array( 'test','pass','my test','11-11-11','test@a.com','female'); //data to insert todatabe
-        $this->load->model ('my_model');
-        $this->my_model->insert_user($sql);
-        $this->get_all_user();
+        $this->load->view("layout/layout", array(
+            'mainContent' => VIEW_PATH.'/user/login.php',
+            'err_msg' => $err_msg,
+            'email'   => $email
+        ));
+
+    }
+    function login()
+    {
+//        var_dump($_POST);
+        if (isset($_POST['btnLogin'])) {
+            $email = $this->input->post('txtEmail');
+            $password = $this->input->post("txtPassword");
+            $this->load->helper('email');
+            if (valid_email($email)) {
+
+                //compare password in database
+                $this->load->database();
+                $this->load->model ('my_model');
+                $sql = array(
+                    'email' => $email
+                );
+                $query = $this->my_model->get_user($sql);
+                $sql_row = $query[0];
+                if ($password === $sql_row['password']) {
+                    $_SESSION['login'] =1;
+                    $this->load->view("layout/layout", array(
+                        'mainContent'   => VIEW_PATH . '/layout/left_content.php'
+                    ));
+
+                } else {
+                    $this->login_err("Invalid Password",$email);
+                }
+            } else {
+                $this->login_err('Invalid Email',$email);
+            }
+
+        return  $this->load->view("layout/layout", array(
+            'mainContent'   => VIEW_PATH . '/layout/left_content.php'
+            ));
+        }
+
+        $this->load->view("layout/layout", array(
+            'mainContent'   => VIEW_PATH . '/user/login.php'
+        ));
+
     }
 
-    // --------------------------------------------------------------------
-    /**
-     * Controller  function:
-     * INPUT: void - NOTICE: this will be changed in future. The input should be user information which should be updated  to database
-     * OPERATION: update  information to database and query the updated  information in database
-     * OUTPUT: void
-     */
-    public function update_user ()
+    function logout ()
     {
-        $update_info = array(
-            'id' => 7, //matching condition
-            'username' => 'tui ne' //updated information
-        );
-        $this->load->model ('my_model');
-        $this->my_model->update_user($update_info);
-        $this->get_one_user($update_info['id']);
-    }
-    // --------------------------------------------------------------------
-    /**
-     * Controller  function:
-     * INPUT: void - NOTICE: this will be changed in future. The input should be user id which should be delete  to database
-     * OPERATION: delete user  information in database and query all  information in database
-     * OUTPUT: void
-     */
-    public function delete_user ()
-    {
-        $delete_info = array(
-            'username' => 'test'
-        );
-        $this->load->model ('my_model');
-        $this->my_model->delete_user($delete_info);
-        $this->get_all_user();
+        $_SESSION['login'] = ''; //for removing PHP message
+        unset($_SESSION['login']);
+        $this->load->view("layout/layout", array(
+            'mainContent'   => VIEW_PATH . '/layout/left_content.php'
+        ));
     }
 }
-?>
+
+
+

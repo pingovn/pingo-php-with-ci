@@ -23,13 +23,14 @@ class My_model extends CI_Model
      * OPERATION: query user  in database which match the input id  and display
      * OUTPUT: information returned from database
      */
-    public function get_user ($id)
+    public function get_user ($info)
     {
         $table = 'users';
         $this->load->database();
-        $sql = 'SELECT * FROM ' . $table . ' WHERE id = ' . $id;
+        $sql = 'SELECT * FROM ' . $table . ' WHERE ' . key($info) . ' = \'' . $info[key($info)] . '\'';
         $query = $this->db->query($sql);
-        return $query->result();
+//        var_dump($query->result());
+        return $query->result_array();
     }
     // --------------------------------------------------------------------
     /**
@@ -38,18 +39,14 @@ class My_model extends CI_Model
      * OPERATION: insert the information to database
      * OUTPUT: void
      */
-    public function insert_user($insert_db)
+    public function add_user($insert_db)
     {
         $this->load->database();
         $table = 'users';
         $sql = array(
             //'id' => $insert_db[0],
-            'username' => $insert_db[0],
-            'password' => $insert_db[1],
-            'fullname'  => $insert_db[2],
-            'birth'     => $insert_db[3],
-            'mail'      => $insert_db[4],
-            'gender'    => $insert_db[5]
+            'email' => "$insert_db[0]",
+            'password' => "$insert_db[1]"
         );
         $query = $this->db->insert($table, $sql) ;
     }
