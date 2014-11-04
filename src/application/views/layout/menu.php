@@ -5,5 +5,6 @@
         <li><a href="#" title="">Your tips</a></li>
         <li><a href="#" title="">Your followers' tips</a></li>
         <li><a href="/index.php/user/register" title="">Register</a></li>
+        <li><a href="<?php echo site_url('user/register'); ?>" title="">Register</a></li>
     </ul>
 </div>
