@@ -1,16 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class User extends CI_Controller {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->database();
+    }
+
     public function register()
     {
+        $errorMessage = '';
         if (isset($_POST['btnRegister'])) {
             // Processing registering new account
             $email = $this->input->post('txtEmail');
             $this->load->helper('email');
-            if (valid_email($email)) {
-                echo 'email is valid';
-            } else {
-                echo 'email is not valid';
+            if (!valid_email($email)) {
+                $errorMessage =  'email is invalid';
+                $this->load->view("layout/layout", array(
+                    'errorMessage'  => $errorMessage,
+                    'mainContent'   => VIEW_PATH . '/user/register.php'
+                    ));
+                return;
             }
 
             $password = $this->input->post('txtPassword');
@@ -20,10 +30,19 @@ class User extends CI_Controller {
             // So sanh password voi confirm password
             // Kiem tra email co ton tai 
             // Password > 6 ky tu
-            // 
-            return $this->login();
+            $user = array(
+                'email'         => $email,
+                'password'  => $password
+            );
+            $userId = $this->userModel->createUser($user);
+            if ($userId === false) {
+                $errorMessage = "Can not create new user. Please try again";
+            } else {
+                return $this->login();    
+            }
         }
         $this->load->view("layout/layout", array(
+            'errorMessage'  => $errorMessage,
             'mainContent'   => VIEW_PATH . '/user/register.php'
             ));
     }
