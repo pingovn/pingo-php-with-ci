@@ -39,11 +39,9 @@
             <input type="email" id="txtEmail" name="txtEmail" value="" placeholder="e-mail" autofocus >
             <input type="password" placeholder="Password" id="txtPassword" name="txtPassword" value="">
             <input type="password" placeholder="Confirm Password" id="txtConfirmPasword" name="txtConfirmPasword" value="">
-            <!--
             <div class="checkboxy">
-                <input name="cecky" id="checky" value="1" type="checkbox" /><label class="terms">I accept the terms of use</label>
+                <input name="cecky" id="checky" value="1" type="checkbox" /><label class="terms">Remember me</label>
             </div>
-            -->
             <!-- <a id="submit" href="#">REGISTER</a> -->
             <input id='submit' type="submit" value="Register" name="btnRegister">
         </div>
