@@ -1,4 +1,6 @@
-    <div class="title">Welcome to our radio station</div>
+<h2>Welcome <?php echo $email; ?>!</h2>
+<a href="home/logout">Logout</a>
+<div class="title">Welcome to our radio station</div>
     <p>
     <img src="/themes/phatnguyen/theme3/images/earphones.gif" alt="" title="" class="left_img" />
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
