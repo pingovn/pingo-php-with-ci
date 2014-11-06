@@ -1,23 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends CI_Controller{
+class Migration extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->database();
-        $this->load->helper('url');
+        $this->load->library('migration');
     }
 
     public function index()
     {
-        $this->load->view("layout/layout", array(
-            'mainContent'   => VIEW_PATH . '/layout/left_content.php',
-            ));
+        $this->migration->latest();
     }
 
-    public function phpinfo()
+    public function version($version)
     {
-        phpinfo();
+        $this->migration->version($version);
     }
 }
 
