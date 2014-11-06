@@ -6,10 +6,12 @@ class User extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->helper('url');
+        $this->load->model("PingoModel");
     }
 
     public function register()
     {
+        $this->load->model("Users", "userModel");
         $errorMessage = '';
         if (isset($_POST['btnRegister'])) {
             // Processing registering new account
@@ -35,7 +37,9 @@ class User extends CI_Controller {
                 'email'         => $email,
                 'password'  => $password
             );
+
             $userId = $this->userModel->createUser($user);
+
             if ($userId === false) {
                 $errorMessage = "Can not create new user. Please try again";
             } else {

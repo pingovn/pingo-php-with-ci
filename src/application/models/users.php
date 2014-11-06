@@ -5,11 +5,12 @@
  * @package Pingo - CI
  */
 
-class Users extends CI_Model
+class Users extends PingoModel
 {
     public function __construct()
     {
         parent::__construct();
+        $this->tableName = 'users';
     }
 
     /**
@@ -19,12 +20,7 @@ class Users extends CI_Model
      */
     public function getUserByEmail($email)
     {
-        $user = $this->db->where('email', $email)->get('users', 1)->result_array();
-        if (count($user) == 1) {
-            return $user[0];
-        } else {
-            return false;
-        }
+        return $this->getByField('email', $email);
     }
 
     /**
@@ -34,12 +30,7 @@ class Users extends CI_Model
      */
     public function getUserById($id)
     {
-        $user = $this->db->where('id', $id)->get('users', 1)->result_array();
-        if (count($user) == 1) {
-            return $user[0];
-        } else {
-            return false;
-        }
+        return $this->getById($id);
     }
 
     /**
@@ -49,9 +40,7 @@ class Users extends CI_Model
      */
     public function updateUser(array $user)
     {
-        $where = array('id' => $user['id']);
-        unset($user['id']);
-        return $this->db->update('users', $user, $where);
+        return $this->update($user);
     }
 
     /**
@@ -69,12 +58,7 @@ class Users extends CI_Model
             return false;
         }
         $user['password'] = md5($user['password']);
-        $result = $this->db->insert('users', $user);
-        if ($result == true) {
-            return $this->db->insert_id();
-        } else {
-            return false;
-        }
+        return $this->create($user);
     }
 
     public function saveUser(array $user)
