@@ -1,6 +1,10 @@
-<form id="frmRegister" action="/index.php/user/register" method="POST">
+<form id="frmRegister" action="/index.php/users/create" method="POST">
+<?php 
+var_dump(validation_errors());
+echo validation_errors();?>
     <h4>Register new account</h4>
     <label for="txtEmail">Email</label>
+    <?php 	echo form_error('email');?>
     <input type="text" id="txtEmail" name="txtEmail" value="">
     <br />
     <label for="txtPasword">Password</label>

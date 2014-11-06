@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 class Users extends CI_Controller
 {
 	public function __construct()
@@ -37,6 +38,9 @@ class Users extends CI_Controller
 	}
 	public function login()
 	{
+		$this->load->view("layout/layout", array(
+				'mainContent'   => VIEW_PATH . '/user/login.php'
+		));
 		$email = $this->input->post('email');
 		$pass = md5($this->input->post('password'));
 // 		var_dump($pass);
@@ -57,33 +61,41 @@ class Users extends CI_Controller
 		$this->session->sess_destroy();
 		$this->index();
 	}
-	public function thank()
-	{
-// 			$data['title']= 'Thanks';
-		$this->load->view('users/thank_view');
-	}
-	public function welcome()
-	{
-		$this->load->view('users/welcome_view');
-	}
+// 	public function thank()
+// 	{
+// // 			$data['title']= 'Thanks';
+// 		$this->load->view('users/thank_view');
+// 	}
+// 	public function welcome()
+// 	{
+// 		$this->load->view('users/welcome_view');
+// 	}
 	public function create()
 	{	
 		
 // 		$data['title'] = "Create new user";
-		
-		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
-		$this->form_validation->set_rules('password','Password','trim|required|min_length[4]|max_length[32]');
-		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
-		if($this->form_validation->run()===FALSE)
+		if (!isset($_POST['btnRegister']))
 		{
-			$this->load->view('users/create');
+// 			$this->load->view('users/register');
+			$this->load->view("layout/layout", array(
+					'mainContent'   => VIEW_PATH . '/user/register.php'
+			));
 		}
 		else
 		{
-			$this->users_model->set_users();
-			$this->thank();
-// 			var_dump( $this->input->post());
-// 			redirect('users/index','refresh');
+			$this->form_validation->set_rules ( 'email', 'Email', 'trim|required|valid_email' );
+			$this->form_validation->set_rules ( 'password', 'Password', 'trim|required|min_length[6]|max_length[32]' );
+			$this->form_validation->set_rules ( 'passconf', 'Password Confirmation', 'trim|required|matches[password]' );
+			if ($this->form_validation->run () === FALSE) {
+				$this->load->view ( "layout/layout", array (
+						'mainContent' => VIEW_PATH . '/user/register.php' 
+				) );
+			} else {
+				$this->users_model->set_users ();
+				$this->login ();
+				// var_dump( $this->input->post());
+				// redirect('users/index','refresh');
+			}
 		}
 	}
 	

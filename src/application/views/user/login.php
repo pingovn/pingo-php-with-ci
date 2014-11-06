@@ -1,4 +1,4 @@
-<form id="frmLogin" action="/index.php/user/login" method="POST">
+<form id="frmLogin" action="/index.php/users/login" method="POST">
     <h4>Register new account</h4>
     <label for="txtEmail">Email</label>
     <input type="text" id="txtEmail" name="txtEmail" value="">
