@@ -1,1 +1,7 @@
 /src/nbproject/private/
+.idea
+.project
+.setting
+.DS_Store
+src/application/config/database.php
+src/application/config/config.php
