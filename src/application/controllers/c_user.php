@@ -146,8 +146,8 @@ class C_user extends CI_Controller {
     public function changePass()
     {
         if($this->session->userdata('logged_in'))
-        {$this->data['mainContent'] = VIEW_PATH . '/user/v_changepass.php';
-
+        {
+            $this->data['mainContent'] = VIEW_PATH . '/user/v_changepass.php';
             $this->load->view("layout/layout", $this->data);
         }
         else
@@ -164,37 +164,48 @@ class C_user extends CI_Controller {
     {
         //$id = $this->uri->segment(3);
         //var_dump($id);die();
-        $value = $this->input->post('btnChange');
-        if(isset($value))
+        if($this->session->userdata('logged_in'))
         {
-            $this->form_validation->set_rules('txtOldPassword', 'Old Password', 'trim|required');
-            $this->form_validation->set_rules('txtPassword','New Password','trim|required|matches[txtConfirmPassword]|min_length[6]|md5');
-            $this->form_validation->set_rules('txtConfirmPassword','Confirm New Password','trim|required');
-            if ($this->form_validation->run() == FALSE)
+            $value = $this->input->post('btnChange');
+            if(isset($value))
             {
+                $this->form_validation->set_rules('txtOldPassword', 'Old Password', 'trim|required');
+                $this->form_validation->set_rules('txtPassword','New Password','trim|required|matches[txtConfirmPassword]|min_length[6]|md5');
+                $this->form_validation->set_rules('txtConfirmPassword','Confirm New Password','trim|required');
+                if ($this->form_validation->run() == FALSE)
+                {
+                    $this->data['mainContent'] = VIEW_PATH . '/user/v_changepass.php';
+                    $this->load->view("layout/layout",$this->data);
+                }
+                else
+                {
+                    $data = array(
+                        'id'=>$this->data['id'],
+                        'password' => $this->input->post('txtPassword'),
+                    );
+                    //$id = $this->uri->segment(3);
+                    //var_dump($this->modelUser->save_user($data));die();
+                    $this->modelUser->save_user($data);
+                    $id = $this->data['id'];
+                    echo('Change password success');
+                    redirect("c_user/info/$id", 'refresh');
+                    //$this->data['mainContent'] = VIEW_PATH . '/user/v_account.php';
+                    //$this->load->view("layout/layout",$this->data);
+                }
+            }else{
                 $this->load->view("layout/layout", array(
                     'mainContent'   => VIEW_PATH . '/user/v_changepass.php'
                 ));
             }
-            else
-            {
-                $data = array(
-                    'id'=>$id,
-                    'password' => $this->input->post('txtPassword'),
-                );
-                //$id = $this->uri->segment(3);
-                //var_dump($this->modelUser->save_user($data));die();
-                $this->modelUser->save_user($data);
-                echo('Change password success');
-                redirect('c_user/info', 'refresh');
-                //return  $this->load->view("layout/layout", array(
-                //  'mainContent'   => VIEW_PATH . '/user/login.php'));
-            }
-        }else{
-            $this->load->view("layout/layout", array(
-                'mainContent'   => VIEW_PATH . '/user/v_changepass.php'
-            ));
+            //$this->data['mainContent'] = VIEW_PATH . '/user/v_changepass.php';
+            //$this->load->view("layout/layout", $this->data);
         }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('c_user/login', 'refresh');
+        }
+
 
     }
 }
