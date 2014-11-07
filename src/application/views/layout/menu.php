@@ -5,7 +5,26 @@
         <li><a href="#" title="">Overall</a></li>
         <li><a href="#" title="">Your tips</a></li>
         <li><a href="#" title="">Your followers' tips</a></li>
-        <li><a href="/index.php/c_user/register" title="">Register</a></li>
-        <li><a href="<?php echo site_url('c_user/register'); ?>" title="">Register</a></li>
+            <?php
+            //var_dump($logged_in);die();
+                if(isset($email)){
+                echo "<li>";
+                echo "<a href=" . site_url('c_user/info/'.$id) ."  style='font-size:12px'>Welcome ". $email . "!</a>" ;
+                echo "</li>";
+                echo "<li>";
+                echo "<a href=". site_url('homepage/logout') . " style='font-size:12px'>Logout</a>";
+                echo "</li>";
+            }
+            else
+            {
+                echo "<li>";
+                echo "<a href=". site_url('c_user/register') .">Register</a>";
+                echo "</li>";
+
+                echo "<li>";
+                echo "<a href=". site_url('c_user/login') . ">Login</a>";
+                echo "</li>";
+            }
+        ?>
     </ul>
 </div>

@@ -58,6 +58,21 @@ class User extends CI_Controller {
             'mainContent'   => VIEW_PATH . '/user/login.php'
             ));
     }
+
+    public function info($userId = 0)
+    {
+        if ($userId == 0) {
+            // Return error page
+            return $this->errorPage("User khong ton tai");
+        }     
+        echo "Load user info of userId {$userId} and display as user data form";
+
+    }
+
+    protected function errorPage($errorMessage)
+    {
+        echo $errorMessage; die();
+    }
 }
 
 /* End of file welcome.php */

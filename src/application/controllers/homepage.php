@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home1 extends CI_Controller{
+class HomePage extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
@@ -24,14 +24,14 @@ class Home1 extends CI_Controller{
         else
         {
             //If no session, redirect to login page
-            redirect('user/login', 'refresh');
+            redirect('c_user/login', 'refresh');
         }
     }
     function logout()
     {
         $this->session->unset_userdata('logged_in');
         session_destroy();
-        redirect('home', 'refresh');
+        redirect('homepage', 'refresh');
     }
 }
 

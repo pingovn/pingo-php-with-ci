@@ -1,5 +1,3 @@
-<h2>Welcome <?php echo $email; ?>!</h2>
-<a href="home/logout">Logout</a>
 <div class="title">Welcome to our radio station</div>
     <p>
     <img src="/themes/phatnguyen/theme3/images/earphones.gif" alt="" title="" class="left_img" />

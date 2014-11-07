@@ -5,29 +5,46 @@
  * Date: 11/2/14
  * Time: 10:55 PM
  */
-class M_user extends CI_Model
+class M_user extends StormModel
 {
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
-        $this->load->database();
+        $this->tableName = 'users';
     }
 
-    function insert_user($data)
+
+    /**
+     * Function insert a user's information into table
+     * @param array $user
+     * @return bool
+     */
+    public function insert_user(array $user)
     {
-        $this->db->insert('users', $data);
+        return $this->create($user);
     }
-    function login($email, $password)
+
+    /**
+     * [updateUser description]
+     * @param  array  $user Array of user information
+     * @return bool
+     */
+    public function update_user(array $user)
     {
-        $this -> db -> select('id, email, password');
-        $this -> db -> from('users');
-        $this -> db -> where('email', $email);
-        $this -> db -> where('password', MD5($password));
-        $this -> db -> limit(1);
+        return $this->update($user);
+    }
 
-        $query = $this -> db -> get();
+    public function login($email, $password)
+    {
+        $this->db->select('id, email, password');
+        $this->db->from('users');
+        $this->db->where('email', $email);
+        $this->db->where('password', MD5($password));
+        $this->db->limit(1);
 
-        if($query -> num_rows() == 1)
+        $query = $this->db->get();
+
+        if($query->num_rows() == 1)
         {
             return $query->result();
         }
@@ -35,6 +52,25 @@ class M_user extends CI_Model
         {
             return false;
         }
+    }
+
+    public function show_user($id)
+    {
+        return $this->getById($id);
+    }
+
+    public function save_user(array $user)
+    {
+        if (isset($user['id'])) {
+            return $this->update_user($user);
+        } else {
+            return $this->insert_user($user);
+        }
+    }
+
+    public function change_pass(array $data)
+    {
+        return $this->update($data);
     }
 }
 ?>
