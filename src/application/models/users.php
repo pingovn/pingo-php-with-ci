@@ -102,5 +102,11 @@ class Users extends PingoModel
         $this->session->set_userdata($data);
         return true;
     }
+
+    public function isLogged()
+    {
+        $userId = $this->session->userdata('userId');
+        return !empty($userId);
+    }
 }
 ?>
