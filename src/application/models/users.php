@@ -97,7 +97,7 @@ class Users extends PingoModel
         $data = array(
             'email'      => $email,
             'userId'     => $user['id'],
-            'fullname' => $fullname
+            'fullname' => $user['fullname']
             );
         $this->session->set_userdata($data);
         return true;
