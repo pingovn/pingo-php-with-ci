@@ -72,5 +72,19 @@ class M_user extends StormModel
     {
         return $this->update($data);
     }
+
+    public function get_passbyid($id)
+    {
+        $user = $this->getFieldByField(array('password'), 'id', $id);
+//        var_dump($user['password']);die;
+        return $user['password'];
+    }
+
+    public function add_image(array $data)
+    {
+        return $this->update($data);
+    }
 }
+
+
 ?>

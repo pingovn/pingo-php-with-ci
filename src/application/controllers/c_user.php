@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class C_user extends CI_Controller {
+require_once 'app_controller.php';
+
+class C_user extends App_Controller {
 
     public $data;
     function __construct() {
-
         parent::__construct();
-        $this->data = array();
 
         $this->load->helper('url');
         $this->load->library('session');
@@ -14,15 +14,16 @@ class C_user extends CI_Controller {
         $this->load->model("M_user","modelUser");
         $this->load->helper('form');
         $this->load->library('form_validation');
+
         if($this->session->userdata('logged_in'))
         {
             $session_data = $this->session->userdata('logged_in');
             $this->data['email'] = $session_data['email'];
             $this->data['id'] = $session_data['id'];
-            // define nhung gi can dung cho tat ca method
         }
 
     }
+
 
     /**
      * Function Registration
@@ -55,9 +56,10 @@ class C_user extends CI_Controller {
                 //  'mainContent'   => VIEW_PATH . '/user/login.php'));
             }
         }else {
-            $this->load->view("layout/layout", array(
-                'mainContent'   => VIEW_PATH . '/user/v_register.php'
-            ));
+            $this->renderView('/user/v_register.php');
+//            $this->load->view("layout/layout", array(
+//                'mainContent'   => VIEW_PATH . '/user/v_register.php'
+//            ));
         }
     }
 
@@ -120,17 +122,14 @@ class C_user extends CI_Controller {
     {
         $id = $this->uri->segment(3);
         $row = $this->modelUser->show_user($id);
-        $this->load->view("layout/layout", array(
-            'mainContent'   => VIEW_PATH . '/user/v_account.php',
-                'id' => $row['id'],
-                'email'  => $row['email'],
-                'password'  => $row['password'],
-                'fullname' => $row['fullname'],
-                'age' => $row['age'],
-                'gender' => $row['gender'],
-                'status' => $row['status'],
-                'avatar' => $row['avatar'])
-        );
+        if($row)
+        {
+            $this->data['userinfo'] = $row;
+            $this->renderView('/user/v_account.php');
+            return true;
+        }else{
+            return false;
+        }
     }
 
     function editUser()
@@ -138,23 +137,20 @@ class C_user extends CI_Controller {
 
     }
 
-    public function checksession()
-    {
-
-    }
 
     public function changePass()
     {
-        if($this->session->userdata('logged_in'))
-        {
-            $this->data['mainContent'] = VIEW_PATH . '/user/v_changepass.php';
-            $this->load->view("layout/layout", $this->data);
-        }
-        else
-        {
-            //If no session, redirect to login page
-            redirect('c_user/login', 'refresh');
-        }
+        $this->renderView('/user/v_changepass.php');
+//        if($this->session->userdata('logged_in'))
+//        {
+//            $this->data['mainContent'] = VIEW_PATH . '/user/v_changepass.php';
+//            $this->load->view("layout/layout", $this->data);
+//        }
+//        else
+//        {
+//            //If no session, redirect to login page
+//            redirect('c_user/login', 'refresh');
+//        }
         //var_dump($this->uri->segment(3));die();
         //$id = $this->uri->segment(3);
 
@@ -169,7 +165,7 @@ class C_user extends CI_Controller {
             $value = $this->input->post('btnChange');
             if(isset($value))
             {
-                $this->form_validation->set_rules('txtOldPassword', 'Old Password', 'trim|required');
+                $this->form_validation->set_rules('txtOldPassword', 'Old Password', 'trim|required|callback_checkpass');
                 $this->form_validation->set_rules('txtPassword','New Password','trim|required|matches[txtConfirmPassword]|min_length[6]|md5');
                 $this->form_validation->set_rules('txtConfirmPassword','Confirm New Password','trim|required');
                 if ($this->form_validation->run() == FALSE)
@@ -205,7 +201,71 @@ class C_user extends CI_Controller {
             //If no session, redirect to login page
             redirect('c_user/login', 'refresh');
         }
+    }
 
+    public function checkpass()
+    {
+        $opass = $this->input->post('txtOldPassword');
+        $id = $this->data['id'];
+        $pass = $this->modelUser->get_passbyid($id);
+        if(md5($opass) == $pass){
+            return true;
+        }
+        else {
+            $this->form_validation->set_message('checkpass',"Current password dont match with old password in database");
+            return false;
+        }
+    }
 
+    public function uploadimage()
+    {
+        if($this->session->userdata('logged_in'))
+        {
+            $this->data['mainContent'] = VIEW_PATH . '/user/v_upload.php';
+            $this->load->view("layout/layout", $this->data);
+        }
+        else
+        {
+            //If no session, redirect to login page
+            redirect('c_user/login', 'refresh');
+        }
+    }
+
+    public function do_upload()
+    {
+        //var_dump($this->input->post('upload'));die;
+        if($this->input->post('upload'))
+        {
+            $config['upload_path'] = './themes/phatnguyen/theme3/uploads/';
+//            var_dump($config['upload_path']);die;
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']    = '1024';
+            $config['max_width']  = '1024';
+            $config['max_height']  = '768';
+            $this->load->library('upload', $config);
+            if ( ! $this->upload->do_upload())
+            {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('user/v_upload', $error);
+            }else
+            {
+                $data=$this->upload->data();
+                //var_dump($data['file_name']);die;
+                $id = $this->data['id'];
+                $img  = array(
+                    'id'=>$this->data['id'],
+                    'avatar'=>$data['file_name']
+                    );
+                $this->modelUser->add_image($img);
+                redirect("c_user/info/$id", 'refresh');
+            }
+        }else{
+
+        }
+    }
+
+    function getCurrentUser()
+    {
+        return array('email' => 'xxx@xxx.xxx');
     }
 }

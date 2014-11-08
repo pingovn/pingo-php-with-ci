@@ -6,10 +6,9 @@
         <li><a href="#" title="">Your tips</a></li>
         <li><a href="#" title="">Your followers' tips</a></li>
             <?php
-            //var_dump($logged_in);die();
-                if(isset($email)){
+             if(isset($user)){
                 echo "<li>";
-                echo "<a href=" . site_url('c_user/info/'.$id) ."  style='font-size:12px'>Welcome ". $email . "!</a>" ;
+                echo "<a href=" . site_url('c_user/info/'.$user['id']) ."  style='font-size:12px'>Welcome ". $user['email'] . "!</a>" ;
                 echo "</li>";
                 echo "<li>";
                 echo "<a href=". site_url('homepage/logout') . " style='font-size:12px'>Logout</a>";

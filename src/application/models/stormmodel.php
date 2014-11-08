@@ -69,12 +69,16 @@ class StormModel extends CI_Model
         $this->db->select($fieldDataNeed);
         $this->db->where($fieldName, $fieldData);
         $query = $this->db->get($this->tableName, 1);
+        //echo $this->db->last_query();
+
         $row = $query->result_array();
+
         if (count($row) == 1) {
             return $row[0];
         } else {
             return false;
         }
+
     }
 
     /**
@@ -86,6 +90,8 @@ class StormModel extends CI_Model
     {
         $where = array('id' => $data['id']);
         unset($data['id']);
+        echo $this->db->last_query();
+
         return $this->db->update($this->tableName, $data, $where);
     }
 }

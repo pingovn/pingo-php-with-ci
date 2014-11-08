@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-class HomePage extends CI_Controller{
+require_once 'app_controller.php';
+class HomePage extends App_Controller
+{
     public function __construct()
     {
         parent::__construct();
@@ -10,27 +11,14 @@ class HomePage extends CI_Controller{
     }
     public function index()
     {
-        if($this->session->userdata('logged_in'))
-        {
-            $session_data = $this->session->userdata('logged_in');
-            $data['email'] = $session_data['email'];
-            $data['id'] = $session_data['id'];
-            $this->load->view("layout/layout", array(
-                'mainContent'   => VIEW_PATH . '/layout/left_content.php',
-                'email'=>$data['email'],
-                'id'=>$data['id'],
-            ));
-        }
-        else
-        {
-            //If no session, redirect to login page
-            redirect('c_user/login', 'refresh');
-        }
+        $this->renderView('/layout/left_content.php');
     }
     function logout()
     {
         $this->session->unset_userdata('logged_in');
-        session_destroy();
+        $this->session->sess_destroy();
+       // $this->session->unset_userdata('logged_in');
+//        session_destroy();
         redirect('homepage', 'refresh');
     }
 }

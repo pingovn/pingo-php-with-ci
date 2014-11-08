@@ -7,6 +7,19 @@ class User extends CI_Controller {
         $this->load->database();
         $this->load->helper('url');
         $this->load->model("PingoModel");
+
+        $userId = $this->session->userdata('user_id');
+        if (isset($userId)) {
+            $this->load->model("Users", "userModel");
+            $user = $this->userModel->show_user($userId);
+            if (!empty($user)) {
+                $this->data['user'] = array(
+                    'id' => $user['id'],
+                    'email' => $user['email']
+                );
+            }
+
+        }
     }
 
     public function register()
@@ -46,10 +59,18 @@ class User extends CI_Controller {
                 return $this->login();    
             }
         }
-        $this->load->view("layout/layout", array(
-            'errorMessage'  => $errorMessage,
-            'mainContent'   => VIEW_PATH . '/user/register.php'
-            ));
+//        $this->load->view("layout/layout", array(
+//            'errorMessage'  => $errorMessage,
+//            'mainContent'   => VIEW_PATH . '/user/register.php'
+//            ));
+        $this->errorMessage = $errorMessage;
+        $this->renderView('/user/register.php');
+    }
+
+    function renderView($mainContent)
+    {
+        $this->data['mainContent'] = $mainContent;
+        $this->load->view("layout/layout", $this->data);
     }
 
     function login()
