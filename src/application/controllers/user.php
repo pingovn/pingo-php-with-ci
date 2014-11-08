@@ -59,6 +59,7 @@ class User extends CI_Controller {
         if (!empty($userId)) {
             redirect('/user/info' . $this->session->userdata('userId'));
         }
+
         $errorMessage = '';
         $post  = $this->input->post();
         if (isset($post['btnLogin'])) {
@@ -106,6 +107,12 @@ class User extends CI_Controller {
     protected function errorPage($errorMessage)
     {
         echo $errorMessage; die();
+    }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('');
     }
 }
 
