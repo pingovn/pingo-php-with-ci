@@ -21,6 +21,7 @@ class Users extends PingoModel
     public function getUserByEmail($email)
     {
         return $this->getByField('email', $email);
+       
     }
 
     /**
@@ -59,6 +60,7 @@ class Users extends PingoModel
         }
         $user['password'] = md5($user['password']);
         return $this->create($user);
+       
     }
 
     public function saveUser(array $user)
@@ -69,5 +71,30 @@ class Users extends PingoModel
             return $this->createUser($user);
         }
     }
+    public function login(array $user)
+    {
+    	$result=$this->getUserByEmail($user['email']);
+    	if($result === FALSE)
+    	{
+    		$errorMessage = "Sorry,your email is not registered!!!!";
+    		return $errorMessage;
+    	}
+    	elseif ($user['password']!=$result['password'])
+    	{
+    		$errorMessage = "Sorry,your password is wrong!!!";
+    		return $errorMessage;
+    	}	
+    	$user_data= array (
+    					'user_id' => $result['id'],
+    					'user_email'=>$result['email'],
+    					'user_pass' => $result['password'],
+    					'login' => TRUE
+    			);
+    		// 			var_dump($query->result());
+    		// 			var_dump($newses);
+    		// 			die('xxxxx');
+    	$this->session->set_userdata($user_data);
+    	return true;
+	}
 }
 ?>

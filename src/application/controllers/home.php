@@ -13,6 +13,7 @@ class Home extends CI_Controller{
         $this->load->view("layout/layout", array(
             'mainContent'   => VIEW_PATH . '/layout/left_content.php',
             ));
+     
     }
 
     public function phpinfo()

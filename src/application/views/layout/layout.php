@@ -4,7 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Home Page</title>
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/style.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/pingo.css" media="screen" />
+<!-- <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/pingo.css" media="screen" /> -->
+<link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/phatnguyen_style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/phatnguyen_demo.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/phatnguyen_animate-custom.css" media="screen" />
 </head>
 
 <body>

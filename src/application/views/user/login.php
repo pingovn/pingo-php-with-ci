@@ -1,18 +1,39 @@
 <div class="container">
-    <form id="frmLogin" action="/index.php/user/login" method="POST">
-        <div class="header">
-            <h3>Sign In</h3>
-            <p>Please enter email and password to continue</p>
-        </div>
-        <div class="sep"></div>
-        <div class="inputs">
-            <input type="email" id="txtEmail" name="txtEmail" value="" placeholder="e-mail" autofocus >
-            <input type="password" placeholder="Password" id="txtPassword" name="txtPassword" value="">
-            <div class="checkboxy">
-                <input name="cecky" id="checky" value="1" type="checkbox" /><label class="terms">Remember me</label>
-            </div>
-            <!-- <a id="submit" href="#">REGISTER</a> -->
-            <input id='submit' type="submit" value="Login" name="btnLogin">
-        </div>
-    </form>
+	<!-- Codrops top bar -->
+	<div id="container_demo">
+		<div id="wrapper">
+			<div id="login"  class="animate form">
+				<form id="frmLogin" action="/index.php/user/login" method="POST" autocomplete="on">
+					<h1>Log in</h1>
+					<p>
+					<?php if ((validation_errors() != '')||($errorMessage!='')) : ?>
+        			<div>
+        					<br /> <span style="color: red;"><?php echo validation_errors();
+        															echo $errorMessage;?> 
+        							</span>
+					</div>
+        			<?php endif ?>
+						<label for="Email" class="uname" data-icon="u"> Your email or
+							username </label> <input id="txtEmail" name="txtEmail"
+							required="required" type="text"
+							placeholder="myusername or mymail@mail.com" />
+					</p>
+					<p>
+						<label for="Password" class="youpasswd" data-icon="p"> Your
+							password </label> <input id="txtPassword" name="txtPassword"
+							required="required" type="password" placeholder="eg. Password" />
+					</p>
+					<p class="keeplogin">
+						<input type="checkbox" name="loginkeeping" id="loginkeeping"
+							value="loginkeeping" /> <label for="loginkeeping">Keep me logged
+							in</label>
+					</p>
+					<p class="login button">
+						<input type="submit" value="Login" name="btnLogin"/>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
+

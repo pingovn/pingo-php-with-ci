@@ -7,25 +7,30 @@ class User extends CI_Controller {
         $this->load->database();
         $this->load->helper('url');
         $this->load->model("PingoModel");
+        $this->load->library('session');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->model("Users", "userModel");
     }
 
     public function register()
     {
-        $this->load->model("Users", "userModel");
+        
         $errorMessage = '';
         if (isset($_POST['btnRegister'])) {
             // Processing registering new account
+       		$this->form_validation->set_rules ( 'txtEmail', 'Email', 'trim|required|valid_email' );
+       		$this->form_validation->set_rules ( 'txtPassword', 'Password', 'trim|required|min_length[6]|max_length[32]' );
+        	$this->form_validation->set_rules ( 'txtConfirmPasword', 'Password Confirmation', 'trim|required|matches[txtPassword]' );
+        	if ($this->form_validation->run () === FALSE) 
+        	{
+        		$this->load->view ( "layout/layout", array (
+        				'mainContent' => VIEW_PATH . '/user/register.php','errorMessage'  => $errorMessage
+        		) );
+        	return;
+        	}
+            // Processing registering new account
             $email = $this->input->post('txtEmail');
-            $this->load->helper('email');
-            if (!valid_email($email)) {
-                $errorMessage =  'email is invalid';
-                $this->load->view("layout/layout", array(
-                    'errorMessage'  => $errorMessage,
-                    'mainContent'   => VIEW_PATH . '/user/register.php'
-                    ));
-                return;
-            }
-
             $password = $this->input->post('txtPassword');
             $confirmPassword = $this->input->post('txtConfirmPassword');
 
@@ -39,35 +44,61 @@ class User extends CI_Controller {
             );
 
             $userId = $this->userModel->createUser($user);
-
+			
             if ($userId === false) {
                 $errorMessage = "Can not create new user. Please try again";
+//                 var_dump($userId);
+//                 die();
             } else {
                 return $this->login();    
             }
         }
-        $this->load->view("layout/layout", array(
-            'errorMessage'  => $errorMessage,
-            'mainContent'   => VIEW_PATH . '/user/register.php'
-            ));
+        $this->load->view ( "layout/layout", array (
+        				'mainContent' => VIEW_PATH . '/user/register.php','errorMessage' => $errorMessage));
+      
     }
 
     function login()
     {
+    	$result='';
+        if (isset($_POST['btnLogin'])) {
+        	$email = $this->input->post('txtEmail');
+        	$pass = md5($this->input->post('txtPassword'));
+        	$user = array(
+        			'email'         => $email,
+        			'password' 	 	=> $pass
+        	);
+        	$result = $this->userModel->login($user);
+//         	var_dump($result);
+//         	die('xxxxxxxx');
+        }
+        if($result === TRUE) return $this->info($this->session->userdata('user_id'));
+        else
+        {
+//         	var_dump($result);
+//         	die('xxxxxxxx');
+        	$this->load->view("layout/layout", array(
+        			'mainContent'   => VIEW_PATH . '/user/login.php','errorMessage' =>$result
+        	));
+        return;
+        }
         $this->load->view("layout/layout", array(
-            'mainContent'   => VIEW_PATH . '/user/login.php'
-            ));
+        		'mainContent'   => VIEW_PATH . '/user/login.php','errorMessage' =>$result
+        ));
     }
 
-    public function info($userId = 0)
+    public function info($userId)
     {
         if ($userId == 0) {
             // Return error page
             return $this->errorPage("User khong ton tai");
-        }     
+        }
+        $this->load->view("layout/layout", array(
+        		'mainContent'   => VIEW_PATH . '/user/show.php'
+        ));
         echo "Load user info of userId {$userId} and display as user data form";
 
-    }
+    }	
 
     protected function errorPage($errorMessage)
     {
