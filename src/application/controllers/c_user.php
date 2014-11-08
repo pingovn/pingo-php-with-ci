@@ -140,6 +140,7 @@ class C_user extends App_Controller {
 
     public function changePass()
     {
+        //Kiem tra session id == $this->uri->segment(3) truoc khi run login
         $this->renderView('/user/v_changepass.php');
 //        if($this->session->userdata('logged_in'))
 //        {
