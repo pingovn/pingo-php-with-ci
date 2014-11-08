@@ -60,6 +60,7 @@ class PingoModel extends CI_Model
     protected function getByField($fieldName, $fieldData)
     {
         $row = $this->db->where($fieldName, $fieldData)->get($this->tableName, 1)->result_array();
+        
         if (count($row) == 1) {
             return $row[0];
         } else {

@@ -33,6 +33,14 @@ class Users extends PingoModel
         return $this->getById($id);
     }
 
+    public function checklogin($email, $password)
+    {
+    	$email = $this->getUserByEmail($email);
+    	$password = $this->getByField('password', $password);
+    	if($email === FALSE && $password === FALSE)
+    	return false;
+    	return true;
+    }
     /**
      * [updateUser description]
      * @param  array  $user Array of user information
