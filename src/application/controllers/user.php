@@ -7,6 +7,7 @@ class User extends CI_Controller {
         $this->load->database();
         $this->load->helper('url');
         $this->load->model("PingoModel");
+        $this->load->library('session');
     }
 
     public function register()
@@ -54,24 +55,64 @@ class User extends CI_Controller {
 
     function login()
     {
+        $userId = $this->session->userdata('userId');
+        if (!empty($userId)) {
+            redirect('/user/info' . $this->session->userdata('userId'));
+        }
+
+        $errorMessage = '';
+        $post  = $this->input->post();
+        if (isset($post['btnLogin'])) {
+            $email = $post['txtEmail'];
+            $this->load->helper('email');
+            if (!valid_email($email)) {
+                $errorMessage = 'Please input valid email';
+            } else {
+                $password = $post['txtPassword'];   
+                $this->load->model("Users", "userModel");
+                $loginResult = $this->userModel->doLogin($email, $password);
+                if ($loginResult === true) {
+                    $userId = $this->session->userdata['userId'];
+                    redirect('/user/info/' . $userId);
+                } else {
+                    $errorMessage = 'Can not login with email and password inputted';
+                }
+            }
+        }
         $this->load->view("layout/layout", array(
+            'errorMessage'  => $errorMessage,
             'mainContent'   => VIEW_PATH . '/user/login.php'
             ));
     }
 
     public function info($userId = 0)
     {
+        $userId = (int) $userId;
         if ($userId == 0) {
             // Return error page
             return $this->errorPage("User khong ton tai");
-        }     
-        echo "Load user info of userId {$userId} and display as user data form";
+        }
+        $this->load->model('Users', 'userModel');
+        $user = $this->userModel->getUserById($userId);
+        if ($user == false) {
+            return $this->errorPage("User khong ton tai");
+        }
 
+        $this->load->view("layout/layout", array(
+            'user'  => $user,
+            'mainContent'   => VIEW_PATH . '/user/info.php'
+            ));
     }
 
     protected function errorPage($errorMessage)
     {
         echo $errorMessage; die();
+    }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('');
     }
 }
 

@@ -5,7 +5,7 @@
             <p>You want to fill out this form</p>
         </div>
         <div class="sep"></div>
-        <?php if ($errorMessage != '') : ?>
+        <?php if (isset($errorMessage) && $errorMessage != '') : ?>
         <div>
             <center>
                 <br />

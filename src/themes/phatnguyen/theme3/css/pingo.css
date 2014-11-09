@@ -10,7 +10,7 @@ body {
     margin: 0 auto;
 }
 
-#frmRegister, #frmLogin {
+#frmRegister, #frmLogin, #userInfo {
     padding: 0px 25px 25px;
     background: #fff;
     box-shadow: 
@@ -23,11 +23,11 @@ body {
     position: static;
 }
 
-#frmLogin .header, #frmRegister .header {
+#frmLogin .header, #frmRegister .header, #userInfo .header {
     margin-bottom: 20px;
 }
 
-#frmLogin .header h3, #frmRegister .header h3 {
+#frmLogin .header h3, #frmRegister .header h3, #userInfo .header h3 {
     color: #333333;
     font-size: 24px;
     font-weight: bold;
