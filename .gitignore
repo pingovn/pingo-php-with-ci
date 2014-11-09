@@ -3,6 +3,7 @@
 .project
 .setting
 .DS_Store
+src/.settings/
 src/application/config/database.php
 src/application/config/config.php
 src/application/libraries/fake/
