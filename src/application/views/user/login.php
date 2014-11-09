@@ -6,10 +6,9 @@
 				<form id="frmLogin" action="/index.php/user/login" method="POST" autocomplete="on">
 					<h1>Log in</h1>
 					<p>
-					<?php if ((validation_errors() != '')||($errorMessage!='')) : ?>
+					<?php if ($errorMessage!='') : ?>
         			<div>
-        					<br /> <span style="color: red;"><?php echo validation_errors();
-        															echo $errorMessage;?> 
+        					<br /> <span style="color: red;"><?php echo $errorMessage;?> 
         							</span>
 					</div>
         			<?php endif ?>

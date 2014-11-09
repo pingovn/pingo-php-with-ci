@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/phatnguyen_style.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/phatnguyen_demo.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/phatnguyen_animate-custom.css" media="screen" />
+<!-- <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/profilestyle.css" media="screen"> -->
+
 </head>
 
 <body>

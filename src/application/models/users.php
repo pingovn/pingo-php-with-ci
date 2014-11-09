@@ -71,29 +71,30 @@ class Users extends PingoModel
             return $this->createUser($user);
         }
     }
-    public function login(array $user)
+    public function login(array $loginUser)
     {
-    	$result=$this->getUserByEmail($user['email']);
-    	if($result === FALSE)
+    	$findUser=$this->getUserByEmail($loginUser['email']);
+    	$loginUser['password']=md5($loginUser['password']);
+//     	var_dump($loginUser);
+//     	var_dump($findUser);
+    	
+//     	die;
+    	if($findUser === FALSE)
     	{
-    		$errorMessage = "Sorry,your email is not registered!!!!";
-    		return $errorMessage;
+    		return false;
     	}
-    	elseif ($user['password']!=$result['password'])
+    	elseif ($findUser['password']!=$loginUser['password'])
     	{
-    		$errorMessage = "Sorry,your password is wrong!!!";
-    		return $errorMessage;
+    		return false;
     	}	
-    	$user_data= array (
-    					'user_id' => $result['id'],
-    					'user_email'=>$result['email'],
-    					'user_pass' => $result['password'],
-    					'login' => TRUE
+    	$userSes= array (
+    					'userId' => $findUser['id'],
+    					'userEmail'=>$findUser['email'],
+    					'userPass' => $findUser['password'],
     			);
-    		// 			var_dump($query->result());
     		// 			var_dump($newses);
     		// 			die('xxxxx');
-    	$this->session->set_userdata($user_data);
+    	$this->session->set_userdata($userSes);
     	return true;
 	}
 }

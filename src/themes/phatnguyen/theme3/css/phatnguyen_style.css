@@ -55,7 +55,7 @@ a.hiddenanchor{
 	padding: 2px 0 10px 0;
 	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
 	font-weight: bold;
-	text-align: center;
+	text-align: top right;
 	padding-bottom: 30px;
 }
 /** For the moment only webkit supports the background-clip:text; */
@@ -85,12 +85,14 @@ a.hiddenanchor{
 
 #wrapper p{
 	margin-bottom:15px;
+	text-align: left;
 }
 #wrapper p:first-child{
 	margin: 0px;
 }
 #wrapper label{
 	color: rgb(64, 92, 96);
+	
 	position: relative;
 }
 
