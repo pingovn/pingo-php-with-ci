@@ -141,6 +141,12 @@ class User extends CI_Controller {
     {
         echo $errorMessage; die();
     }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('');
+    }
 }
 
 /* End of file welcome.php */

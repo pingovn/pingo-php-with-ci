@@ -3,9 +3,12 @@
 .project
 .setting
 .DS_Store
+<<<<<<< HEAD
 src/.settings/
 src/application/config/database.php
 src/application/config/config.php
 src/application/libraries/fake/
 src/application/views/user/login.php.orig
 src/application/views/user/register.php.orig
+=======
+>>>>>>> master

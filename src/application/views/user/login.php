@@ -16,7 +16,6 @@
 							username </label> <input id="txtEmail" name="txtEmail"
 							required="required" type="text"
 							placeholder="myusername or mymail@mail.com" />
-					</p>
 					<p>
 						<label for="Password" class="youpasswd" data-icon="p"> Your
 							password </label> <input id="txtPassword" name="txtPassword"
@@ -35,4 +34,3 @@
 		</div>
 	</div>
 </div>
-
