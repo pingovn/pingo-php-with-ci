@@ -17,7 +17,7 @@
     <input type="submit" name="btnLogin" value="Login" class="login-submit">
     <p class="login-help"><a href="index.html">Forgot password?</a></p>
   </form>
-=======
+<!-- =======
 <div class="container">
     <form id="frmLogin" action="/index.php/user/login" method="POST">
         <div class="header">
@@ -45,3 +45,4 @@
     </form>
 </div>
 >>>>>>> origin
+ -->
