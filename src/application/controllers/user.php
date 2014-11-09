@@ -21,7 +21,7 @@ class User extends CI_Controller {
                 $errorMessage =  'email is invalid';
                 $this->load->view("layout/layout", array(
                     'errorMessage'  => $errorMessage,
-                    'mainContent'   => VIEW_PATH . '/user/register.php'
+                    'mainContent'   => VIEW_PATH . '/user/registeranhkhoa.php'
                     ));
                 return;
             }
@@ -48,7 +48,7 @@ class User extends CI_Controller {
         }
         $this->load->view("layout/layout", array(
             'errorMessage'  => $errorMessage,
-            'mainContent'   => VIEW_PATH . '/user/register.php'
+            'mainContent'   => VIEW_PATH . '/user/registeranhkhoa.php'
             ));
     }
 

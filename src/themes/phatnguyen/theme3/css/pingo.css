@@ -68,7 +68,7 @@ input:-moz-placeholder {
     color:    #b5b5b5;
 }
 
-#frmRegister .inputs input[type=email], input[type=password] {
+/*#frmRegister .inputs input[type=email], input[type=password] {
     background: #f5f5f5;
     font-size: 0.8rem;
     -moz-border-radius: 3px;
@@ -87,7 +87,7 @@ input:-moz-placeholder {
     box-shadow: 0px 0px 0px 3px #fff38e, inset 0px 2px 3px rgba( 0,0,0,0.2 ), 0px 5px 5px rgba( 0,0,0,0.15 );
     outline: none;   
 }
-
+*/
 #frmRegister .inputs .checkboxy {
     display: block;
     position: static;
