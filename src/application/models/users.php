@@ -71,6 +71,22 @@ class Users extends PingoModel
             return $this->createUser($user);
         }
     }
+    public function editUser(array $user)
+    {
+    	if (isset($user['id'])) {
+    		return $this->updateUser($user);
+    	} else {
+    		return false;
+    	}
+    }
+    public function editAvt(array $user)
+    {
+    	if (isset($user['id'])) {
+    		return $this->updateUser($user);
+    	} else {
+    		return false;
+    	}
+    }
     public function login(array $loginUser)
     {
     	$findUser=$this->getUserByEmail($loginUser['email']);
@@ -90,7 +106,6 @@ class Users extends PingoModel
     	$userSes= array (
     					'userId' => $findUser['id'],
     					'userEmail'=>$findUser['email'],
-    					'userPass' => $findUser['password'],
     			);
     		// 			var_dump($newses);
     		// 			die('xxxxx');

@@ -60,7 +60,7 @@ class User extends CI_Controller {
       
     }
 
-    function login()
+    public function login()
     {
     	$userId = $this->session->userdata('userId');
     	if (!empty($userId)) {
@@ -80,7 +80,7 @@ class User extends CI_Controller {
     					'email'         => $email,
     					'password' 	 	=> $password
     			);
-    			var_dump($user);
+//     			var_dump($user);
     			//     			die;
     			$loginResult = $this->userModel->login($user);
 //     			var_dump($loginResult);
@@ -100,6 +100,7 @@ class User extends CI_Controller {
         		'errorMessage' =>$errorMessage
         ));
     }
+
     public function logout()
     {
     	$oldData =array(
@@ -122,7 +123,7 @@ class User extends CI_Controller {
 //     	var_dump($this->session->userdata($user_data));
         if ($userId == 0) {
             // Return error page
-            return $this->errorPage("User khong ton tai");
+            return $this->errorPage("User khong ton tai trang info");
         }
         $user = $this->userModel->getUserById($userId);
         if ($user === FALSE) {
@@ -136,18 +137,199 @@ class User extends CI_Controller {
 //         echo "Load user info of userId {$userSession['user_id']} and display as user data form";
 
     }	
+    
+    public function edit($userId=0)
+    {
 
-    protected function errorPage($errorMessage)
+    	$this->load->helper('form');
+    	$this->load->library('form_validation');
+    	$userId=$this->uri->segment(3);
+    	$loggedUser=$this->session->all_userdata();
+    	$errorMessage ='';
+    	
+//     	var_dump($loggedUser);
+//     	var_dump($this->session->all_userdata());
+//     	var_dump($userId);
+//     	die;
+    	//     	var_dump($userSession['user_id']);
+    	//     	die();
+    	$post = $this->input->post();
+    
+    	if (!isset($post['btnEdit'])) 
+    	{
+    		if ($userId == 0)
+    		{
+    			var_dump($userId);
+    			// Return error page
+    			return $this->errorPage("User khong ton tai");
+    		}
+    		if ($userId != $loggedUser['userId'])
+    		{
+    			return $this->errorPage("Dont have permission to update other users's profile");
+    		}
+    		$user = $this->userModel->getUserById($userId);
+    		if ($user === FALSE)
+    		{
+    			// Return error page
+    			return $this->errorPage("User khong ton tai");
+    		}
+    	}
+    	else
+    	{
+//     		var_dump($post);
+//     		die;
+//     		 var_dump($this->input->post('btnEdit'));
+//              die;
+//     		// Processing registering new account
+    		$this->form_validation->set_rules ( 'txtFulName', 'fullName' );
+    		$this->form_validation->set_rules ( 'age', 'Age', 'trim|is_natural|greater_than[10]|less_than[100]' );
+    		if ($this->form_validation->run () === FALSE)
+    		{
+    			$this->load->view ( "layout/layout", array (
+    					'mainContent' => VIEW_PATH . '/user/edit.php',
+    					'errorMessage'  => $errorMessage,
+    					'userId' => $userId
+    			) );
+    			return;
+    		}
+    		// Processing registering new account
+    		$fullName = $this->input->post('txtFulName');
+    		$age = $this->input->post('age');
+    		$gender = $this->input->post('gender');
+    	
+    		// Kiem tra email form name@domain.com
+    		// So sanh password voi confirm password
+    		// Kiem tra email co ton tai
+    		// Password > 6 ky tu
+    		$user = array(
+    				'id'			=>$loggedUser['userId'],
+    				'gender'         => $gender,
+    				'age'  			=> $age,
+    				'fullname'		=> $fullName
+    				
+    		);
+    	
+    		$result = $this->userModel->updateUser($user);
+//     		var_dump($userId);
+// 			die();
+    		if ($result === false) 
+    		{
+    			$errorMessage = "Can not create new user. Please try again";
+    		} else 
+    		{
+    			redirect('/user/info/' . $user['id']);
+    		}
+    		 
+    
+    	}
+    	$this->load->view("layout/layout", array(
+    			'mainContent'   => VIEW_PATH . '/user/edit.php',
+    			'userId' => $userId,
+    			'errorMessage'  => $errorMessage,
+    	));
+    	//         echo "Load user info of userId {$userSession['user_id']} and display as user data form";
+	}
+
+	public function doUpload()
+	{
+		var_dump($this->input->post());
+		die;
+		$config ['upload_path'] = '/images/avatar/';
+		$config ['allowed_types'] = 'gif|jpg|png';
+		$config ['max_size'] = '100';
+		$config ['max_width'] = '1024';
+		$config ['max_height'] = '768';
+		$this->load->library('upload',$config);
+		$this->load->helper('form');
+		$userId=$this->uri->segment(3);
+		$loggedUser=$this->session->all_userdata();
+		$errorMessage ='';
+		 	
+// 		    	var_dump($userSession['user_id']);
+// 		    	var_dump($this->session->all_userdata());
+// 		    	var_dump($userId);
+// 		    	var_dump($loggedUser);
+// 		    	die();
+		
+		if (!isset($post['btnUpload']))
+		{
+			
+			if ($userId == 0)
+			{
+				var_dump($userId);
+				// Return error page
+				return $this->errorPage("User khong ton tai");
+			}
+			if ($userId != $loggedUser['userId'])
+			{
+				return $this->errorPage("Dont have permission to update other users's profile");
+			}
+			$user = $this->userModel->getUserById($userId);
+			if ($user === FALSE)
+			{
+				// Return error page
+				return $this->errorPage("User khong ton tai");
+			}
+		}
+		else
+		{
+			var_dump($post);
+			die;
+			$userId = $loggedUser['userId'];
+			if (!$this->upload->doUpload())
+			{
+				$errorMessage= "Can't upload file";
+			
+				$this->load->view("layout/layout", array(
+    			'mainContent'   => VIEW_PATH . '/user/Upform.php',
+    			'errorMessage'  => $errorMessage));
+			} else {
+				$data = array (
+					'upload_data' => $this->upload->data());
+			var_dump($data);
+			die;
+// 				$this->load->view ( 'upload_success', $data );
+			}
+			$oldAvt=$loggedUser['avatar'];
+			//     		var_dump($post);
+			//     		die;
+			//     		 var_dump($this->input->post('btnEdit'));
+			//              die;
+			$user = array(
+					'avatar'			=> $post['avatar'],		
+			);
+			 
+			$result = $this->userModel->editAvt($user);
+			//     		var_dump($userId);
+			// 			die();
+			if ($result === false)
+			{
+				$errorMessage = "Can not updata avatar. Please try again";
+			} else
+			{
+				
+				redirect('/user/info/' . $user['id']);
+			}
+			 
+		
+		}
+		$this->load->view("layout/layout", array(
+				'mainContent'   => VIEW_PATH . '/user/Upform.php',
+				'userId' => $userId,
+				'errorMessage'  => $errorMessage,
+		));
+		//         echo "Load user info of userId {$userSession['user_id']} and display as user data form";
+		
+	}
+	public function changePass($userId=0)
+	{
+		
+	}
+	
+   	protected function errorPage($errorMessage)
     {
         echo $errorMessage; die();
     }
-
-    public function logout()
-    {
-        $this->session->sess_destroy();
-        redirect('');
-    }
 }
-
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

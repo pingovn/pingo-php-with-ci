@@ -34,7 +34,7 @@ a.hiddenanchor{
 }
 /** The wrapper that will contain our two forms **/
 #wrapper{
-	width: 60%;
+	
 	right: 0px;
 	min-height: 560px;	
 	margin: 0px auto;	
@@ -53,7 +53,7 @@ a.hiddenanchor{
 	font-size: 48px;
 	color: rgb(6, 106, 117);
 	padding: 2px 0 10px 0;
-	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-family: 'FranchiseRegular', 'Arial Narrow', Arial, sans-serif;
 	font-weight: bold;
 	text-align: top right;
 	padding-bottom: 30px;
@@ -92,10 +92,16 @@ a.hiddenanchor{
 }
 #wrapper label{
 	color: rgb(64, 92, 96);
-	
 	position: relative;
+	
 }
-
+/**** advanced span styling ****/
+span.info{
+	color: rgb(6, 106, 117);
+	padding: 0px 5px 10px 0;
+	font-family: 'Arial Narrow', Arial, sans-serif;
+	font-weight: bold;
+}
 /**** advanced input styling ****/
 /* placeholder */
 ::-webkit-input-placeholder  { 
@@ -103,11 +109,13 @@ a.hiddenanchor{
 	font-style: italic;
 }
 input:-moz-placeholder,
+select:-moz-placeholder,
+option:-moz-placeholder,
 textarea:-moz-placeholder{ 
 	color: rgb(190, 188, 188);
 	font-style: italic;
 } 
-input {
+input,select,option {
   outline: none;
 }
 
@@ -157,7 +165,7 @@ input {
 	width: 30%;
 	cursor: pointer;	
 	background: rgb(61, 157, 179);
-	padding: 8px 5px;
+	padding: 8px 3px;
 	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
 	color: #fff;
 	font-size: 24px;	
