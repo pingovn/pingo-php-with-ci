@@ -1,15 +1,18 @@
-<form id="frmLogin" action="/index.php/user/login" method="POST">
-    <?php if (isset($err_msg)) {
-        echo "<h4 style='color:red'>$err_msg</h4>";
-    } else {
-        echo "<h4>Login</h4>";
-    }
-    ?>
-    <label for="txtEmail">Email</label>
-    <input type="text" id="txtEmail" name="txtEmail" value="<?php if (isset($email)) {echo $email;}?>">
-    <br />
-    <label for="txtPassword">Password</label>
-    <input type="password" id="txtPassword" name="txtPassword" value="">
-    <br />
-    <input type="submit" value="Login" name="btnLogin">
-</form>
+<div class="container">
+    <form id="frmLogin" action="/index.php/user/login" method="POST">
+        <div class="header">
+            <h3>Sign In</h3>
+            <p>Please enter email and password to continue</p>
+        </div>
+        <div class="sep"></div>
+        <div class="inputs">
+            <input type="email" id="txtEmail" name="txtEmail" value="" placeholder="e-mail" autofocus >
+            <input type="password" placeholder="Password" id="txtPassword" name="txtPassword" value="">
+            <div class="checkboxy">
+                <input name="cecky" id="checky" value="1" type="checkbox" /><label class="terms">Remember me</label>
+            </div>
+            <!-- <a id="submit" href="#">REGISTER</a> -->
+            <input id='submit' type="submit" value="Login" name="btnLogin">
+        </div>
+    </form>
+</div>
