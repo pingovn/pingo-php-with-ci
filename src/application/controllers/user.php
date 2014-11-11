@@ -9,6 +9,7 @@ class User extends CI_Controller {
         $this->load->model("PingoModel");
         $this->load->library('session');
         $this->load->model("Users", "userModel");
+        $this->load->helper(array('form', 'url'));
     }
 
     public function register()
@@ -60,7 +61,7 @@ class User extends CI_Controller {
       
     }
 
-    public function login()
+    public function login($userId=0)
     {
     	$userId = $this->session->userdata('userId');
     	if (!empty($userId)) {
@@ -157,7 +158,7 @@ class User extends CI_Controller {
     
     	if (!isset($post['btnEdit'])) 
     	{
-    		if ($userId == 0)
+    		if ($userId == 0|| !$loggedUser['userId'])
     		{
     			var_dump($userId);
     			// Return error page
@@ -181,7 +182,7 @@ class User extends CI_Controller {
 //     		 var_dump($this->input->post('btnEdit'));
 //              die;
 //     		// Processing registering new account
-    		$this->form_validation->set_rules ( 'txtFulName', 'fullName' );
+    		$this->form_validation->set_rules ( 'txtFulName', 'fullName','is_unique|alpha_dash|min_length[6]|max_length[10]' );
     		$this->form_validation->set_rules ( 'age', 'Age', 'trim|is_natural|greater_than[10]|less_than[100]' );
     		if ($this->form_validation->run () === FALSE)
     		{
@@ -229,17 +230,11 @@ class User extends CI_Controller {
     	));
     	//         echo "Load user info of userId {$userSession['user_id']} and display as user data form";
 	}
-
-	public function doUpload()
+	
+	public function do_upload()
 	{
-		var_dump($this->input->post());
-		die;
-		$config ['upload_path'] = '/images/avatar/';
-		$config ['allowed_types'] = 'gif|jpg|png';
-		$config ['max_size'] = '100';
-		$config ['max_width'] = '1024';
-		$config ['max_height'] = '768';
-		$this->load->library('upload',$config);
+// 		var_dump($this->input->post());
+// 		die('controller');
 		$this->load->helper('form');
 		$userId=$this->uri->segment(3);
 		$loggedUser=$this->session->all_userdata();
@@ -248,9 +243,11 @@ class User extends CI_Controller {
 // 		    	var_dump($userSession['user_id']);
 // 		    	var_dump($this->session->all_userdata());
 // 		    	var_dump($userId);
-// 		    	var_dump($loggedUser);
-// 		    	die();
-		
+//  				var_dump($this->input->post());
+//  		    	var_dump($loggedUser);
+// 	    die();
+		$post = $this->input->post();
+		    	
 		if (!isset($post['btnUpload']))
 		{
 			
@@ -273,33 +270,51 @@ class User extends CI_Controller {
 		}
 		else
 		{
-			var_dump($post);
-			die;
 			$userId = $loggedUser['userId'];
-			if (!$this->upload->doUpload())
-			{
-				$errorMessage= "Can't upload file";
+			$user = $this->userModel->getUserById($loggedUser['userId']);
+			$config ['upload_path'] = './images/avatars/';
+			$config ['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config ['file_name'] = $user['fullname'];
+			$config ['max_size'] = '1000';
+			$config ['max_width'] = '1500';
+			$config ['max_height'] = '1500';
+			$this->load->library('upload',$config);
+			$this->upload->initialize($config);
+			//
+// 			var_dump($_FILES['userfile']);
+// 			var_dump($this->upload->do_upload());
+// 			die;
 			
+			
+			if (!$this->upload->do_upload())
+			{
+// 				$errorMessage= "Can't upload file";
+				$error = array('error' => $this->upload->display_errors());
+				$this->load->view('upload_form', $error);
 				$this->load->view("layout/layout", array(
-    			'mainContent'   => VIEW_PATH . '/user/Upform.php',
-    			'errorMessage'  => $errorMessage));
+    			'mainContent'   => VIEW_PATH . '/user/do_upload.php',
+    			'errorMessage'  => $error));
 			} else {
 				$data = array (
 					'upload_data' => $this->upload->data());
-			var_dump($data);
-			die;
+// 				var_dump($this->upload->data());
+// 				die('in else');
 // 				$this->load->view ( 'upload_success', $data );
 			}
-			$oldAvt=$loggedUser['avatar'];
-			//     		var_dump($post);
-			//     		die;
+			$oldAvt=$user['avatar'];
+			
+// 			var_dump($user);
+// 			die;
 			//     		 var_dump($this->input->post('btnEdit'));
 			//              die;
-			$user = array(
-					'avatar'			=> $post['avatar'],		
-			);
-			 
-			$result = $this->userModel->editAvt($user);
+// 			$data['upload_data']['raw_name']=$user['fullname'];
+// 			var_dump($data['upload_data']['']);
+// 			var_dump($data['upload_data']['full_path']);
+			$path = '/images/avatars/'.$data['upload_data']['file_name'];
+// 			$data=$this->upload->data();	
+// 			var_dump($path);
+// 			die('out else');
+			$result = $this->userModel->editAvt($user,$path);
 			//     		var_dump($userId);
 			// 			die();
 			if ($result === false)
@@ -307,14 +322,13 @@ class User extends CI_Controller {
 				$errorMessage = "Can not updata avatar. Please try again";
 			} else
 			{
-				
 				redirect('/user/info/' . $user['id']);
 			}
 			 
 		
 		}
 		$this->load->view("layout/layout", array(
-				'mainContent'   => VIEW_PATH . '/user/Upform.php',
+				'mainContent'   => VIEW_PATH . '/user/do_upload.php',
 				'userId' => $userId,
 				'errorMessage'  => $errorMessage,
 		));
@@ -323,7 +337,49 @@ class User extends CI_Controller {
 	}
 	public function changePass($userId=0)
 	{
-		
+		$this->load->helper('form');
+    	$this->load->library('form_validation');
+        $errorMessage = '';
+        $post  = $this->input->post();
+        if (isset($post['btnChangePass'])) 
+        {
+//         var_dump($this->input->post('btnRegister'));
+//         die;
+            // Processing registering new account
+       		$this->form_validation->set_rules ( 'txtOldPas', 'oldpass', 'trim|required|min_length[6]|max_length[32]' );
+       		$this->form_validation->set_rules ( 'txtNewPas', 'newpass', 'trim|required|min_length[6]|max_length[32]' );
+       		$this->form_validation->set_rules ( 'txtConPas', 'confpass', 'trim|required|min_length[6]|max_length[32]|matches[txtNewPas]' );
+        	if ($this->form_validation->run () === FALSE) 
+        	{
+//         		die('xxxxxxxxxx');
+        		$this->load->view ( "layout/layout", array (
+        				'mainContent' => VIEW_PATH . '/user/changePass.php','errorMessage'  => $errorMessage
+        		) );
+        	return;
+        	}
+            // Processing registering new account
+            $oldPassword = $this->input->post('txtOldPas');
+            $newPassword = $this->input->post('txtNewPas');
+            $confPassword = $this->input->post('txtConfPas');
+
+            // Kiem tra email form name@domain.com
+            // So sanh password voi confirm password
+            // Kiem tra email co ton tai 
+            // Password > 6 ky tu
+
+            $user= $this->session->all_userdata();
+            $result = $this->userModel->updateUserPas($user,$oldPassword,$newPassword);
+            if ($result === false) {
+                $errorMessage = "Can not update new pass. Please try again";
+//                 var_dump($userId);
+//                 die();
+            } else {
+                redirect('/user/info/' . $user['userId']);   
+            }
+        }
+        $this->load->view ( "layout/layout", array (
+        				'mainContent' => VIEW_PATH . '/user/changePass.php','errorMessage' => $errorMessage));
+      
 	}
 	
    	protected function errorPage($errorMessage)

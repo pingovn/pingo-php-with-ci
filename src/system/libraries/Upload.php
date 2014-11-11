@@ -154,6 +154,7 @@ class CI_Upload {
 		if ( ! $this->validate_upload_path())
 		{
 			// errors will already be set by validate_upload_path() so just return FALSE
+// 			die('xxxxx');
 			return FALSE;
 		}
 

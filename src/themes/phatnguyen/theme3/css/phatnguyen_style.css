@@ -390,3 +390,16 @@ p.change_link{
 	height: 90px;
 	background: transparent;
 }
+/*FOCUS*/
+.focus {
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+ 
+.focus:hover {
+  border: 90px solid rgb(247, 247, 247);
+  border-radius: 50%;
+}

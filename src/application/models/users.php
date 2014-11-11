@@ -43,6 +43,24 @@ class Users extends PingoModel
     {
         return $this->update($user);
     }
+    
+    public function updateUserPas($user,$oldPassword,$newPassword)
+    {
+    	$data=$this->getUserByEmail($user['userEmail']);
+    	var_dump($data);
+    	$oldPassword =md5($oldPassword);
+    	var_dump($oldPassword);
+    	if ($data == false) {
+    		var_dump('aaaa');
+    		return false;
+    	}
+    	if($oldPassword!=$data['password'])
+    	{	var_dump('bbbb');
+    		return false;
+    	}
+    	$data['password']=md5($newPassword);
+    	return $this->update($data);
+    }
 
     /**
      * [createUser description]
@@ -79,9 +97,12 @@ class Users extends PingoModel
     		return false;
     	}
     }
-    public function editAvt(array $user)
+    public function editAvt(array $user, $path)
     {
     	if (isset($user['id'])) {
+    		$user['avatar']=$path;
+//     		var_dump($user);
+//     		die;
     		return $this->updateUser($user);
     	} else {
     		return false;
