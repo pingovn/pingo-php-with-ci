@@ -1,13 +1,11 @@
     <div class="right_content">
-        
-        <a href="#"><img src="/themes/phatnguyen/theme3/images/listen_live.gif" alt="" title="" class="listen_live" border="0" /></a>
-        
+        <!--
         <div class="track_name">
          <p>Track name - 10:23 </p>       
         </div>
-  
+        -->
 
-     <div class="title">Tips of Yesterday</div>
+     <div class="title">Top tips</div>
      
      
     <div class="right_news">

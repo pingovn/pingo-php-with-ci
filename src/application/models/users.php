@@ -33,14 +33,6 @@ class Users extends PingoModel
         return $this->getById($id);
     }
 
-    public function checklogin($email, $password)
-    {
-    	$email = $this->getUserByEmail($email);
-    	$password = $this->getByField('password', $password);
-    	if($email === FALSE && $password === FALSE)
-    	return false;
-    	return true;
-    }
     /**
      * [updateUser description]
      * @param  array  $user Array of user information
@@ -76,6 +68,39 @@ class Users extends PingoModel
         } else {
             return $this->createUser($user);
         }
+    }
+
+    /**
+     * Login with email and password
+     * @param  string  $email    Email of user
+     * @param  string  $password Password
+     * @param  boolean $remember Remember me in 30 days for example
+     * @return boolean True of false
+     */
+    public function doLogin($email, $password, $remember = false)
+    {
+        if ($email == '' || $password == '') {
+            return false;
+        }
+
+        $user = $this->getUserByEmail($email);
+        if ($user === false) {
+            return false;
+        }
+
+        $encryptedPassword = md5($password);
+        if ($user['password'] != $encryptedPassword) {
+            return false;
+        }
+
+        //Save user info into session
+        $data = array(
+            'email'      => $email,
+            'userId'     => $user['id'],
+            'fullname' => $fullname
+            );
+        $this->session->set_userdata($data);
+        return true;
     }
 }
 ?>
