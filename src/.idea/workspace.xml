@@ -28,7 +28,7 @@
       <file leaf-file-name="user.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/user.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="176" max-vertical-offset="4528">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="176" max-vertical-offset="4528">
               <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
               <folding />
             </state>
@@ -75,21 +75,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="003_update_avartar_length.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/migrations/003_update_avartar_length.php">
+      <file leaf-file-name="003_update_avatar_length.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/migrations/003_update_avatar_length.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21621622" vertical-offset="0" max-vertical-offset="592">
-              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+            <state vertical-scroll-proportion="-12.8" vertical-offset="0" max-vertical-offset="528">
+              <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="migration.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="migration.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/config/migration.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.96" vertical-offset="144" max-vertical-offset="736">
-              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.6756757" vertical-offset="144" max-vertical-offset="736">
+              <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -108,8 +108,8 @@
       <file leaf-file-name="DB_forge.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/system/database/DB_forge.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.45283" vertical-offset="3033" max-vertical-offset="6192">
-              <caret line="201" column="11" selection-start-line="201" selection-start-column="7" selection-end-line="201" selection-end-column="11" />
+            <state vertical-scroll-proportion="-3.45283" vertical-offset="4985" max-vertical-offset="6192">
+              <caret line="323" column="19" selection-start-line="323" selection-start-column="13" selection-end-line="323" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -149,8 +149,9 @@
         <option value="$PROJECT_DIR$/application/views/layout/menu.php" />
         <option value="$PROJECT_DIR$/application/views/user/register.php" />
         <option value="$PROJECT_DIR$/application/controllers/user.php" />
-        <option value="$PROJECT_DIR$/application/migrations/003_update_avartar_length.php" />
         <option value="$PROJECT_DIR$/application/config/migration.php" />
+        <option value="$PROJECT_DIR$/application/migrations/003_update_avartar_length.php" />
+        <option value="$PROJECT_DIR$/application/migrations/003_update_avatar_length.php" />
       </list>
     </option>
   </component>
@@ -732,22 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/system/database/DB_forge.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.45283" vertical-offset="3033" max-vertical-offset="6192">
-          <caret line="201" column="11" selection-start-line="201" selection-start-column="7" selection-end-line="201" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/migration.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.96" vertical-offset="144" max-vertical-offset="736">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/migrations/001_users.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="368">
@@ -764,10 +749,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/migrations/003_update_avartar_length.php">
+    <entry file="file://$PROJECT_DIR$/system/database/DB_forge.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21621622" vertical-offset="0" max-vertical-offset="592">
-          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        <state vertical-scroll-proportion="-3.45283" vertical-offset="4985" max-vertical-offset="6192">
+          <caret line="323" column="19" selection-start-line="323" selection-start-column="13" selection-end-line="323" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/migrations/003_update_avatar_length.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.8" vertical-offset="0" max-vertical-offset="528">
+          <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/migration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6756757" vertical-offset="144" max-vertical-offset="736">
+          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
           <folding />
         </state>
       </provider>

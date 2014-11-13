@@ -10,10 +10,8 @@ class Migration_Update_avatar_length extends CI_Migration {
             ),
         );
 
-        $this->dbforge->drop_column('users', 'avatar');
-        $this->dbforge->add_column('users', $fields);
+        $this->dbforge->modify_column ('users', 'avatar');
         echo "Change avatar length successfully.";
-        die();
     }
 
     public function down(){
@@ -24,8 +22,7 @@ class Migration_Update_avatar_length extends CI_Migration {
                 'null'                  => TRUE
             ),
         );
-        $this->dbforge->drop_column('users', 'avatar');
-        $this->dbforge->add_column('users', $fields);
+        $this->dbforge->modify_column ('users', 'avatar');
         Echo "Moved avatar length back to 30 successfully.";
     }
 }
