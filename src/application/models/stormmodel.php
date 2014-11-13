@@ -90,7 +90,7 @@ class StormModel extends CI_Model
     {
         $where = array('id' => $data['id']);
         unset($data['id']);
-        echo $this->db->last_query();
+        //echo $this->db->last_query();
 
         return $this->db->update($this->tableName, $data, $where);
     }

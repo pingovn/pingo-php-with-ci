@@ -3,9 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Home Page</title>
-<link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/style.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/pingo.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/pingo.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/profile.css" media="screen" />
+
+
 </head>
 
 <body>

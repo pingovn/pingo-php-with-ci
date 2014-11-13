@@ -6,19 +6,26 @@
     <label>ID:</label><?php echo $userinfo['id'];?>
         <br>
     <label>Password:</label><?php echo $userinfo['password'];?>
-    <li><a href="<?php echo site_url("c_user/changePass/{$userinfo['id']}"); ?>" title="">Change password</a></li>
+        <?php
+        //var_dump($userinfo['id']);die;
+            if($userinfo['id']==$this->uri->segment(3)){
+                echo "<li>";
+                echo "<a href=" . site_url('c_user/changePass/'.$userinfo['id']) .">Change password</a>";
+                echo "</li>";
+            }
+        ?>
     <br>
     <label>FullName:</label><?php echo $userinfo['fullname'];?>
     <br>
     <label>Age:</label><?php echo $userinfo['age'];?>
     <br>
-    <label>Gender:</label><?php echo $userinfo['gender'];?>
+    <label>Gender:</label><?php echo ($userinfo['gender']=='1')?'Male':'' ?><?php echo ($userinfo['gender']=='2')?'Female':'' ?><?php echo ($userinfo['gender']=='3')?'Others':'' ?>
     <br>
     <label>Status:</label><?php echo $userinfo['status'];?>
     <br>
     <label>Avatar:</label><img src="/themes/phatnguyen/theme3/uploads/<?php echo $userinfo['avatar'];?>" width=40px height=40px border=0px />
     <li><a href="<?php echo site_url('c_user/uploadimage'); ?>" title="">Change Image</a></li>
 
-<li><a href="<?php echo site_url('c_user/updateuser'); ?>" title="">Update Your Information</a></li>
+<li><a href="<?php echo site_url('c_user/update_profile'); ?>" title="">Update Your Information</a></li>
 </div>
 </section>

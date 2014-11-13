@@ -120,7 +120,7 @@ class C_user extends App_Controller {
 
     function info()
     {
-        $id = $this->uri->segment(3);
+        $id = $this->data['id'];
         $row = $this->modelUser->show_user($id);
         if($row)
         {
@@ -140,21 +140,7 @@ class C_user extends App_Controller {
 
     public function changePass()
     {
-        //Kiem tra session id == $this->uri->segment(3) truoc khi run login
         $this->renderView('/user/v_changepass.php');
-//        if($this->session->userdata('logged_in'))
-//        {
-//            $this->data['mainContent'] = VIEW_PATH . '/user/v_changepass.php';
-//            $this->load->view("layout/layout", $this->data);
-//        }
-//        else
-//        {
-//            //If no session, redirect to login page
-//            redirect('c_user/login', 'refresh');
-//        }
-        //var_dump($this->uri->segment(3));die();
-        //$id = $this->uri->segment(3);
-
     }
 
     public function changePassProcess()
@@ -180,14 +166,10 @@ class C_user extends App_Controller {
                         'id'=>$this->data['id'],
                         'password' => $this->input->post('txtPassword'),
                     );
-                    //$id = $this->uri->segment(3);
-                    //var_dump($this->modelUser->save_user($data));die();
                     $this->modelUser->save_user($data);
                     $id = $this->data['id'];
                     echo('Change password success');
                     redirect("c_user/info/$id", 'refresh');
-                    //$this->data['mainContent'] = VIEW_PATH . '/user/v_account.php';
-                    //$this->load->view("layout/layout",$this->data);
                 }
             }else{
                 $this->load->view("layout/layout", array(
@@ -222,8 +204,7 @@ class C_user extends App_Controller {
     {
         if($this->session->userdata('logged_in'))
         {
-            $this->data['mainContent'] = VIEW_PATH . '/user/v_upload.php';
-            $this->load->view("layout/layout", $this->data);
+            $this->renderView('/user/v_upload.php');
         }
         else
         {
@@ -265,8 +246,35 @@ class C_user extends App_Controller {
         }
     }
 
-    function getCurrentUser()
+    public function update_profile()
     {
-        return array('email' => 'xxx@xxx.xxx');
+         $this->renderView('/user/v_editprofile.php');
+    }
+
+    public function process_updateprofile()
+    {
+        $value = $this->input->post('btnSave');
+        if(isset($value))
+        {
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('txtFullname', 'Full Name', 'required');
+            $this->form_validation->set_rules('sex[]','options', 'required');
+            if($this->form_validation->run()==FALSE)
+            {
+                $this->renderView('/user/v_editprofile.php');
+            }
+            //redirect("/user/v_editprofile.php",refresh);
+            else{
+                $data = array(
+                    'id' => $this->data['id'],
+                    'fullname' => $this->input->post("txtFullname"),
+                    'age' => $this->input->post('age'),
+                    'gender' => $this->input->post('sex')
+                );
+                $this->modelUser->save_user($data);
+                $this->renderView('/user/v_account.php','refresh');
+            }
+        }
+
     }
 }

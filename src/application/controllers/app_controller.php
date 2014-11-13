@@ -14,6 +14,7 @@ class App_Controller extends CI_Controller {
             $this->load->model("StormModel");
             $this->load->model("M_user", "userModel");
             $user = $this->userModel->show_user($userId);
+            $this->data['userinfo'] = $user;
             if (!empty($user)) {
                 $this->data['user'] = array(
                     'id' => $user['id'],

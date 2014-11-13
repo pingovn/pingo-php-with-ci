@@ -6,7 +6,7 @@
         </div>
         <div class="sep"></div>
         <div class="inputs">
-            <input type="email" id="txtEmail" name="txtEmail" value="" placeholder="e-mail" autofocus >
+            <input type="email" id="txtEmail" name="txtEmail" value="" placeholder="e-mail" autofocus>
             <input type="password" placeholder="Password" id="txtPassword" name="txtPassword" value="">
             <div class="checkboxy">
                 <input name="cecky" id="checky" value="1" type="checkbox" /><label class="terms">Remember me</label>

@@ -59,6 +59,7 @@ class M_user extends StormModel
         return $this->getById($id);
     }
 
+
     public function save_user(array $user)
     {
         if (isset($user['id'])) {
