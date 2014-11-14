@@ -21,6 +21,7 @@ class Migration extends CI_Controller{
             show_error($this->migration->error_string());
         }
         $this->migration->latest();
+        $this->topicModel->createTopic($data);
     }
 
     public function version($version)
