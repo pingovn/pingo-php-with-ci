@@ -9,7 +9,8 @@ class Migration_Topics_Tips extends CI_Migration {
 						'type' => 'INT',
 						'constraint' => 10,
 						'unsigned' => TRUE,
-						'auto_increment' => TRUE
+                        'null' => FALSE,
+						'auto_increment' => TRUE,
 				),
 				'content' => array(
 						'type' => 'TEXT',
@@ -37,9 +38,11 @@ class Migration_Topics_Tips extends CI_Migration {
 				),
 				'is_deleted' => array(
 						'type' => 'BOOLEAN',
-						'default' => FALSE,
+						'default' => TRUE,
 				)
-		));		
+		));
+        //var_dump($a);die;
+        $this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('tips', TRUE);
 		echo "Created table tips with key id <br />";
 			/**
@@ -58,7 +61,8 @@ class Migration_Topics_Tips extends CI_Migration {
 						'null' => TRUE,
 				)
 		));
-		$this->dbforge->create_table('topics', TRUE);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('topics', TRUE);
 		echo "Created table topics with key id <br />";
 	}
 

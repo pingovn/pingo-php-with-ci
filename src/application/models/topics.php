@@ -16,7 +16,9 @@ class Topics extends PingoModel
 		foreach ($data as $name)
 		{
 			$topic=array('name'=>$name);
-			$this->create($topic);	
+			$this->create($topic);
+            //$this->db->save_queries = true;
+            //echo $this->db->last_query();die;
 		}
 	}
 }
