@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class user extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
@@ -52,13 +52,17 @@ class User extends CI_Controller {
             'mainContent'   => VIEW_PATH . '/user/register.php'
             ));
     }
+//Sao co ki tu dac biet truoc ten file the ban??
+//nhung chu p ko phai dau..ú
 
+    //bac doi chut...no bao 404 la vi chua logout, de minh logout  onhak ok
     function login()
     {
     	$this->load->model("Users", "userModel");
     	$userId = $this->session->userdata('userId');
     	
-//$this->load->view('layout/menu', $userId);        
+    	
+        
         if (!empty($userId)) {
             redirect('/user/info' . $this->session->userdata('userId'));
         }
@@ -73,18 +77,23 @@ class User extends CI_Controller {
                 $password = $post['txtPassword'];   
                 
                 $loginResult = $this->userModel->doLogin($email, $password);
-                if ($loginResult === true) {
+                if ($loginResult === true)
+                 {
+
                     $userId = $this->session->userdata['userId'];
                     redirect('/user/info/' . $userId);
-                    
                   
                 } else {
                     $errorMessage = 'Can not login with email and password inputted';
                 }
             }
         }
+        
+        
+        
         $this->load->view("layout/layout", array(
             'errorMessage'  => $errorMessage,
+        		
             'mainContent'   => VIEW_PATH . '/user/login.php'
             ));
     }
@@ -103,9 +112,11 @@ class User extends CI_Controller {
             return $this->errorPage("User khong ton tai");
         }
 
+        $this->session->userdata('userId');
         
         $this->load->view('layout/layout', array(
         		'user'  => $user,
+        'userId' => $userId,
         		'mainContent'   => VIEW_PATH . '/user/info.php'
         ));
     }
