@@ -12,7 +12,7 @@ body {
 
 #frmRegister, #frmLogin, #userInfo {
     padding: 0px 25px 25px;
-    background: #fff;
+   /* background: #fff;*/
     box-shadow: 
         0px 0px 0px 5px rgba( 255,255,255,0.4 ), 
         0px 4px 20px rgba( 0,0,0,0.33 );
@@ -51,14 +51,14 @@ body {
     margin-top: 25px;
 }
 
-#frmLogin .inputs label, #frmRegister .inputs label {
+/*#frmLogin .inputs label, #frmRegister .inputs label {
     color: #8f8f8f;
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 1px;
     margin-bottom: 7px;
     display: block;
-}
+}*/
 
 input::-webkit-input-placeholder {
     color:    #b5b5b5;
@@ -68,7 +68,7 @@ input:-moz-placeholder {
     color:    #b5b5b5;
 }
 
-#frmRegister .inputs input[type=email], input[type=password] {
+/*#frmRegister .inputs input[type=email], input[type=password] {
     background: #f5f5f5;
     font-size: 0.8rem;
     -moz-border-radius: 3px;
@@ -80,7 +80,7 @@ input:-moz-placeholder {
     margin-bottom: 20px;
     box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 );
     clear: both;
-}
+}*/
 
 #frmRegister .inputs input[type=email]:focus, input[type=password]:focus {
     background: #fff;
@@ -96,7 +96,7 @@ input:-moz-placeholder {
     clear: both;
 }
 
-#frmLogin .inputs input[type=email], input[type=password] {
+/*#frmLogin .inputs input[type=email], input[type=password] {
     background: #f5f5f5;
     font-size: 0.8rem;
     -moz-border-radius: 3px;
@@ -108,7 +108,7 @@ input:-moz-placeholder {
     margin-bottom: 20px;
     box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 );
     clear: both;
-}
+}*/
 
 #frmLogin .inputs input[type=email]:focus, input[type=password]:focus {
     background: #fff;
@@ -116,13 +116,13 @@ input:-moz-placeholder {
     outline: none;   
 }
 
-#frmLogin .inputs .checkboxy {
+/*#frmLogin .inputs .checkboxy {
     display: block;
     position: static;
     height: 25px;
     margin-top: 10px;
     clear: both;
-}
+}*/
 
 #frmRegister .inputs input[type=checkbox] {
     float: left;
@@ -130,11 +130,11 @@ input:-moz-placeholder {
     margin-top: 3px;
 }
 
-#frmLogin .inputs input[type=checkbox] {
+/*#frmLogin .inputs input[type=checkbox] {
     float: left;
     margin-right: 10px;
     margin-top: 3px;
-}
+}*/
 
 #frmRegister .inputs label.terms {
     float: left;
@@ -142,11 +142,11 @@ input:-moz-placeholder {
     font-style: italic;
 }
 
-#frmLogin .inputs label.terms {
+/*#frmLogin .inputs label.terms {
     float: left;
     font-size: 14px;
     font-style: italic;
-}
+}*/
 
 #frmRegister .inputs #submit {
     width: 100%;

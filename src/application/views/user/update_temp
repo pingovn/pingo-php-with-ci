@@ -1,0 +1,79 @@
+<div id="registration-form">
+	<div class='fieldset'>
+    <legend>Tip Of The Day</legend>
+    	<div>
+            <span>Email</span>
+            <span><?php echo $user['email']; ?></span>
+        </div>
+           <div>
+               <span>Fullname</span>
+               <span><?php echo $user['fullname']; ?></span>
+           </div>
+           <div>
+               <span>Gender</span>
+               <span>
+                   <?php if ($user['gender'] == 0) : ?>
+                       <?php echo 'Male'; ?>
+                   <?php elseif ($user['gender'] == 1) : ?>
+                       <?php echo 'Female'; ?>
+                   <?php else : ?>
+                       <?php echo 'Other'; ?>
+                   <?php endif ?>
+               </span>
+           </div>
+           <div>
+               <span>Age</span>
+               <span><?php echo $user['age']; ?></span>
+           </div>
+           <form id="frmLogin" action="/index.php/user/update" method="POST">
+           <div>
+                <input id='submit' type="submit" value="Update" name="btnUpdate">
+           </div>
+           </form>
+    </div>
+	<form action="/index.php/user/update" method="post" data-validate="parsley">
+		<div class='row'>
+			<label for='firstname'>E- mail</label>
+			<input type="text" placeholder="First Name" name='txtEmail' id='firstname' data-required="true" data-error-message="Your E-mail is required">
+		</div>
+		<div class='row'>
+			<label for="email">Password</label>
+			<input type="text" placeholder="E-mail"  name='txtPassword' data-required="true" data-type="email" data-error-message="Your Password is required">
+		</div>
+		<div class='row'>
+			<label for="cemail">Confirm your Password</label>
+			<input type="text" placeholder="Confirm your E-mail" name='txtConfirmPasword' data-required="true" data-error-message="Your ConfirmPassword must correspond">
+		</div>
+		<input type="submit" value="Register">
+	</form>
+</div>
+
+
+<div class="container">
+<form action="/index.php/user/update" method="post" data-validate="parsley">
+ <!--        <?php
+       // echo "<div class='mess_error'>";
+       // echo "<ul>";
+          //  if(validation_errors() != ''){
+        //        echo "<li>".validation_errors()."</li>";
+          //  }
+        //echo "</ul>";
+       // echo "</div>";
+        ?> -->
+    <fieldset>
+        <legend align="center">Edit Username: <?php echo $info['username']; ?></legend>
+        
+        <label>Username:</label><input type="text" name="username" value="<?php echo $info['username']; ?>" size="28" class="input"/>
+        <label>Email:</label><input type="text" name="Email" size="28" value="<?php echo $info['email']; ?>" class="input"/>
+        <label>Password:</label><input type="password" name="Password" size="28" class="input"/>
+        <label>Re-Pass:</label><input type="password" name="ConfirmPassword" size="28" class="input"/><br />
+         
+        <label>Level:</label><select name="level">
+            <option value='1' <?php if ($info['level'] == 1) echo ' selected ';  ?> >Member</option>
+            <option value='2'  <?php if ($info['level'] == 2) echo ' selected ';  ?> >Administrator</option>
+        </select></br />
+        <label>&nbsp;</label><input type="submit" name="ok" value="Edit User" class="btn" />
+         <input id='submit' type="submit" value="Update" name="btnUpdate">
+    </fieldset>
+</form>
+</div>

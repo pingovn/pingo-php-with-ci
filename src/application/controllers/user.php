@@ -20,10 +20,11 @@ class User extends CI_Controller {
             $this->load->helper('email');
             if (!valid_email($email)) {
                 $errorMessage =  'email is invalid';
-                $this->load->view("layout/layout", array(
-                    'errorMessage'  => $errorMessage,
-                    'mainContent'   => VIEW_PATH . '/user/register.php'
-                    ));
+                // $this->load->view("layout/layout", array(
+                //     'errorMessage'  => $errorMessage,
+                //     'mainContent'   => VIEW_PATH . '/user/registeranhkhoa.php'
+                //     ));
+                $this->load->view('/user/error.php');
                 return;
             }
 
@@ -49,17 +50,62 @@ class User extends CI_Controller {
         }
         $this->load->view("layout/layout", array(
             'errorMessage'  => $errorMessage,
-            'mainContent'   => VIEW_PATH . '/user/register.php'
-            ));
+            'mainContent'   => VIEW_PATH . '/user/registeranhkhoa.php'));
     }
+    // public function update()
+    // {
+    //     $userId = (int) $userId;
+    //     if ($userId == 0) {
+    //         // Return error page
+    //         return $this->errorPage("User khong ton tai");
+    //     }
+    //     $this->load->model('Users', 'userModel');
+    //     $user = $this->userModel->getUserById($userId);
+    //     if ($user == false) {
+    //         return $this->errorPage("User khong ton tai");
+    //     }
+    //     $this->load->view("layout/layout", array(
+    //         'errorMessage'  => $errorMessage,
+    //         'mainContent'   => VIEW_PATH . '/user/Updateanhkhoa.php'
+    //         ));
+    //     // redirect('/user/register');
+    // }
+
+
+    public function update($id) {
+        $this->load->view("layout/layout", array(
+            'errorMessage'  => $errorMessage,
+            'mainContent'   => VIEW_PATH . '/user/Updateanhkhoa.php'));
+            // $this->load->library("form_validation");
+            // $this->load->model('Muser');
+            // $this->_data['titlePage'] = "Edit A User";
+            // $this->_data['subview'] = "user/edit_view";
+     
+            // $this->_data['info'] = $this->Muser->getUserById($id);
+            // $this->form_validation->set_rules("username", "Username", "required|xss_clean|trim|min_length[4]|callback_check_user");
+            // $this->form_validation->set_rules("password", "Password", "matches[password2]|trim|xss_clean");
+            // $this->form_validation->set_rules("email", "Email", "required|trim|xss_clean|valid_email|callback_check_email");
+            // if ($this->form_validation->run() == TRUE) {
+            //     $data_update = array(
+            //         "username" => $this->input->post("username"),
+            //         "email" => $this->input->post("email"),
+            //         "level" => $this->input->post("level"),
+            //     );
+            //     if ($this->input->post("password")) {
+            //         $data_update['password'] = $this->input->post("password");
+            //     }
+            //     $this->Muser->updateUser($data_update, $id);
+            //     $this->session->set_flashdata("flash_mess", "Update Success");
+            //     redirect(base_url() . "index.php/user");
+            // }
+            // $this->load->view('user/main.php', $this->_data);
+        }
+
 
     function login()
     {
-        $userId = $this->session->userdata('userId');
-        if (!empty($userId)) {
-            redirect('/user/info' . $this->session->userdata('userId'));
-        }
-
+        $this->load->view("layout/layout", array(
+            'mainContent'   => VIEW_PATH . '/user/login.php'));
         $errorMessage = '';
         $post  = $this->input->post();
         if (isset($post['btnLogin'])) {
@@ -81,7 +127,7 @@ class User extends CI_Controller {
         }
         $this->load->view("layout/layout", array(
             'errorMessage'  => $errorMessage,
-            'mainContent'   => VIEW_PATH . '/user/login.php'
+            'mainContent'   => VIEW_PATH . '/user/info.php'
             ));
     }
 

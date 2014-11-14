@@ -5,6 +5,8 @@
 <title>Home Page</title>
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/style.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/pingo.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/styless.css" media="screen" />
 </head>
 
 <body>

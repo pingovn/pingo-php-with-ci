@@ -38,10 +38,16 @@ class Users extends PingoModel
      * @param  array  $user Array of user information
      * @return bool
      */
-    public function updateUser(array $user)
-    {
-        return $this->update($user);
+
+    public function updateUser($data_update, $id){
+            $this->db->where("id", $id);
+            $this->db->update($this->_table, $data_update);
     }
+    
+    // public function updateUser(array $user)
+    // {
+    //     return $this->update($user);
+    // }
 
     /**
      * [createUser description]

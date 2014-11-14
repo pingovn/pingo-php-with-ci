@@ -28,6 +28,11 @@
                 <span>Age</span>
                 <span><?php echo $user['age']; ?></span>
             </div>
+            <form id="frmLogin" action="/index.php/user/update" method="POST">
+            <div>
+                 <input id='submit' type="submit" value="Update" name="btnUpdate">
+            </div>
+            </form>
         </div>
 </div>
 ​
