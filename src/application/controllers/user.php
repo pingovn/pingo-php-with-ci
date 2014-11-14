@@ -182,7 +182,7 @@ class User extends CI_Controller {
 //     		 var_dump($this->input->post('btnEdit'));
 //              die;
 //     		// Processing registering new account
-    		$this->form_validation->set_rules ( 'txtFulName', 'fullName','is_unique|alpha_dash|min_length[6]|max_length[10]' );
+    		$this->form_validation->set_rules ( 'txtFulName', 'fullName','alpha_dash|min_length[6]|max_length[10]' );
     		$this->form_validation->set_rules ( 'age', 'Age', 'trim|is_natural|greater_than[10]|less_than[100]' );
     		if ($this->form_validation->run () === FALSE)
     		{
@@ -197,6 +197,8 @@ class User extends CI_Controller {
     		$fullName = $this->input->post('txtFulName');
     		$age = $this->input->post('age');
     		$gender = $this->input->post('gender');
+//     		var_dump($userId);
+// 			die();
     	
     		// Kiem tra email form name@domain.com
     		// So sanh password voi confirm password
@@ -211,8 +213,6 @@ class User extends CI_Controller {
     		);
     	
     		$result = $this->userModel->updateUser($user);
-//     		var_dump($userId);
-// 			die();
     		if ($result === false) 
     		{
     			$errorMessage = "Can not create new user. Please try again";
@@ -223,6 +223,8 @@ class User extends CI_Controller {
     		 
     
     	}
+    	//redirect: another request (2 requests) des
+    	//return: as a request (1 request ) re-post
     	$this->load->view("layout/layout", array(
     			'mainContent'   => VIEW_PATH . '/user/edit.php',
     			'userId' => $userId,

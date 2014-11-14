@@ -15,7 +15,7 @@
 						<label for="Email" class="uname" data-icon="u"> Your email or
 							username </label> <input id="txtEmail" name="txtEmail"
 							required="required" type="text"
-							placeholder="myusername or mymail@mail.com" />
+							placeholder="mymail@mail.com" />
 					<p>
 						<label for="Password" class="youpasswd" data-icon="p"> Your
 							password </label> <input id="txtPassword" name="txtPassword"
