@@ -1,4 +1,7 @@
-<?php $this->load->helper('url');?>
+<?php $this->load->helper('url');
+//var_dump($this->session->userdata('logged_in'));die;
+?>
+<?php if ($user!== false) : ?>
 <section class="container">
     <div class="login">
         <h1>Change Your Password</h1>
@@ -13,3 +16,5 @@
         </form>
     </div>
 </section>
+<?php else : redirect('c_user/login', 'refresh');?>
+<?php endif ?>

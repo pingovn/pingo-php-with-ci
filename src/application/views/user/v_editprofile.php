@@ -1,4 +1,5 @@
 <?php $this->load->helper('form');?>
+<?php if (isset($user)) : ?>
 <?php $fullname = $userinfo['fullname']?>
     <section class="container">
     <div class="login">
@@ -36,3 +37,5 @@
         </form>
     </div>
 </section>
+<?php else : redirect('c_user/login', 'refresh');?>
+<?php endif ?>

@@ -1,4 +1,6 @@
 <?php $this->load->helper('url');?>
+<?php if ($user!== false) : ?>
+
 <section class="container">
     <div class="login">
 <h1>Welcome <?php echo $userinfo['email'];?> !</h1>
@@ -8,7 +10,7 @@
     <label>Password:</label><?php echo $userinfo['password'];?>
         <?php
         //var_dump($userinfo['id']);die;
-            if($userinfo['id']==$this->uri->segment(3)){
+            if($userinfo['id']===$this->uri->segment(3)){
                 echo "<li>";
                 echo "<a href=" . site_url('c_user/changePass/'.$userinfo['id']) .">Change password</a>";
                 echo "</li>";
@@ -29,3 +31,5 @@
 <li><a href="<?php echo site_url('c_user/update_profile'); ?>" title="">Update Your Information</a></li>
 </div>
 </section>
+<?php else : redirect('c_user/login', 'refresh');?>
+<?php endif ?>

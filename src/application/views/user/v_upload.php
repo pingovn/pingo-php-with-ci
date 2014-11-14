@@ -1,3 +1,4 @@
+<?php if (isset($user)) : ?>
 </body>
 </html>
 <section class="container">
@@ -10,3 +11,5 @@
         </form>
     </div>
 </section>
+<?php else : redirect('c_user/login', 'refresh');?>
+<?php endif ?>
