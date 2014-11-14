@@ -30,8 +30,8 @@ class C_user extends App_Controller {
      */
     public function register()
     {
-        $value = $this->input->post('btnRegister');
-        if (isset($value)) {
+        $submit = $this->input->post('btnRegister');
+        if (isset($submit)) {
             // Processing registering new account
 
             $this->form_validation->set_rules('txtEmail', 'Email', 'required|valid_email|is_unique[users.email]');
@@ -272,7 +272,9 @@ class C_user extends App_Controller {
                     'gender' => $this->input->post('sex')
                 );
                 $this->modelUser->save_user($data);
-                $this->renderView('/user/v_account.php','refresh');
+                $a = $data['id'];
+                redirect("c_user/info/$a", 'refresh');
+                //$this->renderView('/user/v_account.php','refresh');
             }
         }
 
