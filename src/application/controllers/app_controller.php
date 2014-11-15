@@ -7,13 +7,15 @@ class App_Controller extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->data = array();
-
+        $this->ctopic = array();
         $this->load->library('session');
         $userId = $this->session->userdata('logged_in')['id'];
-        if (isset($userId)) {
+        if (isset($userId))
+        {
             $this->load->model("StormModel");
             $this->load->model("M_user", "userModel");
             $user = $this->userModel->show_user($userId);
+            //var_dump($this->data['ntopix']);die;
             $this->data['userinfo'] = $user;
             if (!empty($user)) {
                 $this->data['user'] = array(
@@ -21,6 +23,7 @@ class App_Controller extends CI_Controller {
                     'email' => $user['email']
                 );
             }
+            //var_dump($this->data);die;
         }
 
     }

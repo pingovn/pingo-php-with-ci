@@ -85,6 +85,7 @@ class M_user extends StormModel
     {
         return $this->update($data);
     }
+
 }
 
 
