@@ -7,6 +7,8 @@ class HomePage extends App_Controller
         parent::__construct();
         $this->load->library('session');
         $this->load->helper('url');
+        $this->load->model("StormModel");
+
 
     }
     public function index()
@@ -23,7 +25,7 @@ class HomePage extends App_Controller
         $this->session->sess_destroy();
        // $this->session->unset_userdata('logged_in');
 //        session_destroy();
-        redirect('homepage', 'refresh');
+        redirect('c_user/login', 'refresh');
     }
 }
 

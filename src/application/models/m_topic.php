@@ -10,7 +10,7 @@ class M_topic extends StormModel
     public function __construct()
     {
         parent::__construct();
-        $this->tableName ="topics";
+        $this->tableName ='topics';
     }
 
     public function showTopic()

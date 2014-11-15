@@ -10,7 +10,7 @@ class M_tip extends StormModel
     public function __construct()
     {
         parent::__construct();
-        $this->tableName ="tips";
+        $this->tableName ='tips';
     }
 
     public function showTip()
