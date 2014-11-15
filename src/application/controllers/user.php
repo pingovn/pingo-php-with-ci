@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class user extends CI_Controller {
+class User extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
@@ -14,11 +14,13 @@ class user extends CI_Controller {
     {
         $this->load->model("Users", "userModel");
         $errorMessage = '';
-        if (isset($_POST['btnRegister'])) {
+        if (isset($_POST['btnRegister']))
+         {
             // Processing registering new account
             $email = $this->input->post('txtEmail');
             $this->load->helper('email');
-            if (!valid_email($email)) {
+            if (!valid_email($email))
+             {
                 $errorMessage =  'email is invalid';
                 $this->load->view("layout/layout", array(
                     'errorMessage'  => $errorMessage,
@@ -52,10 +54,9 @@ class user extends CI_Controller {
             'mainContent'   => VIEW_PATH . '/user/register.php'
             ));
     }
-//Sao co ki tu dac biet truoc ten file the ban??
-//nhung chu p ko phai dau..ú
 
-    //bac doi chut...no bao 404 la vi chua logout, de minh logout  onhak ok
+
+
     function login()
     {
     	$this->load->model("Users", "userModel");
@@ -71,9 +72,11 @@ class user extends CI_Controller {
         if (isset($post['btnLogin'])) {
             $email = $post['txtEmail'];
             $this->load->helper('email');
-            if (!valid_email($email)) {
+            if (!valid_email($email))
+            {
                 $errorMessage = 'Please input valid email';
-            } else {
+            } 
+            else {
                 $password = $post['txtPassword'];   
                 
                 $loginResult = $this->userModel->doLogin($email, $password);
@@ -83,7 +86,8 @@ class user extends CI_Controller {
                     $userId = $this->session->userdata['userId'];
                     redirect('/user/info/' . $userId);
                   
-                } else {
+                } 
+                else {
                     $errorMessage = 'Can not login with email and password inputted';
                 }
             }
@@ -101,14 +105,16 @@ class user extends CI_Controller {
     public function info($userId = 0)
     {
         $userId = (int) $userId;
-        if ($userId == 0) {
+        if ($userId == 0)
+         {
             // Return error page
             return $this->errorPage("User khong ton tai");
         }
         $this->load->model('Users', 'userModel');
         $user = $this->userModel->getUserById($userId);
 
-        if ($user == false) {
+        if ($user == false)
+         {
             return $this->errorPage("User khong ton tai");
         }
 
@@ -124,6 +130,12 @@ class user extends CI_Controller {
     protected function errorPage($errorMessage)
     {
         echo $errorMessage; die();
+    }
+    
+    function update()
+    {
+    	$this->load->view("layout/layout", array('mainContent'   => VIEW_PATH . '/update.php'));
+    	
     }
     
     function logout()

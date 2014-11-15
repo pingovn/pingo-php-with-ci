@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Simple user registration Script</title>
+<title>Simple user registration</title>
 
 <script type="text/javascript">
 function validateForm()
@@ -61,13 +61,15 @@ return false;
 	 <input id="gender" type="gender" name="gender" placeholder="Nhap gioi tinh" /></p>
  
 	<p><label>Avatar&nbsp;&nbsp; : </label>
-	 <input id="avatar" type="images" name="avatar" placeholder="Chon hinh dai dien" /></p>
+	 <input id="avatar" type="images" name="avatar" placeholder="Chon hinh dai dien" />
+	 <input class="btn avatar" type="" name="btnAvatar" value="Browse..." /></p>
 	 
 	 <p><label>Status&nbsp;&nbsp; : </label>
-	 <input id="status" type="checkbox" name="status" /></p>
+	 <input id="status" type="radio" name="single" /> Single
+	 <input id="status" type="radio" name="married" /> Married</p>
 	 
 	 
-    <input class="btn update" type="submit" name="btnsubmit" value="Update" />
+    <input class="btn update" type="submit" name="btnUpdate" value="Update" />
     </form>
 </div>
 </body>
