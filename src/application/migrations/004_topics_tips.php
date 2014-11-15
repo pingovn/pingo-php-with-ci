@@ -38,7 +38,7 @@ class Migration_Topics_Tips extends CI_Migration {
 				),
 				'is_deleted' => array(
 						'type' => 'BOOLEAN',
-						'default' => TRUE,
+						'default' => 0,
 				)
 		));
         //var_dump($a);die;
@@ -64,6 +64,14 @@ class Migration_Topics_Tips extends CI_Migration {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('topics', TRUE);
 		echo "Created table topics with key id <br />";
+		/*Load default database  */
+		$this->load->model("PingoModel");
+		$this->load->model("Topics", "topicModel");
+		$data = array('Love','Sports','Society','Funny','Future','God',
+				'Communication','Car','Money','Girl','Learning','Science','Relationship',
+				'Dream','Education','Pet','Food','Beauty','Beer'
+		);
+		$this->topicModel->createTopic($data);
 	}
 
 	public function down(){
@@ -71,7 +79,7 @@ class Migration_Topics_Tips extends CI_Migration {
 		echo "Drop tips";
 		
 		$this->dbforge->drop_table('topics');
-		echo "Drop tips";
+		echo "Drop topics";
 		
 	}
 }
