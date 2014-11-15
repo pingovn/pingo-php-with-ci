@@ -84,7 +84,7 @@ class StormModel extends CI_Model
     protected function getAllRows($fieldDataNeed)
     {
         $this->db->select($fieldDataNeed);
-        $query = $this->db->get('topics');
+        $query = $this->db->get($this->tableName);
         $row = $query->result_array();
         return $row;
         //var_dump($row);die;

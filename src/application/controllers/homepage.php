@@ -11,8 +11,8 @@ class HomePage extends App_Controller
     }
     public function index()
     {
-        $this->load->model("M_topic", "userTopic");
-        $ctopic = $this->userTopic->show();
+        $this->load->model("M_topic", "modelTopic");
+        $ctopic = $this->modelTopic->showTopic();
         $this->data['ntopic'] = $ctopic;
         //var_dump($this->data['ntopic']);die;
         $this->renderView('/layout/left_content.php');

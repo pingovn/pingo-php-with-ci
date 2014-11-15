@@ -10,29 +10,19 @@ class M_topic extends StormModel
     public function __construct()
     {
         parent::__construct();
-        $this->tableName ="";
+        $this->tableName ="topics";
     }
 
-    public function show()
+    public function showTopic()
     {
         $row = $this->getAllRows('name');
         //var_dump($row);die;
         return $row;
     }
 
-    public function addTips($data)
+    public function getTopicIdByName($topicname)
     {
-        $this->tableName = 'tips';
-        $this->create($data);
-        return ;
+        return $this->getRowByField('name',$topicname);
     }
-
-    public function getTipIdByName($tipname)
-    {
-        $this->tableName = 'topics';
-        return $this->getRowByField('name',$tipname);
-    }
-
-
 }
 ?>

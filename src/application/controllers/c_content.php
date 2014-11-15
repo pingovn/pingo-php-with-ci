@@ -16,6 +16,7 @@ class C_content extends App_Controller
         $this->load->library('session');
         $this->load->model("StormModel");
         $this->load->model("M_topic","modelTopic");
+        $this->load->model("M_tip","modelTip");
         $this->load->helper('form');
         $this->load->library('form_validation');
 
@@ -41,17 +42,17 @@ class C_content extends App_Controller
             {
                 $txtContent = $this->input->post('txtContent');
                 $catTopic = $this->input->post('catTopic');
-                $tipid = $this->modelTopic->getTipIdByName($catTopic);
+                $topicid = $this->modelTopic->getTopicIdByName($catTopic);
                 $now = date("Y-m-d H:i:s");
                 //var_dump($tipid['name']);die;
                 $tip = array(
                     'user_id' => $this->data['id'],
                     'content' => $txtContent,
-                    'topic_id' => $tipid['id'],
+                    'topic_id' => $topicid['id'],
                     'create_time' => $now,
                     'is_deleted' => '1',
                 );
-                $this->modelTopic->addTips($tip);
+                $this->modelTip->addTips($tip);
                 redirect('homepage', 'refresh');
             }
         }
