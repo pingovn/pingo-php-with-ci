@@ -1,7 +1,7 @@
 <?php $this->load->helper('form');?>
 <?php if ($user !== false) : ?>
     <?php echo form_open('C_content/showtopic')?>
-        <textarea style="width: 484px;height: 60px" name="txtContent">Write something you want</textarea>
+        <textarea style="width: 484px;height: 60px" name="txtContent" placeholder="Write something you want..."></textarea>
         <select name = "catTopic">
             <?php
                 foreach($ntopic as $row)
