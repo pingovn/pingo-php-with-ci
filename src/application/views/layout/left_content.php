@@ -1,37 +1,10 @@
+    <?php include(VIEW_PATH . "/tip/add_tip.php");?>
     <div class="title">Welcome to our radio station</div>
     <p>
     <img src="/themes/phatnguyen/theme3/images/earphones.gif" alt="" title="" class="left_img" />
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
     </p>  
-     <div class="title">Tips of Today</div>
-     
-     
-    <div class="left_shows">
-        <div class="show_date">20.07.09</div>
-        <div class="show_text_content">
-“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-        </div> 
-        <a href="#" class="more_details">more details</a>  
-    </div>
-    
-    <div class="left_shows">
-        <div class="show_date">20.07.09</div>
-        <div class="show_text_content">
-“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-        </div> 
-        <a href="#" class="more_details">more details</a>  
-    </div>    
-    
-    
-    <div class="left_shows">
-        <div class="show_date">20.07.09</div>
-        <div class="show_text_content">
-“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
-        </div> 
-        <a href="#" class="more_details">more details</a>  
-    </div>  
-    
-    
+    <?php include(VIEW_PATH . "/tip/today_list.php");?>
     <div class="title">Photo Gallery</div>  
     
     <div class="photo_gallery">
