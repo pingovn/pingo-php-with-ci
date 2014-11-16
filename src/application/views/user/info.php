@@ -1,5 +1,5 @@
 <div class="container">
-    <form id="frmUserInfo" action="/index.php/user/userInfo" method="POST">
+    <form id="frmUserInfo" action="<?php echo site_url("user/info"); ?>" method="POST">
         <div class="header">
             <h3>Your information</h3>
             <p>Please update your latest information to this profile</p>

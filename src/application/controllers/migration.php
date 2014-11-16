@@ -9,7 +9,14 @@ class Migration extends CI_Controller{
 
     public function index()
     {
+    	
+        //var_dump( $this->migration->latest());die;
+        if(!$this->migration->latest())
+        {
+            show_error($this->migration->error_string());
+        }
         $this->migration->latest();
+   
     }
 
     public function version($version)

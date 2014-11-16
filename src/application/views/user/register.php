@@ -16,7 +16,7 @@
         <div class="inputs">
             <input type="email" id="txtEmail" name="txtEmail" value="" placeholder="e-mail" autofocus >
             <input type="password" placeholder="Password" id="txtPassword" name="txtPassword" value="">
-            <input type="password" placeholder="Confirm Password" id="txtConfirmPassword" name="txtConfirmPassword" value="">
+            <input type="password" placeholder="Confirm Password" id="txtConfirmPasword" name="txtConfirmPassword" value="">
             <!--
             <div class="checkboxy">
                 <input name="cecky" id="checky" value="1" type="checkbox" /><label class="terms">Remember me</label>

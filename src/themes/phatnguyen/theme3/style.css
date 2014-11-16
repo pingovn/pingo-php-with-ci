@@ -128,13 +128,23 @@ border-bottom:1px #ae1337 dashed;
 padding:10px 0 8px 0;
 margin:0 0 10px 0;
 }
-.show_date{
+.show_date {
 width:100px;
 height: auto;
 float:left;
 color:#5f6c7a;
-font-size:24px;
+font-size:16px;
+color: #AE1337;
+text-decoration: none;
 }
+a.show_name{
+    /*float:right;*/
+    padding:10px 0 0 0;
+    color:#ae1337;
+    text-decoration:none;
+    font-weight:bold;
+}
+
 .show_text_content{
 width:370px;
 float:left;

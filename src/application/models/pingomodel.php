@@ -66,5 +66,17 @@ class PingoModel extends CI_Model
             return false;
         }
     }
+
+    protected function getAllByCondition(array $where)
+    {
+        $row = $this->db->where($where)->get($this->tableName)->result_array();
+        return $row;
+    }
+
+    protected function getAll()
+    {
+        $row = $this->db->get($this->tableName)->result_array();
+        return $row;
+    }
 }
 ?>

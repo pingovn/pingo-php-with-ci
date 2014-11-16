@@ -1,5 +1,5 @@
 <div class="container">
-    <form id="frmChangePassword" action="/index.php/user/userInfo" method="POST" autocomplete="off">
+    <form id="frmChangePassword" action="<?php echo site_url("user/info"); ?>" method="POST" autocomplete="off">
         <div class="sep"></div>
         <?php if ($errorMessage != '') : ?>
             <div>

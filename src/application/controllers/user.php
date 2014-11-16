@@ -10,7 +10,15 @@ class User extends CI_Controller {
         $this->load->library('session');
         $this->load->helper(array('form', 'url'));
         $this->load->model("Users", "userModel");
+
+        //prepare data to view in left_content
+        $this->load->model('Tips', 'tipModel');
+        $this->load->model('Topics', 'topicModel');
+        $this -> todayTips = $this->tipModel->getAllTipsToday();
+        $this -> allTopics = $this->topicModel->getAllTopics();
     }
+
+
 
     public function register()
     {
@@ -76,13 +84,23 @@ class User extends CI_Controller {
             //confirming password
             $password = $this->input->post('txtPassword');
             $user = $this->userModel->getUserByEmail($email);
+            $userSession = array(
+                'userId' => $user['id'],
+                'email' => $user['email'],
+            );
             if (md5($password) === $user['password'] ) {
                 //login successful
-                $this->session->set_userdata($user);
-//                var_dump($this->session->userdata('id')); die();
+                $this->session->set_userdata($userSession);
+//                $todayTips = $this->tipModel->getAllTipsToday();
+//                $allTopics = $this->topicModel->getAllTopics();
+                include("user_pagination.php");
                 $this->load->view("layout/layout", array(
-                    'mainContent'   => VIEW_PATH . '/layout/left_content.php'
+                    'pageLink'  => $this->pageLink,
+                    'todayTips' => $this->showTips,
+                    'allTopics' => $this->allTopics,
+                    'mainContent'   => VIEW_PATH . '/layout/left_content.php',
                 ));
+
                 return ;
             } else {
                 $errorMessage = "Email and password mismatch. Please try again";
@@ -101,17 +119,27 @@ class User extends CI_Controller {
 
     public function logout ()
     {
-        $user = $this->userModel->getUserById($this->session->userdata('id'));
+        $user = $this->userModel->getUserById($this->session->userdata('userId'));
+//        var_dump($this->session->userdata('userId'));
+//        var_dump($user); die();
         if ($user === false) {
             return $this->errorPage("Logout Fail. Please try again");
         }
-        $this->session->unset_userdata($user);
-        return  $this->load->view("layout/layout", array(
+        $this->session->unset_userdata('userId');
+        $this->session->unset_userdata('email');
+
+//        $todayTips = $this->tipModel->getAllTipsToday();
+//        $allTopics = $this->topicModel->getAllTopics();
+        include("user_pagination.php");
+        $this->load->view("layout/layout", array(
+            'pageLink'  => $this->pageLink,
+            'todayTips' => $this->showTips,
+            'allTopics' => $this->allTopics,
             'mainContent'   => VIEW_PATH . '/layout/left_content.php',
         ));
     }
 
-    public function userInfo($userId = 0)
+    public function info($userId = 0)
     {
         $this->load->model("Users", "userModel"); //minhtrieu: alias Users to userModel. Then, userModel is used instead of Users.
         //purpose: for clear coding style:  after -> is lowcase char
@@ -124,7 +152,7 @@ class User extends CI_Controller {
 
             //validate email - later
 
-            $user = $this->userModel->getUserById($this->session->userdata('id'));
+            $user = $this->userModel->getUserById($this->session->userdata('userId'));
             if ($user === false) {
                 return $this->errorPage("Update user fail. Please try again");
             }
@@ -142,7 +170,11 @@ class User extends CI_Controller {
             if ($query_result === false) {
                 return $this->errorPage("Update user fail. Please try again");
             } else { //udpate success -> go to home page
+                include("user_pagination.php");
                 return $this->load->view("layout/layout", array(
+                    'pageLink'  => $this->pageLink,
+                    'todayTips' => $this->showTips,
+                    'allTopics' => $this->allTopics,
                     'mainContent'   => VIEW_PATH . '/layout/left_content.php',
                 ));
             }
@@ -156,7 +188,7 @@ class User extends CI_Controller {
             ));
         }
         if (isset($_POST['btnUpdatePassword'])) {
-            $user = $this->userModel->getUserById($this->session->userdata('id'));
+            $user = $this->userModel->getUserById($this->session->userdata('userId'));
             if ($user===false) {
                 return $this->load->view("layout/layout", array(
                     'mainContent'   => VIEW_PATH . '/user/change_password.php',
@@ -181,7 +213,11 @@ class User extends CI_Controller {
                     'errorMessage'  => 'Update password fail! Please try again'
                 ));
             } else { //udpate success -> go to home page
-                return $this->load->view("layout/layout", array(
+                include("user_pagination.php");
+                return  $this->load->view("layout/layout", array(
+                    'pageLink'  => $this->pageLink,
+                    'todayTips' => $this->showTips,
+                    'allTopics' => $this->allTopics,
                     'mainContent'   => VIEW_PATH . '/layout/left_content.php',
                 ));
             }
@@ -196,16 +232,61 @@ class User extends CI_Controller {
             ));
         }
 
+        if (isset($_POST['btnUpdateAvatar'])) {
+            $config['upload_path'] = './images/avatars/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['overwrite'] = true;
+            $config['file_name'] =  $this->session->userdata('userId');
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('avatar');
+
+            if ( ! $this->upload->do_upload('avatar'))
+            {
+                $this->load->view("layout/layout", array(
+                    'mainContent'   => VIEW_PATH . '/user/change_avatar.php',
+                    "erroMessage"  => $this->upload->display_errors()
+                ));
+                return;
+            }
+            else
+            {
+                $data =  $this->upload->data();
+                //update avatar to database
+                $user = $this->userModel->getUserById($this->session->userdata('userId'));
+                $user['avatar'] = $data['file_name'];
+                $query_result = $this->userModel->updateUser($user);
+                if ($query_result === false) {
+                    $errorMessage = 'Cannot upload Avatar.Please try again!';
+                    $this->load->view("layout/layout", array(
+                        'mainContent'   => VIEW_PATH . '/user/change_avatar.php',
+                        "erroMessage"  => $errorMessage
+                    ));
+                    return;
+                } else {
+                    $this->load->view("layout/layout", array(
+                        'mainContent'   => VIEW_PATH . '/user/info.php',
+                        'userId' => $user['id'],
+                        'email' => $user['email'],
+                        'fullname' => $user['fullname'],
+                        'age' => $user['age'],
+                        'gender' => $user['gender'],
+                        'avatar' => $user['avatar']
+
+                    ));
+                }
+                return;
+            }
+        }
 
         //default: go here if there is no button is pushed
         if ($userId == 0) {
             // Return error page
             return $this->errorPage("User not found");
-        } elseif ($this->session->userdata('id') != $userId) {
+        } elseif ($this->session->userdata('userId') != $userId) {
             return $this->errorPage("Can't update user info. Please try again");
         }
         $user = $this->userModel->getUserById($userId);
-        if ($user === flase) {
+        if ($user === false) {
             return $this->errorPage("Can't update user info. Please try again");
         }
         $this->load->view("layout/layout", array(
@@ -221,53 +302,6 @@ class User extends CI_Controller {
 
     }
 
-    function do_upload()
-    {
-        $config['upload_path'] = './images/avatars/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['overwrite'] = true;
-        $config['file_name'] =  $this->session->userdata('id');
-        $this->load->library('upload', $config);
-        if ( ! $this->upload->do_upload('avatar'))
-        {
-            $this->load->view("layout/layout", array(
-                'mainContent'   => VIEW_PATH . '/user/change_avatar.php',
-                "erroMessage"  => $this->upload->display_errors()
-            ));
-            return;
-        }
-        else
-        {
-            $data =  $this->upload->data();
-            //update avatar to database
-//            var_dump($data); die();
-            $user = $this->userModel->getUserById($this->session->userdata('id'));
-            $user['avatar'] = $data['file_name'];
-            $query_result = $this->userModel->updateUser($user);
-            if ($query_result === false) {
-                $errorMessage = 'Cannot upload Avatar.Please try again!';
-                $this->load->view("layout/layout", array(
-                    'mainContent'   => VIEW_PATH . '/user/change_avatar.php',
-                    "erroMessage"  => $errorMessage
-                ));
-                return;
-            } else {
-                $this->load->view("layout/layout", array(
-                    'mainContent'   => VIEW_PATH . '/user/info.php',
-                    'userId' => $user['id'],
-                    'email' => $user['email'],
-                    'fullname' => $user['fullname'],
-                    'age' => $user['age'],
-                    'gender' => $user['gender'],
-                    'avatar' => $user['avatar']
-
-                ));
-            }
-            return;
-
-//            $this->load->view('upload_success', $data);
-        }
-    }
     protected function errorPage($errorMessage)
     {
         echo $errorMessage; die();

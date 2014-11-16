@@ -23,6 +23,6 @@ class Migration_Update_avatar_length extends CI_Migration {
             ),
         );
         $this->dbforge->modify_column ('users', $fields);
-        Echo "Moved avatar length back to 30 successfully.";
+        echo "Moved avatar length back to 30 successfully.";
     }
 }
