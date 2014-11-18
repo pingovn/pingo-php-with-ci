@@ -124,7 +124,7 @@ padding:0 0 0 10px;
 .left_shows{
 float:left;
 width:auto;
-border-bottom:1px #ae1337 dashed;
+/* border-bottom:1px #ae1337 dashed; */
 padding:10px 0 8px 0;
 margin:0 0 10px 0;
 }
@@ -136,18 +136,20 @@ color:#5f6c7a;
 font-size:24px;
 }
 .show_text_content{
-width:370px;
+/* width:370px; */
 float:left;
 text-align:justify;
 line-height:18px;
 padding:0 0 0 10px;
 }
 a.more_details{
-float:right;
+right: 10px;
+bottom:10px;
 padding:10px 0 0 0;
 color:#ae1337;
 text-decoration:none;
 font-weight:bold;
+position: absolute;
 }
 
 .photo_gallery{

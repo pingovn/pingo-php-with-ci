@@ -6,7 +6,7 @@
 <!-- 	 method="POST"> -->
 		<?php echo form_open('user/register');?>
 			<h1>Sign up</h1>
-			<?php if ((validation_errors() != '')||($errorMessage!='')) : ?>
+			<?php if ((validation_errors() != '')||(isset($errorMessage) && $errorMessage!='')) : ?>
         	<div>
         		<br /> <span style="color: red;"><?php echo validation_errors();
         					echo $errorMessage;?> 

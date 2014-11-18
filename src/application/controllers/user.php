@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
 class User extends CI_Controller {
     public function __construct()
     {
@@ -316,7 +317,7 @@ class User extends CI_Controller {
 // 			$data=$this->upload->data();	
 // 			var_dump($path);
 // 			die('out else');
-			$result = $this->userModel->editAvt($user,$path);
+			$result = $this->userModel->editAvt($user,$data['upload_data']['file_name']);
 			//     		var_dump($userId);
 			// 			die();
 			if ($result === false)

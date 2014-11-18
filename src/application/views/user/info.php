@@ -1,6 +1,7 @@
-<?php 
+<?php
 // 	$user=$this->session->all_userdata();
-// var_dump($user['avatar']);
+// 	var_dump($user);
+// // 	echo date("Y-m-d H:i:s");
 // 	die;
 ?>
 
@@ -10,9 +11,11 @@
 		<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
 		<div id="wrapper" >
 			<div id="register" class="animate form" >
+			<?php if(isset($user['avatar'])):?>
 			<div class="focus pic">
-			<img src="<?php echo $user['avatar']?>"alt="" title=""/>
+			<img src="<?php echo "/images/avatars/".$user['avatar']?>"alt="" title=""/>
 			</div>
+			<?php endif;?>
 				<h1>User info</h1>
 				<form id="frmInfo" action="/index.php/user/info" method="GET">
 					<p> 

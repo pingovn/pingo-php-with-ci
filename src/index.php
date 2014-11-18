@@ -190,6 +190,9 @@ if (defined('ENVIRONMENT'))
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
+	
+	/**** Set default timezone */
+date_default_timezone_set('asia/ho_chi_minh');
 
 /*
  * --------------------------------------------------------------------

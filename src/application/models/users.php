@@ -51,11 +51,12 @@ class Users extends PingoModel
     	$oldPassword =md5($oldPassword);
     	var_dump($oldPassword);
     	if ($data == false) {
-    		var_dump('aaaa');
+//     		var_dump('aaaa');
     		return false;
     	}
     	if($oldPassword!=$data['password'])
-    	{	var_dump('bbbb');
+    	{	
+//     		var_dump('bbbb');
     		return false;
     	}
     	$data['password']=md5($newPassword);
@@ -97,10 +98,10 @@ class Users extends PingoModel
     		return false;
     	}
     }
-    public function editAvt(array $user, $path)
+    public function editAvt(array $user, $filename)
     {
     	if (isset($user['id'])) {
-    		$user['avatar']=$path;
+    		$user['avatar']=$filename;
 //     		var_dump($user);
 //     		die;
     		return $this->updateUser($user);

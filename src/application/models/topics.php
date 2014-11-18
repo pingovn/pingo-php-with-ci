@@ -21,4 +21,16 @@ class Topics extends PingoModel
             //echo $this->db->last_query();die;
 		}
 	}
+	public function getByName($name)
+	{
+		return $this->getByField('name', $name);
+	}
+	public function getAllTopics()
+	{
+// 		die;	
+		return $this->getAllFields();
+// 		foreach ($data as $)
+// 		var_dump($this->getAllFields());
+// 		die;
+	}
 }

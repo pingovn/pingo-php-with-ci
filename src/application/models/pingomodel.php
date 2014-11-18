@@ -66,5 +66,16 @@ class PingoModel extends CI_Model
             return false;
         }
     }
+    protected function getAllFields()
+    {
+//     	die;
+    	$row = $this->db->get($this->tableName)->result_array();
+    	
+    	if (count($row) != 0) {
+    		return $row;
+    	} else {
+    		return false;
+    	}
+    }
 }
 ?>

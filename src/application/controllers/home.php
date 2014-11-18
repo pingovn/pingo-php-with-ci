@@ -6,16 +6,25 @@ class Home extends CI_Controller{
         parent::__construct();
         $this->load->database();
         $this->load->helper('url');
+        $this->load->helper('form');
         $this->load->model("PingoModel");
+        $this->load->model("Topics","topicModel");
         $this->load->library('session');
     }
 
     public function index()
     {
+    	$errorMessage='';
+    	$this->load->model('Tips', 'tipModel');
+    	$this->load->helper('date');
+        $todayTips = $this->tipModel->getAllTipsToday();
+        $this->load->model('Topics', 'topicModel');
+        $allTopics = $this->topicModel->getAllTopics();
         $this->load->view("layout/layout", array(
-            'mainContent'   => VIEW_PATH . '/layout/left_content.php',
-            ));
-     
+            'todayTips' => $todayTips,
+            'allTopics' => $allTopics,
+             'mainContent'   => VIEW_PATH . '/layout/left_content.php',
+             ));     
     }
 
     public function phpinfo()
