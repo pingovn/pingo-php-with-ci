@@ -1,7 +1,7 @@
 <?php $this->load->helper('url');
 //var_dump($this->session->userdata('logged_in'));die;
 ?>
-<?php if ($user!== false) : ?>
+<?php if (isset($user['id']) && $user['id']!== false) : ?>
 <section class="container">
     <div class="login">
         <h1>Change Your Password</h1>

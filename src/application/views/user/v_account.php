@@ -1,22 +1,20 @@
 <?php $this->load->helper('url');?>
-<?php if ($user!== false) : ?>
+<?php if (isset($user['id']) && $user['id']!== false) : ?>
 
 <section class="container">
     <div class="login">
-<h1>Welcome <?php echo $userinfo['email'];?> !</h1>
-    <br>
-    <label>ID:</label><?php echo $userinfo['id'];?>
-        <br>
-    <label>Password:</label><?php echo $userinfo['password'];?>
-        <?php
-        //var_dump($userinfo['id']);die;
-            if($userinfo['id']===$this->uri->segment(3)){
-                echo "<li>";
-                echo "<a href=" . site_url('c_user/changePass/'.$userinfo['id']) .">Change password</a>";
-                echo "</li>";
-            }
-        ?>
-    <br>
+    <h1>Welcome <?php echo $userinfo['email'];?> !</h1>
+        <?php if($user['id']==$this->uri->segment(3)):?>
+            <br>
+            <label>ID:</label><?php echo $userinfo['id'];?>
+                <br>
+                <label>Password:</label><?php echo $userinfo['password'];?>
+                <li>
+                <a href="<?php echo site_url('c_user/changePass/'.$userinfo['id'])?>">Change password</a>
+                </li>
+            <br>
+        <?endif?>
+    <span>Tips posted<a href="<?php echo site_url('c_user/showtips_byuserid/'.$userinfo['id']); ?>" title="">(<?php echo count($ntip);?></a>)</span><br>
     <label>FullName:</label><?php echo $userinfo['fullname'];?>
     <br>
     <label>Age:</label><?php echo $userinfo['age'];?>
@@ -26,9 +24,16 @@
     <label>Status:</label><?php echo $userinfo['status'];?>
     <br>
     <label>Avatar:</label><img src="/themes/phatnguyen/theme3/uploads/<?php echo $userinfo['avatar'];?>" width=40px height=40px border=0px />
-    <li><a href="<?php echo site_url('c_user/uploadimage'); ?>" title="">Change Image</a></li>
-
-<li><a href="<?php echo site_url('c_user/update_profile'); ?>" title="">Update Your Information</a></li>
+    <?php
+        if($user['id']==$this->uri->segment(3)){
+            echo "<li>";
+            echo "<a href=" . site_url('c_user/uploadimage').">Change Image</a>";
+            echo "</li>";
+            echo "<li>";
+            echo "<a href=" . site_url('c_user/update_profile').">Update Your Information</a>";
+            echo "</li>";
+        }
+    ?>
 </div>
 </section>
 <?php else : redirect('c_user/login', 'refresh');?>

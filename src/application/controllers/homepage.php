@@ -8,7 +8,7 @@ class HomePage extends App_Controller
         $this->load->library('session');
         $this->load->helper('url');
         $this->load->model("StormModel");
-
+        $this->load->library('pagination');
 
     }
     public function index()
@@ -16,6 +16,10 @@ class HomePage extends App_Controller
         $this->load->model("M_topic", "modelTopic");
         $ctopic = $this->modelTopic->showTopic();
         $this->data['ntopic'] = $ctopic;
+        $this->load->model("M_tip", "modelTip");
+        $tiptoday = $this->modelTip->getAllTipsToday();
+        $this->data['ntip'] = $tiptoday;
+        //var_dump($this->data['ntip']);die;
         //var_dump($this->data['ntopic']);die;
         $this->renderView('/layout/left_content.php');
     }

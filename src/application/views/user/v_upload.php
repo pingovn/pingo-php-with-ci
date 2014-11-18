@@ -1,5 +1,5 @@
-<?php if (isset($user)) : ?>
-</body>
+<?php if (isset($user['id']) && $user['id']!== false) : ?>
+    </body>
 </html>
 <section class="container">
     <div class="login">

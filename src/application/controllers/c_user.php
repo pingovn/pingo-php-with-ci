@@ -120,8 +120,12 @@ class C_user extends App_Controller {
 
     function info()
     {
-        $id = $this->data['id'];
+        //$id = $this->data['id'];
+        $id = $this->uri->segment(3);
         $row = $this->modelUser->show_user($id);
+        $this->load->model("M_tip", "modelTip");
+        $tipofuser = $this->modelTip->getAllTipsByUserID($id);
+        $this->data['ntip'] = $tipofuser;
         if($row)
         {
             $this->data['userinfo'] = $row;
@@ -277,6 +281,16 @@ class C_user extends App_Controller {
                 //$this->renderView('/user/v_account.php','refresh');
             }
         }
-
+    }
+    public function showtips_byuserid()
+    {
+        $id = $this->uri->segment(3);
+        $this->load->model("M_topic", "modelTopic");
+        $ctopic = $this->modelTopic->showTopic();
+        $this->data['ntopic'] = $ctopic;
+        $this->load->model("M_tip", "modelTip");
+        $tipofuser = $this->modelTip->getAllTipsByUserID($id);
+        $this->data['ntip'] = $tipofuser;
+        $this->renderView('/layout/left_content.php');
     }
 }

@@ -1,5 +1,5 @@
 <?php $this->load->helper('form');?>
-<?php if (isset($user)) : ?>
+<?php if (isset($user['id']) && $user['id']!== false) : ?>
 <?php $fullname = $userinfo['fullname']?>
     <section class="container">
     <div class="login">
