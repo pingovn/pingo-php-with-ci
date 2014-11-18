@@ -9,8 +9,17 @@ body {
     max-width: 406px;
     margin: 0 auto;
 }
+#frmAddTip {
+    width: 100%;
+}
 
-#frmRegister, #frmLogin, #userInfo {
+#frmAddTip textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 5px;
+}
+
+#frmRegister, #frmLogin, #userInfo, #frmAddTip {
     padding: 0px 25px 25px;
     background: #fff;
     box-shadow: 
@@ -23,35 +32,35 @@ body {
     position: static;
 }
 
-#frmLogin .header, #frmRegister .header, #userInfo .header {
+#frmLogin .header, #frmRegister .header, #userInfo .header, #frmAddTip .header {
     margin-bottom: 20px;
 }
 
-#frmLogin .header h3, #frmRegister .header h3, #userInfo .header h3 {
+#frmLogin .header h3, #frmRegister .header h3, #userInfo .header h3, #frmAddTip .header h3 {
     color: #333333;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-#frmLogin .header p, #frmRegister .header p {
+#frmLogin .header p, #frmRegister .header p, #frmAddTip .header p {
     color: #8f8f8f;
     font-size: 14px;
     font-weight: 300;
 }
 
-#frmLogin .sep, #frmRegister .sep {
+.sep {
     height: 1px;
     background: #e8e8e8;
     width: 406px;
     margin: 0px -25px;
 }
 
-#frmLogin .inputs , #frmRegister .inputs {
+.inputs {
     margin-top: 25px;
 }
 
-#frmLogin .inputs label, #frmRegister .inputs label {
+.inputs label {
     color: #8f8f8f;
     font-size: 12px;
     font-weight: 300;
