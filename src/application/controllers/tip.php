@@ -9,12 +9,14 @@ class Tip extends CI_Controller{
         $this->load->model("PingoModel");
         $this->load->library('session');
         $this->load->model("Tips", "tipModel");
+        $this->load->model('Topics', 'topicModel');
+        $this -> allTopics = $this->topicModel->getAllTopics();
+        $this -> todayTips = $this->tipModel->getAllTipsToday();
     }
 
     public function add()
     {
         $errorMessage = "";
-        $a = array();
         $post = $this->input->post();
         if (isset($post['btnAddTip']) && $post['btnAddTip'] =='Add Tip') {
             // Validate du lieu tu form
@@ -35,7 +37,7 @@ class Tip extends CI_Controller{
             } else {
                 $errorMessage = "Noi gi thi doi di";
             }
-            $this->load->model('Topics', 'topicModel');
+
             $allTopics = $this->topicModel->getAllTopics();
 
             $this->load->view("layout/layout", array(
@@ -47,14 +49,33 @@ class Tip extends CI_Controller{
         } else {
             header("Location: /"); exit();
         }
-        $this->load->view("layout/layout", array(
-            'mainContent'   => VIEW_PATH . '/layout/left_content.php',
-            ));
     }
 
-    public function phpinfo()
+    public function user_tip($user_id =0 )
     {
-        phpinfo();
+        if ($user_id == 0) {
+            return $this->errorPage("User not found");
+        }
+//        var_dump($userTips); die();
+        //Actually, todayTip is tips of user. Because include file use todayTip, we can't change todayTips name
+        $this->todayTips = $this->tipModel->getTipsByUser($user_id);
+
+        include("user_pagination.php");
+//        var_dump($this->pageLink);
+//        var_dump($this->showTips);
+//        var_dump($this->allTopics);
+//        die();
+        return  $this->load->view("layout/layout", array(
+            'pageLink'  => $this->pageLink,
+            'todayTips' => $this->showTips,
+            'allTopics' => $this->allTopics,
+            'mainContent'   => VIEW_PATH . '/layout/left_content.php',
+        ));
+    }
+
+    protected function errorPage($errorMessage)
+    {
+        echo $errorMessage; die();
     }
 }
 

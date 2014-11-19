@@ -302,6 +302,7 @@ class User extends CI_Controller {
 
     }
 
+
     protected function errorPage($errorMessage)
     {
         echo $errorMessage; die();

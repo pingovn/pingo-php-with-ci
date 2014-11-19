@@ -22,7 +22,7 @@
             <!--                avatar and fullname-->
                 <img width="100px" height="100px" src="<?php echo "/images/avatars/${tip['avatar']}";?>">
                 <!--                <a href="--><?php //echo site_url('/user/info/' . $tip['user_id']); ?><!--" class="more_details">--><?php //echo $tip['fullname']; ?><!--</a>-->
-                <a href="/index.php/user/info/<?php echo $tip['user_id'];?>" class="show_name"><?php echo $tip['user_name']; ?></a>
+                <a href="/index.php/tip/user_tip/<?php echo $tip['user_id'];?>" class="show_name"><?php echo $tip['user_name']; ?></a>
             </div>
             <div class="show_text_content">
                 <?php echo $tip['topic_name']; ?>
