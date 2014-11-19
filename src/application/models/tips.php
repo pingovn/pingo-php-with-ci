@@ -32,6 +32,15 @@ class Tips extends PingoModel
         return $this->db->query($sql)->result_array();
         
     }
+    public function getAllUsrTips($userId)
+    {
+    	$sql = "SELECT tips.*,email,avatar,fullname FROM tips 
+    			INNER JOIN users ON tips.user_id = users.id
+    			WHERE user_id=".$userId."
+    			ORDER BY create_time DESC";
+    	return $this->db->query($sql)->result_array();
+    	
+    }
     
 }
 ?>

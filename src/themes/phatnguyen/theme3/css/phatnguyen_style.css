@@ -2,6 +2,7 @@
 #container_demo{
 	 text-align: left;
 	 margin: 0;
+	 margin-bottom:5px;
 	 padding: 0;
 	 margin: 0 auto;
 	 font-family: "Trebuchet MS","Myriad Pro",Arial,sans-serif;
@@ -37,7 +38,7 @@ a.hiddenanchor{
 	
 	right: 0px;
 	min-height: 560px;	
-	margin: 0px auto;	
+	margin: 5px auto;	
 	width: 500px;
 	position: relative;	
 }
@@ -549,5 +550,10 @@ p.change_link{
 img.today-tips{
 	height: 80px;
 	width:80px;
+	margin-right: 10px;
+}
+img.info-avt{
+	height: 100px;
+	width:100px;
 	margin-right: 10px;
 }

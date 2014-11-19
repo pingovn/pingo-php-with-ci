@@ -13,7 +13,7 @@
 			<div id="register" class="animate form" >
 			<?php if(isset($user['avatar'])):?>
 			<div class="focus pic">
-			<img src="<?php echo "/images/avatars/".$user['avatar']?>"alt="" title=""/>
+			<img class="info-avt" src="<?php echo "/images/avatars/".$user['avatar']?>"alt="" title=""/>
 			</div>
 			<?php endif;?>
 				<h1>User info</h1>
@@ -50,4 +50,44 @@
 
 		</div>
 	</div>
+
 </div>
+<?php 
+// var_dump(date('Y-m-d H:m:s'));
+//     var_dump($tip['create_time']);
+// 	die;
+if (isset($userTips) && is_array($userTips) && count($userTips) > 0) : ?>
+
+		<!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+
+    <div class="container">
+	<div id="container_demo">
+    <?php foreach ($userTips as $tip) : ?>
+		<div id="wrapper-today-tips" >
+			<div id="register" class="animate form" >
+        	<table class="left_shows">
+            <tr>
+            	<td>
+            	<?php if(isset($tip['avatar'])):?>
+            		<img class="today-tips" src="<?php echo '/images/avatars/'.$tip['avatar']?>"alt="" title=""/><br/>
+            		<?php echo $tip['fullname'];?>
+            	<?php endif?>
+            	</td>
+            	<td class='show_text_content'> 
+                	<?php echo $tip['content'];
+                		$time=strtotime($tip['create_time']);
+                		echo '<br/>';
+                		echo (timespan($time,time()))." ago";
+                		
+                	?>
+            	</td>
+            </tr>
+           </table>
+ <a class="more_details" href="<?php echo site_url('user/info/' . $tip['user_id']); ?>" ><?php echo $tip['email']; ?></a>  
+			</div>
+		</div>
+    <?php endforeach ?>
+</div>
+</div>
+
+<?php endif ?>

@@ -118,6 +118,8 @@ class User extends CI_Controller {
 
     public function info($userId=0)
     {
+    	$this->load->model('Tips','tipModel');
+    	$this->load->helper('date');
     	$userId =(int) $userId;
     	
 //     	var_dump($userSession['user_id']);
@@ -125,16 +127,20 @@ class User extends CI_Controller {
 //     	var_dump($this->session->userdata($user_data));
         if ($userId == 0) {
             // Return error page
-            return $this->errorPage("User khong ton tai trang info");
+            return $this->errorPage("Dont have any info about this user");
         }
         $user = $this->userModel->getUserById($userId);
+        $tips = $this->tipModel->getAllUsrTips($userId);
+//         var_dump($tips);
+//         die;
+        
         if ($user === FALSE) {
             // Return error page
-            return $this->errorPage("User khong ton tai");
+            return $this->errorPage("User doesn't exist");
         }
         $this->load->view("layout/layout", array(
         		'mainContent'   => VIEW_PATH . '/user/info.php',
-        		'user'  => $user,
+        		'user'  => $user, 'userTips'=>$tips
         ));
 //         echo "Load user info of userId {$userSession['user_id']} and display as user data form";
 
@@ -161,9 +167,9 @@ class User extends CI_Controller {
     	{
     		if ($userId == 0|| !$loggedUser['userId'])
     		{
-    			var_dump($userId);
+    			//var_dump($userId);
     			// Return error page
-    			return $this->errorPage("User khong ton tai");
+    			return $this->errorPage("User doesn't exist");
     		}
     		if ($userId != $loggedUser['userId'])
     		{
@@ -173,7 +179,7 @@ class User extends CI_Controller {
     		if ($user === FALSE)
     		{
     			// Return error page
-    			return $this->errorPage("User khong ton tai");
+    			return $this->errorPage("User doesn't exist");
     		}
     	}
     	else
@@ -239,6 +245,7 @@ class User extends CI_Controller {
 // 		var_dump($this->input->post());
 // 		die('controller');
 		$this->load->helper('form');
+		$this->load->helper('file');
 		$userId=$this->uri->segment(3);
 		$loggedUser=$this->session->all_userdata();
 		$errorMessage ='';
@@ -256,9 +263,9 @@ class User extends CI_Controller {
 			
 			if ($userId == 0)
 			{
-				var_dump($userId);
+				//var_dump($userId);
 				// Return error page
-				return $this->errorPage("User khong ton tai");
+				return $this->errorPage("User doesn't exist");
 			}
 			if ($userId != $loggedUser['userId'])
 			{
@@ -268,7 +275,7 @@ class User extends CI_Controller {
 			if ($user === FALSE)
 			{
 				// Return error page
-				return $this->errorPage("User khong ton tai");
+				return $this->errorPage("User doesn't exist");
 			}
 		}
 		else
@@ -293,7 +300,6 @@ class User extends CI_Controller {
 			{
 // 				$errorMessage= "Can't upload file";
 				$error = array('error' => $this->upload->display_errors());
-				$this->load->view('upload_form', $error);
 				$this->load->view("layout/layout", array(
     			'mainContent'   => VIEW_PATH . '/user/do_upload.php',
     			'errorMessage'  => $error));
@@ -305,8 +311,8 @@ class User extends CI_Controller {
 // 				$this->load->view ( 'upload_success', $data );
 			}
 			$oldAvt=$user['avatar'];
-			
-// 			var_dump($user);
+			$file="/images/avatars/$oldAvt";
+// 			var_dump($file,$oldAvt);
 // 			die;
 			//     		 var_dump($this->input->post('btnEdit'));
 			//              die;
@@ -322,9 +328,14 @@ class User extends CI_Controller {
 			// 			die();
 			if ($result === false)
 			{
-				$errorMessage = "Can not updata avatar. Please try again";
+				$errorMessage = "Can not update avatar. Please try again";
 			} else
 			{
+				if(!isset($file)){
+					redirect('/user/info/' . $user['id']);				
+				}
+				$file=IMAGE_VIEW."/images/avatars/".$oldAvt;
+				var_dump(unlink($file));
 				redirect('/user/info/' . $user['id']);
 			}
 			 
