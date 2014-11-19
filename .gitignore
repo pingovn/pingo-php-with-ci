@@ -10,3 +10,4 @@ src/application/libraries/fake/
 src/application/views/user/login.php.orig
 src/application/views/user/register.php.orig
 src/images/avatars/*
+src/application/config/*
