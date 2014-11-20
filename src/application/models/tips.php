@@ -26,5 +26,36 @@ class Tips extends PingoModel
                     ORDER BY create_time DESC";
         return $this->db->query($sql)->result_array();
     }
+
+    public function getAllTipsTodayWithLikeNumber()
+    {
+        $sql = "SELECT tips.*, email, COUNT(user_like.tip_id) as like_number FROM tips  
+                    INNER JOIN users ON tips.user_id = users.id
+                    LEFT JOIN user_like ON tips.id = user_like.tip_id
+                    WHERE create_time >= CURDATE()
+                    GROUP BY tips.id
+                    ORDER BY like_number DESC";
+        $tips = $this->db->query($sql)->result_array();            
+        return $tips;
+    }
+
+    public function calculateLikeNumber($tipId)
+    {
+        $sql = "
+            SELECT COUNT(*) as like_number FROM user_like WHERE tip_id = ?
+        ";
+        $rows = $this->db->query($sql, $tipId)->result_array();
+        return $rows[0]['like_number'];
+    }
+
+    public function isUserLikedTip($userId, $tipId) 
+    {
+        $sql = "
+            SELECT COUNT(*) as like_number FROM user_like WHERE tip_id = ? AND user_id = ?
+        ";
+        $rows = $this->db->query($sql, array($tipId, $userId))->result_array();
+        return $rows[0]['like_number'] > 0;
+    }
+
 }
 ?>

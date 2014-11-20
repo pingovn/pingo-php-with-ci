@@ -114,6 +114,24 @@ class User extends CI_Controller {
         $this->session->sess_destroy();
         redirect('');
     }
+
+    public function likeTip($tipId)
+    {
+        $tipId = intval($tipId);
+        if ($tipId === 0) {
+            die("Like cai gi ma like");
+        }
+        $userId = $this->session->userdata("userId");
+        $this->load->model("Users", "userModel");
+        $this->load->model("Tips", "tipModel");
+        $isLiked = $this->tipModel->isUserLikedTip($userId, $tipId);
+        if ($isLiked) {
+            die("Like roi like chi nua");
+        }
+        $this->userModel->likeTip($userId, $tipId);
+        header("Location: /");
+        exit();
+    }
 }
 
 /* End of file welcome.php */
