@@ -108,5 +108,17 @@ class Users extends PingoModel
         $userId = $this->session->userdata('userId');
         return !empty($userId);
     }
+
+    public function likeTip($userId, $tipId)
+    {
+        $userId = intval($userId);
+        $tipId = intval($tipId);
+        if ($userId === 0 || $tipId === 0) {
+            return false;
+        }
+
+        $sql = "INSERT INTO user_like (user_id, tip_id) VALUES (?, ?)";
+        return $this->db->query($sql, array($userId, $tipId));
+    }
 }
 ?>

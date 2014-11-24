@@ -13,7 +13,7 @@ class Home extends CI_Controller{
     public function index()
     {
         $this->load->model('Tips', 'tipModel');
-        $todayTips = $this->tipModel->getAllTipsToday();
+        $todayTips = $this->tipModel->getAllTipsTodayWithLikeNumber();
         $this->load->model('Topics', 'topicModel');
         $allTopics = $this->topicModel->getAllTopics();
         $this->load->view("layout/layout", array(
