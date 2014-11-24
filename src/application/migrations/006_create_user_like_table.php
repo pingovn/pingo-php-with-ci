@@ -7,12 +7,12 @@ class Migration_Create_user_like_table extends CI_Migration {
         
         $this->dbforge->add_key('user_id', TRUE);        
         $this->dbforge->add_key('tip_id', TRUE);        
-        $this->dbforge->create_table('user_likes', TRUE);
-        echo "Created table user_likes with key user_id and tip_id <br />";
+        $this->dbforge->create_table('user_like', TRUE);
+        echo "Created table user_like with key user_id and tip_id <br />";
     }
  
     public function down(){
-        $this->dbforge->drop_table('user_likes');
-        echo "Drop user_likes";
+        $this->dbforge->drop_table('user_like');
+        echo "Drop user_like";
     }
 }
