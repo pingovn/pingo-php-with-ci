@@ -54,7 +54,7 @@ class C_content extends App_Controller
                     'content' => $txtContent,
                     'topic_id' => $topicid['id'],
                     'update_time' => $now,
-                    'is_deleted' => '1',
+                    'is_deleted' => '0',
                 );
                 $this->modelTip->addTips($tip);
                 redirect('homepage', 'refresh');

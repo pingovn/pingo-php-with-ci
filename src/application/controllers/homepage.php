@@ -10,6 +10,7 @@ class HomePage extends App_Controller
         $this->load->model("StormModel");
         $this->load->library('pagination');
 
+
     }
     public function index()
     {
@@ -19,9 +20,16 @@ class HomePage extends App_Controller
         $this->load->model("M_tip", "modelTip");
         $tiptoday = $this->modelTip->getAllTipsToday();
         $this->data['ntip'] = $tiptoday;
+        //$totalrowstoday = $this->modelTip->countAllTipToday();
+        //var_dump($totalrowstoday[0]['numbers']);die;
         //var_dump($this->data['ntip']);die;
         //var_dump($this->data['ntopic']);die;
         $this->renderView('/layout/left_content.php');
+        //$config['base_url'] = 'http://ci.dev/homepage/index.php';
+        //$config['total_rows'] = $totalrowstoday[0]['numbers'];
+        //$config['per_page'] = 2;
+        //$this->pagination->initialize($config);
+        //echo $this->pagination->create_links();
     }
     function logout()
     {

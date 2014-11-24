@@ -1,3 +1,5 @@
+<?php $this->load->helper('date');
+$this->load->library('pagination');?>
 <?php if (isset($ntip) && is_array($ntip) && count($ntip) > 0) : ?>
     <?php foreach ($ntip as $tip) : ?>
         <div class="left_shows">
@@ -11,7 +13,15 @@
                     <?php echo $tip['fullname'];?>
                 </a>
             </div>
-            <div><span><?php echo $tip['create_time'];?></span></div>
+            <div><span>
+                    <?php $time=strtotime($tip['create_time']);
+                    //var_dump($time);
+                    //var_dump(time());die;
+                             echo '<br/>';
+                		     echo (timespan($time,time()))." ago";
+                    ?>
+                 </span>
+            </div>
             <a href="#" class="more_details"> <?php echo $tip['content'];?></a>
         </div>
     <?php endforeach ?>
