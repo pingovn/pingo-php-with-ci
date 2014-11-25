@@ -18,8 +18,10 @@ class HomePage extends App_Controller
         $ctopic = $this->modelTopic->showTopic();
         $this->data['ntopic'] = $ctopic;
         $this->load->model("M_tip", "modelTip");
-        $tiptoday = $this->modelTip->getAllTipsToday();
+        $tiptoday = $this->modelTip->getNewTipsToday();
         $this->data['ntip'] = $tiptoday;
+        $tipmostlike = $this->modelTip->getTipsWithMostLiked();
+        $this->data['mltip'] = $tipmostlike;
         //$totalrowstoday = $this->modelTip->countAllTipToday();
         //var_dump($totalrowstoday[0]['numbers']);die;
         //var_dump($this->data['ntip']);die;

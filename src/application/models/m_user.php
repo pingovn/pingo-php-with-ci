@@ -86,6 +86,25 @@ class M_user extends StormModel
         return $this->update($data);
     }
 
+    public function likeTip($userId, $tipId)
+    {
+        $userId = intval($userId);
+        $tipId = intval($tipId);
+        if ($userId === 0 || $tipId === 0) {
+            return false;
+        }
+
+        $sql = "INSERT INTO user_like (user_id, tip_id) VALUES (?, ?)";
+        return $this->db->query($sql, array($userId, $tipId));
+    }
+
+    public function dislikeTip($userId, $tipId)
+    {
+        $this->db->delete('user_like', array('user_id' => $userId,'tip_id' => $tipId));
+        //$sql = "DELETE FROM user_like WHERE user_id = ? && tip_id = ?";
+        //return $this->db->query($sql, array($userId, $tipId));
+    }
+
 }
 
 

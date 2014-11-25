@@ -293,4 +293,31 @@ class C_user extends App_Controller {
         $this->data['ntip'] = $tipofuser;
         $this->renderView('/layout/left_content.php');
     }
+
+    public  function likeTip($tipId)
+    {
+        $tipId = intval($tipId);
+        if ($tipId === 0) {
+            die("Like cai gi ma like");
+        }
+        $userId = $this->session->userdata("logged_in");
+        //var_dump($userId);die;
+        $this->load->model("M_tip", "modelTip");
+        $isLiked = $this->modelTip->isUserLikedTip($userId['id'], $tipId);
+        if ($isLiked) {
+            die("Like roi like chi nua");
+        }
+        $this->modelUser->likeTip($userId['id'], $tipId);
+        header("Location: /");
+        exit();
+    }
+
+    public  function dislikeTip($tipId)
+    {
+        $tipId = intval($tipId);
+        $userId = $this->session->userdata("logged_in");
+        $this->modelUser->dislikeTip($userId['id'], $tipId);
+        header("Location: /");
+        exit();
+    }
 }

@@ -31,16 +31,30 @@ class M_tip extends StormModel
         return $this->getRowByField('name',$tipname);
     }
 
-    public function getAllTipsToday()
+    public function getNewTipsToday()
     {
-        $sql = "SELECT tips.*, email,avatar,fullname FROM tips
+        $sql = "SELECT tips.*, email,avatar,fullname, COUNT(user_like.tip_id) as like_number FROM tips
                     INNER JOIN users ON tips.user_id = users.id
+                    LEFT JOIN user_like ON tips.id = user_like.tip_id
                     WHERE create_time >= CURDATE()
-                    ORDER BY create_time DESC";
+                    GROUP BY tips.id
+                    ORDER BY create_time DESC
+                    LIMIT 5";
         return $this->db->query($sql)->result_array();
     }
 
-    public function getTipsToday($limit='',$pagenumber='',$orderby='t.create_time'){
+    public function getTipsWithMostLiked()
+    {
+        $sql = "SELECT tips.*, email,avatar,fullname,COUNT(user_like.tip_id) as like_number FROM tips
+                    INNER JOIN users ON tips.user_id = users.id
+                    LEFT JOIN user_like ON tips.id = user_like.tip_id
+                    GROUP BY tips.id
+                    ORDER BY like_number DESC
+                    LIMIT 3";
+        return $this->db->query($sql)->result_array();
+    }
+
+    public function getNewTipsTodayWithPagination($limit='',$pagenumber='',$orderby='t.create_time'){
 
         $this->db->select('t.*,email,avatar,fullname');
         $this->db->from('tips t');
@@ -60,9 +74,11 @@ class M_tip extends StormModel
     }
     public function getAllTipsByUserID($id)
     {
-        $sql = "SELECT tips.*, email,avatar,fullname FROM tips
+        $sql = "SELECT tips.*, email,avatar,fullname,COUNT(user_like.tip_id) as like_number FROM tips
                     INNER JOIN users ON tips.user_id = users.id
+                    LEFT JOIN user_like ON tips.id = user_like.tip_id
                     WHERE tips.user_id = ?
+                    GROUP BY tips.id
                     ORDER BY create_time DESC";
         //var_dump($this->db->query($sql)->result_array());die;
         return $this->db->query($sql,$id)->result_array();
@@ -77,7 +93,35 @@ class M_tip extends StormModel
         return $rows;
     }
 
+    public function isUserLikedTip($userId, $tipId)
+    {
+        $sql = "
+            SELECT COUNT(*) as like_number FROM user_like WHERE tip_id = ? AND user_id = ?
+        ";
+        $rows = $this->db->query($sql, array($tipId, $userId))->result_array();
+        return $rows[0]['like_number'] > 0;
+    }
 
+    public function getAllTipsTodayWithLikeNumber()
+    {
+        $sql = "SELECT tips.*, email,avatar,fullname, COUNT(user_like.tip_id) as like_number FROM tips
+                    INNER JOIN users ON tips.user_id = users.id
+                    LEFT JOIN user_like ON tips.id = user_like.tip_id
+                    WHERE create_time >= CURDATE()
+                    GROUP BY tips.id
+                    ORDER BY like_number DESC
+                    LIMIT 5";
+        $tips = $this->db->query($sql)->result_array();
+        return $tips;
+    }
 
+    public function calculateLikeNumber($tipId)
+    {
+            $sql = "
+            SELECT COUNT(*) as like_number FROM user_like WHERE tip_id = ?
+        ";
+            $rows = $this->db->query($sql, $tipId)->result_array();
+            return $rows[0]['like_number'];
+    }
 }
 ?>

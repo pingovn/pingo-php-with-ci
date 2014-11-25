@@ -1,12 +1,12 @@
 <?php $this->load->helper('date');
-$this->load->model("M_tip", "modelTip");
-$this->load->library('pagination');?>
-<?php if (isset($ntip) && is_array($ntip) && count($ntip) > 0) : ?>
-    <?php foreach ($ntip as $tip) : ?>
-        <div class="left_shows">
+$this->load->model("M_tip", "modelTip");?>
+<?php if (isset($mltip) && is_array($mltip) && count($mltip) > 0) : ?>
+    <div class="title">Tips With Most Liked</div>
+    <?php foreach ($mltip as $tip) : ?>
+        <div class="right_news">
             <div class="">
                 <a href="<?php echo site_url('c_user/showtips_byuserid/'.$tip['user_id'])?>">
-                <img src="/themes/phatnguyen/theme3/uploads/<?php echo $tip['avatar'];?>" width=40px height=40px border=0px>
+                    <img src="/themes/phatnguyen/theme3/uploads/<?php echo $tip['avatar'];?>" width=40px height=40px border=0px>
                 </a>
             </div>
             <div class="show_text_content">
@@ -18,8 +18,8 @@ $this->load->library('pagination');?>
                     <?php $time=strtotime($tip['create_time']);
                     //var_dump($time);
                     //var_dump(time());die;
-                             echo '<br/>';
-                		     echo (timespan($time,time()))." ago";
+                    echo '<br/>';
+                    echo (timespan($time,time()))." ago";
                     ?>
                  </span>
             </div>
