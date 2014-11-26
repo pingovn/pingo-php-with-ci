@@ -90,6 +90,7 @@ class Users extends PingoModel
             return $this->createUser($user);
         }
     }
+
     public function editUser(array $user)
     {
     	if (isset($user['id'])) {
@@ -98,6 +99,7 @@ class Users extends PingoModel
     		return false;
     	}
     }
+
     public function editAvt(array $user, $filename)
     {
     	if (isset($user['id'])) {
@@ -109,6 +111,7 @@ class Users extends PingoModel
     		return false;
     	}
     }
+    
     public function login(array $loginUser)
     {
     	$findUser=$this->getUserByEmail($loginUser['email']);
@@ -139,6 +142,17 @@ class Users extends PingoModel
     {
         $userId = $this->session->userdata('userId');
         return !empty($userId);
+    }
+	
+    public function likeTip($userId,$tipId)
+    {
+    	$userId = intval($userId);
+    	$tipId = intval($tipId);
+    	if($userId===0 || $tipId===0){
+    		return false;
+    	}
+    	$sql = "INSERT INTO user_like (user_id,tip_id) VALUES (?,?)";
+    	return $this->db->query($sql,array($userId,$tipId));
     }
 }
 ?>

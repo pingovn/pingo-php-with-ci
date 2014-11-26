@@ -557,3 +557,15 @@ img.info-avt{
 	width:100px;
 	margin-right: 10px;
 }
+img.like-icon{
+	height:20px;
+	width:20px;
+	left: 10px;
+	bottom:10px;
+	position:absolute;
+}
+div.like-num{
+	left: 40px;
+	bottom:10px;
+	position:absolute;
+}

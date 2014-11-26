@@ -39,6 +39,7 @@
 */
 
 $route['default_controller'] = "home";
+// $route['[0-9a-zA-Z\-_]+'] = "home";
 $route['404_override'] = '';
 
 

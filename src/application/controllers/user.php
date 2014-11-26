@@ -130,9 +130,33 @@ class User extends CI_Controller {
             return $this->errorPage("Dont have any info about this user");
         }
         $user = $this->userModel->getUserById($userId);
-        $tips = $this->tipModel->getAllUsrTips($userId);
+//       	$tipsByUser = $this->tipModel->getAllTipsByUser($userId);
 //         var_dump($tips);
 //         die;
+        $tipsWithLike = $this->tipModel->getAllTipsWithLikeByUser($userId);
+//                 var_dump($tipsWithLike);
+        //         var_dump(count($todayTopTips));
+        
+        //         var_dump($this->uri->segment(2));
+//                 die();
+        /* Paging */
+        $this->load->library('pagination');
+        $config['per_page']          = 2;
+        $config['uri_segment']       = 4;
+        $config['base_url']          = site_url('/user/info/'.$userId.'/');
+        $config['total_rows']        = count($tipsWithLike);
+        
+        //         $config['use_page_numbers']  = TRUE;
+        $this->pagination->initialize($config);
+        $offset = $this->uri->segment(4,0);
+//         $offset = $page==0? 0: ($page-1)*$config["per_page"];
+        //         $this->pagination->cur_page = $offset;
+        $limitedTips["results"] = $this->tipModel->getLimitedTipsWithLike($tipsWithLike,$config['per_page'],$offset);
+//         var_dump($limitedTips);
+//         die();
+        
+        $limitedTips["links"] = $this->pagination->create_links();
+      
         
         if ($user === FALSE) {
             // Return error page
@@ -140,7 +164,8 @@ class User extends CI_Controller {
         }
         $this->load->view("layout/layout", array(
         		'mainContent'   => VIEW_PATH . '/user/info.php',
-        		'user'  => $user, 'userTips'=>$tips
+        		'user'  => $user, 
+        		'todayTips' => $limitedTips,
         ));
 //         echo "Load user info of userId {$userSession['user_id']} and display as user data form";
 
@@ -349,6 +374,7 @@ class User extends CI_Controller {
 		//         echo "Load user info of userId {$userSession['user_id']} and display as user data form";
 		
 	}
+
 	public function changePass($userId=0)
 	{
 		$this->load->helper('form');
@@ -395,7 +421,24 @@ class User extends CI_Controller {
         				'mainContent' => VIEW_PATH . '/user/changePass.php','errorMessage' => $errorMessage));
       
 	}
-	
+
+	public function likeTip($tipId)
+	{
+		$tipId = intval($tipId);
+		if($tipId === 0){
+			die('Nothing to like');
+		}
+		$userId = $this->session->userdata('userId');
+		$this->load->model('Tips','tipModel');
+		$isLiked = $this->tipModel->isUserLikedTip($userId,$tipId);
+		if($isLiked){
+			die('Already like');
+		}
+		$this->userModel->likeTip($userId,$tipId);
+		header("Location: /");
+		exit;
+	}
+
    	protected function errorPage($errorMessage)
     {
         echo $errorMessage; die();
