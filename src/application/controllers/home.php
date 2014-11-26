@@ -15,35 +15,25 @@ class Home extends CI_Controller{
     public function index()
     {
         $this->load->model('Tips', 'tipModel');
-        $todayTips = $this->tipModel->getAllTipsToday();
+//        $todayTips = $this->tipModel->getAllTipsToday();
+        $todayTips = $this->tipModel->getAllTipsTodayWithLikeNumber();
         $this->load->model('Topics', 'topicModel');
         $allTopics = $this->topicModel->getAllTopics();
 
+        $mostLikedTips = $this->tipModel->getMostLikedTip();
+        $latestTips = $this->tipModel->getLatestTip();
+//        var_dump($mostLikedTips); die();
         //pagination -start
         include("pagination.php");
-        //pagination
-//        $perpage = 5;
-//        $this->load->library('pagination');
-//        $config['base_url'] = '?page=';
-//        $config['per_page'] = $perpage;
-//        $config['page_query_string'] = TRUE;
-//        $config['total_rows'] = count($todayTips);
-//        $this->pagination->initialize($config);
-//        $link =  $this->pagination->create_links();
-//
-//        $from = $this->input->get('per_page');
-//        if ($from === false || $from === '') {
-//            $from = 0;
-//        }
-//
-//        $showTips = array_slice($todayTips,$from,$perpage);
-        //pagination -end
 
         $this->load->view("layout/layout", array(
             'pageLink'  => $pageLink,
             'todayTips' => $showTips,
             'allTopics' => $allTopics,
+            'mostLikedTips' => $mostLikedTips,
+            'latestTips' => $latestTips,
             'mainContent'   => VIEW_PATH . '/layout/left_content.php',
+//            'rightContent'  => VIEW_PATH . '/layout/right_content.php',
             ));
     }
 

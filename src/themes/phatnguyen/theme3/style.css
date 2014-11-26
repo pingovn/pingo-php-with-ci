@@ -104,6 +104,13 @@ padding:0 10px 0 0;
 float:left;
 width:auto;
 padding:10px 0 8px 0;
+    background: #fff38e;
+    box-shadow:
+    0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+    0px 4px 20px rgba( 0,0,0,0.33 );
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 .news_date{
 width:42px;
@@ -124,9 +131,16 @@ padding:0 0 0 10px;
 .left_shows{
 float:left;
 width:auto;
-border-bottom:1px #ae1337 dashed;
+/*border-bottom:1px #ae1337 dashed;*/
 padding:10px 0 8px 0;
 margin:0 0 10px 0;
+    background: none repeat scroll 0% 0% #FFF;
+    box-shadow:
+    0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+    0px 4px 20px rgba( 0,0,0,0.33 );
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 .show_date {
 width:100px;

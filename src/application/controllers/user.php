@@ -14,7 +14,7 @@ class User extends CI_Controller {
         //prepare data to view in left_content
         $this->load->model('Tips', 'tipModel');
         $this->load->model('Topics', 'topicModel');
-        $this -> todayTips = $this->tipModel->getAllTipsToday();
+        $this -> todayTips = $this->tipModel->getAllTipsTodayWithLikeNumber();
         $this -> allTopics = $this->topicModel->getAllTopics();
     }
 
@@ -93,14 +93,15 @@ class User extends CI_Controller {
                 $this->session->set_userdata($userSession);
 //                $todayTips = $this->tipModel->getAllTipsToday();
 //                $allTopics = $this->topicModel->getAllTopics();
-                include("user_pagination.php");
-                $this->load->view("layout/layout", array(
-                    'pageLink'  => $this->pageLink,
-                    'todayTips' => $this->showTips,
-                    'allTopics' => $this->allTopics,
-                    'mainContent'   => VIEW_PATH . '/layout/left_content.php',
-                ));
 
+//                include("user_pagination.php");
+//                $this->load->view("layout/layout", array(
+//                    'pageLink'  => $this->pageLink,
+//                    'todayTips' => $this->showTips,
+//                    'allTopics' => $this->allTopics,
+//                    'mainContent'   => VIEW_PATH . '/layout/left_content.php',
+//                ));
+                redirect('');
                 return ;
             } else {
                 $errorMessage = "Email and password mismatch. Please try again";
@@ -123,20 +124,22 @@ class User extends CI_Controller {
 //        var_dump($this->session->userdata('userId'));
 //        var_dump($user); die();
         if ($user === false) {
-            return $this->errorPage("Logout Fail. Please try again");
+//            return $this->errorPage("Logout Fail. Please try again");
+            header("Location: /"); exit();
         }
         $this->session->unset_userdata('userId');
         $this->session->unset_userdata('email');
 
 //        $todayTips = $this->tipModel->getAllTipsToday();
 //        $allTopics = $this->topicModel->getAllTopics();
-        include("user_pagination.php");
-        $this->load->view("layout/layout", array(
-            'pageLink'  => $this->pageLink,
-            'todayTips' => $this->showTips,
-            'allTopics' => $this->allTopics,
-            'mainContent'   => VIEW_PATH . '/layout/left_content.php',
-        ));
+//        include("user_pagination.php");
+//        $this->load->view("layout/layout", array(
+//            'pageLink'  => $this->pageLink,
+//            'todayTips' => $this->showTips,
+//            'allTopics' => $this->allTopics,
+//            'mainContent'   => VIEW_PATH . '/layout/left_content.php',
+//        ));
+        redirect('');
     }
 
     public function info($userId = 0)
@@ -170,13 +173,14 @@ class User extends CI_Controller {
             if ($query_result === false) {
                 return $this->errorPage("Update user fail. Please try again");
             } else { //udpate success -> go to home page
-                include("user_pagination.php");
-                return $this->load->view("layout/layout", array(
-                    'pageLink'  => $this->pageLink,
-                    'todayTips' => $this->showTips,
-                    'allTopics' => $this->allTopics,
-                    'mainContent'   => VIEW_PATH . '/layout/left_content.php',
-                ));
+//                include("user_pagination.php");
+//                return $this->load->view("layout/layout", array(
+//                    'pageLink'  => $this->pageLink,
+//                    'todayTips' => $this->showTips,
+//                    'allTopics' => $this->allTopics,
+//                    'mainContent'   => VIEW_PATH . '/layout/left_content.php',
+//                ));
+                redirect('');
             }
         }
 
@@ -213,13 +217,14 @@ class User extends CI_Controller {
                     'errorMessage'  => 'Update password fail! Please try again'
                 ));
             } else { //udpate success -> go to home page
-                include("user_pagination.php");
-                return  $this->load->view("layout/layout", array(
-                    'pageLink'  => $this->pageLink,
-                    'todayTips' => $this->showTips,
-                    'allTopics' => $this->allTopics,
-                    'mainContent'   => VIEW_PATH . '/layout/left_content.php',
-                ));
+//                include("user_pagination.php");
+//                return  $this->load->view("layout/layout", array(
+//                    'pageLink'  => $this->pageLink,
+//                    'todayTips' => $this->showTips,
+//                    'allTopics' => $this->allTopics,
+//                    'mainContent'   => VIEW_PATH . '/layout/left_content.php',
+//                ));
+                redirect('');
             }
 
         }
@@ -302,6 +307,23 @@ class User extends CI_Controller {
 
     }
 
+    public function likeTip($tipId)
+    {
+        $tipId = intval($tipId);
+        if ($tipId === 0) {
+            die("Like cai gi ma like");
+        }
+        $userId = $this->session->userdata("userId");
+        $this->load->model("Users", "userModel");
+        $this->load->model("Tips", "tipModel");
+        $isLiked = $this->tipModel->isUserLikedTip($userId, $tipId);
+        if ($isLiked) {
+            die("Like roi like chi nua");
+        }
+        $this->userModel->likeTip($userId, $tipId);
+        header("Location: /");
+        exit();
+    }
 
     protected function errorPage($errorMessage)
     {

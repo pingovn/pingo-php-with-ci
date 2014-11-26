@@ -15,7 +15,11 @@
 <div class="left_content">    
     <?php include("$mainContent"); ?>
 </div>
-<?php include("right_content.php"); ?>
+
+<div class="right_content">
+<!--    --><?php //include("$rightContent"); ?>
+    <?php include("right_content.php"); ?>
+</div>
 
 <?php include("footer.php"); ?>
 </div>

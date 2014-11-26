@@ -1,16 +1,5 @@
 <?php
-//var_dump($todayTips[0]);
-//$now = strtotime("now");
-//$postTime = strtotime($todayTips[0]['create_time']);
-//$periodHour = round(($now - $postTime)/(60*60));
-//$periodMinute = round(($now - $postTime)/(60));
-//var_dump($periodHour);
-//var_dump($periodMinute);
-//
-//
-////$updateTime = date("Y-m-d H:i:s") - $todayTips[0];
-////var_dump($updateTime);
-//die();
+$this->load->model("Tips", "tipModel");
 ?>
 <div class="title">Tips of Today</div>
 <?php if (isset($todayTips) && is_array($todayTips) && count($todayTips) > 0) : ?>
@@ -29,17 +18,18 @@
                 <br />
                 <?php echo $tip['content']; ?>
                 <br />
-
-                <?php $now = strtotime("now"); ?>
+                <div>
+                    <?php if ($this->session->userdata('userId') === false): ?>
+                        <image src="/images/like.png" alt="Like this tip" /></image><?php echo $tip['like_number']; ?>
+                    <?php elseif($this->tipModel->isUserLikedTip($this->session->userdata('userId'), $tip['id'])) : ?>
+                        <image src="/images/like.png" alt="Like this tip" /></image><?php echo $tip['like_number']; ?>
+                    <?php else: ?>
+                        <a href="<?php echo site_url("user/likeTip/" . $tip['id']); ?>"><image src="/images/like.png" alt="Like this tip" /></image></a>&nbsp;<?php echo $tip['like_number']; ?>
+                    <?php endif ?>
+                </div>
+                <?php $this->load->helper('date'); ?>
                 <?php $postTime = strtotime($tip['create_time']); ?>
-                <?php $periodHour = ($now - $postTime)/(60*60); ?>
-                <?php if ( $periodHour > 1 ) : ?>
-                    <?php echo round($periodHour) . "hours ago"; ?>
-                <?php elseif (($now - $postTime)/(60) > 1 ) : ?>
-                    <?php echo round(($now - $postTime)/(60)) . "minutes ago"; ?>
-                <?php else : ?>
-                    <?php echo "just now"; ?>
-                <?php endif ?>
+                <?php echo timespan($postTime, time()); ?>
             </div>
         </div>
     <?php endforeach ?>
