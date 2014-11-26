@@ -16,8 +16,8 @@
 */
 //$config['base_url']	= 'http://localhost/minhtrieu-php-with-ci/src';
 //$config['base_url']	= 'minh.dev';
-$config['base_url']	= 'http://minh.dev';
-//$config['base_url']	= 'ci.dev';
+//$config['base_url']	= 'http://minh.dev';
+$config['base_url']	= 'http://ci.dev';
 
 /*
 |--------------------------------------------------------------------------
