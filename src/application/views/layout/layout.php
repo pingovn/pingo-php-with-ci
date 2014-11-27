@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/style.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/pingo.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/style1.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/profile.css" media="screen" />
 
 
