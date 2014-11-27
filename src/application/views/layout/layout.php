@@ -5,12 +5,14 @@
 <title>Home Page</title>
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/style.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/pingo.css" media="screen" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
 <div id="main_container">
 <?php include("header.php"); ?>
 <?php include("menu.php"); ?>
+<button id="btnReload" onclick="reloadTodayTips();">Reload</button>
     
 <div class="left_content">    
     <?php include("$mainContent"); ?>

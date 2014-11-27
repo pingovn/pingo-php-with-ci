@@ -4,7 +4,9 @@
     <img src="/themes/phatnguyen/theme3/images/earphones.gif" alt="" title="" class="left_img" />
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
     </p>  
-    <?php include(VIEW_PATH . "/tip/today_list.php");?>
+    <div>
+        <?php include(VIEW_PATH . "/tip/today_list.php");?>
+    </div>
     <div class="title">Photo Gallery</div>  
     
     <div class="photo_gallery">
@@ -17,3 +19,19 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
         <div class="right_nav"><a href="#"><img src="/themes/phatnguyen/theme3/images/right_arrow.gif" alt="" title="" border="0" /></a></div> 
     </div>
      
+<script text="text/javascript">
+function reloadTodayTips()
+{
+    $("#todayList").parent().prepend("<img src='/images/loading.gif' />");
+    setTimeout(function() {
+        $.ajax({
+        url: "<?php echo site_url('tip/ajaxTodayList'); ?>",
+        method: "GET",
+        success: function(response) {
+            $("#todayList").parent().html(response);
+        }
+    })}, 1000
+    );
+}
+
+</script>

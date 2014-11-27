@@ -52,9 +52,44 @@ class Tip extends CI_Controller{
             ));
     }
 
-    public function phpinfo()
+    public function ajaxAdd()
     {
-        phpinfo();
+        $errorMessage = "";
+        $a = array();
+        $post = $this->input->post();
+        if (isset($post['btnAddTip']) && $post['btnAddTip'] =='Add Tip') {
+            // Validate du lieu tu form
+            if ($post["txtTip"] != "") {
+                // Xu ly luu vao database
+                $data = array(
+                        "content"   => $post["txtTip"],
+                        "topic_id"  => $post["slbTopic"],
+                        'user_id'   => $this->session->userdata('userId'),
+                        'update_time'  => date("Y-m-d H:i:s")
+                    );
+                $result = $this->tipModel->createTip($data);
+                if ($result) {
+                    echo "OK";
+                    die();
+                } else {
+                    $errorMessage = "Khong luu duoc du lieu vao database" ;
+                }
+            } else {
+                $errorMessage = "Noi gi thi doi di";
+            }
+            echo $errorMessage;
+        } else {
+            echo "Di cho khac choi";
+        }
+    }
+
+    public function ajaxTodayList()
+    {
+        $this->load->model('Tips', 'tipModel');
+        $todayTips = $this->tipModel->getAllTipsTodayWithLikeNumber();
+        $this->load->view("tip/today_list", array(
+            'todayTips' => $todayTips,
+            ));    
     }
 }
 

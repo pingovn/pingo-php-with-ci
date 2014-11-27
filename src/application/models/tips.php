@@ -34,7 +34,7 @@ class Tips extends PingoModel
                     LEFT JOIN user_like ON tips.id = user_like.tip_id
                     WHERE create_time >= CURDATE()
                     GROUP BY tips.id
-                    ORDER BY like_number DESC";
+                    ORDER BY create_time DESC";
         $tips = $this->db->query($sql)->result_array();            
         return $tips;
     }
