@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/style.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/style1.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/profile.css" media="screen" />
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 
