@@ -11,5 +11,9 @@
             <li><a href="<?php echo site_url('user/register'); ?>" title="">Register</a></li>
             <li><a href="<?php echo site_url('user/login'); ?>" title="Login">Login</a></li>
         <?php endif ?>
+        <?php if ($this->session->userdata('is_admin') == 1) : ?>
+            <li><a href="<?php echo site_url('admin/index'); ?>" title="">Admin</a></li>
+        <?php endif ?>
+
     </ul>
 </div>

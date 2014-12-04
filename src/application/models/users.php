@@ -97,7 +97,8 @@ class Users extends PingoModel
         $data = array(
             'email'      => $email,
             'userId'     => $user['id'],
-            'fullname' => $user['fullname']
+            'fullname' => $user['fullname'],
+            'is_admin' => $user['is_admin']
             );
         $this->session->set_userdata($data);
         return true;
@@ -119,6 +120,11 @@ class Users extends PingoModel
 
         $sql = "INSERT INTO user_like (user_id, tip_id) VALUES (?, ?)";
         return $this->db->query($sql, array($userId, $tipId));
+    }
+
+    public function detete($userId)
+    {
+        return $this->deleteById($userId);
     }
 }
 ?>

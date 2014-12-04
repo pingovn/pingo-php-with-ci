@@ -78,5 +78,11 @@ class PingoModel extends CI_Model
         $row = $this->db->get($this->tableName)->result_array();
         return $row;
     }
+
+    protected function deleteById($id)
+    {
+        $sql = "DELETE FROM " . $this->tableName . " WHERE id = ?";
+        return $this->db->query($sql, $id);
+    }
 }
 ?>
