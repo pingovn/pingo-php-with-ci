@@ -8,24 +8,58 @@ class Admin extends CI_Controller {
         $this->load->helper('url');
         $this->load->model("PingoModel");
         $this->load->library('session');
+        $this->load->library('grocery_CRUD');
+    }
+
+    private function _requiredAdmin()
+    {
+        $userId = $this->session->userdata('userId');
+        if (empty($userId)) {
+            redirect('/');
+            exit;
+        }
+
+        $isAdmin = $this->session->userdata('is_admin');
+        if ($isAdmin != 1) {
+            redirect('/');
+            exit;
+        }
+    }
+
+    public function users()
+    {
+        $this->_requiredAdmin();
+        $this->grocery_crud->set_theme('datatables');
+        $output = $this->grocery_crud->render();
+        $this->_example_output($output);
     }
 
     public function index()
     {
-        $userId = $this->session->userdata('userId');
-        if (!empty($userId)) {
-            $isAdmin = $this->session->userdata('is_admin');
-            if ($isAdmin != 1) {
-                redirect('/');
-            }
+        $this->_requiredAdmin();
+        $this->load->view("layout/layout", array(
+            'mainContent'   => VIEW_PATH . '/admin/index.php'
+        ));
+    }
 
-            $this->load->view("layout/layout", array(
-                'mainContent'   => VIEW_PATH . '/admin/index.php'
-            ));
-        } else {
-            redirect('/');
-            exit;
-        }
+    public function user_like()
+    {
+        $this->_requiredAdmin();
+        $output = $this->grocery_crud->render();
+        $this->_example_output($output);
+    }
+
+    public function tips()
+    {
+        $this->_requiredAdmin();
+        $this->grocery_crud->set_theme('twitter-bootstrap');
+        $output = $this->grocery_crud->render();
+        $this->_example_output($output);
+    }
+
+    public function _example_output($output = null)
+    {
+        $this->load->view('example.php',$output);
     }
 
     public function register()
