@@ -1,5 +1,5 @@
 <div id="menu">
-    <ul>                                                                                                                      
+    <ul class="nav nav-tabs">                                                                                                                      
         <li><a class="current" href="/" title="">Tips of today</a></li>
         <li><a href="#" title="">Overall</a></li>
         <li><a href="#" title="">Your tips</a></li>

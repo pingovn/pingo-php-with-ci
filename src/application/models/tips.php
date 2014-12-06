@@ -29,9 +29,10 @@ class Tips extends PingoModel
 
     public function getAllTipsTodayWithLikeNumber()
     {
-        $sql = "SELECT tips.*, email, COUNT(user_like.tip_id) as like_number FROM tips  
+        $sql = "SELECT tips.*, email, topics.name as topic, COUNT(user_like.tip_id) as like_number FROM tips  
                     INNER JOIN users ON tips.user_id = users.id
                     LEFT JOIN user_like ON tips.id = user_like.tip_id
+                    INNER JOIN topics ON tips.topic_id = topics.id
                     WHERE create_time >= CURDATE()
                     GROUP BY tips.id
                     ORDER BY create_time DESC";

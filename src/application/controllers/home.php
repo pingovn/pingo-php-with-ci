@@ -19,7 +19,7 @@ class Home extends CI_Controller{
         $this->load->view("layout/layout", array(
             'todayTips' => $todayTips,
             'allTopics' => $allTopics,
-            'mainContent'   => VIEW_PATH . '/layout/left_content.php',
+            'mainContent'   => VIEW_PATH . '/tip/today_list.php',
             ));
     }
 

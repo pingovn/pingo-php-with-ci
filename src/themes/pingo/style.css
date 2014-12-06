@@ -1,0 +1,10 @@
+.user-avatar {
+    float: left;
+}
+.tip-content-container {
+    padding-left: 5px;
+    float: left;
+}
+.add-tip {
+    padding-bottom: 5px;
+}
