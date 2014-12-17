@@ -4,7 +4,7 @@
 <!-- <div> -->
 <!-- </div> -->
 <?php include (VIEW_PATH . "/tip/today_tips.php")?>
-<div class="photo_gallery">
+<!-- <div class="photo_gallery">
 	<div class="left_nav">
 		<a href="#"><img src="/themes/phatnguyen/theme3/images/left_arrow.gif"
 			alt="" title="" border="0" /></a>
@@ -23,3 +23,4 @@
 			title="" border="0" /></a>
 	</div>
 </div>
+ -->

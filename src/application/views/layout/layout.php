@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/phatnguyen_style.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/phatnguyen_demo.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/phatnguyen_animate-custom.css" media="screen" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="/themes/phatnguyen/theme3/css/profilestyle.css" media="screen"> -->
 
 </head>
@@ -22,7 +23,7 @@
 </div>
 <?php include("right_content.php"); ?>
 
-<?php include("footer.php"); ?>
+<?php // include("footer.php"); ?>
 </div>
 </body>
 </html>
